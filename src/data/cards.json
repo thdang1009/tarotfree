@@ -31,7 +31,7 @@
       "spirituality": "Reversed spirituality - disconnection from: trusting the universe; spiritual awakening; following your intuition."
     },
     "description": "Represents the start of a journey and unlimited potential.",
-    "image": "/images/cards/00-the-fool.jpg",
+    "image": "/images/cards/RWS_Tarot_00_Fool.jpg",
     "relationships": {
       "supporting_cards": [
         "Ace of Wands",
@@ -78,7 +78,7 @@
       "spirituality": "Reversed spirituality - disconnection from: connecting with divine power; conscious creation through intention."
     },
     "description": "Represents the conscious use of will and tools to manifest.",
-    "image": "/images/cards/01-the-magician.jpg",
+    "image": "/images/cards/RWS_Tarot_01_Magician.jpg",
     "relationships": {
       "supporting_cards": [
         "Two of Wands",
@@ -124,7 +124,7 @@
       "spirituality": "Reversed spirituality - disconnection from: deep meditation; psychic abilities; connecting to the divine feminine."
     },
     "description": "Represents wisdom, intuition, and the secrets of the subconscious mind.",
-    "image": "/images/cards/02-the-high-priestess.jpg",
+    "image": "/images/cards/RWS_Tarot_02_High_Priestess.jpg",
     "relationships": {
       "supporting_cards": [
         "Four of Swords",
@@ -172,7 +172,7 @@
       "spirituality": "Reversed spirituality - disconnection from: connecting with mother earth; finding the divine in nature."
     },
     "description": "Represents motherhood, creation, and earthly abundance.",
-    "image": "/images/cards/03-the-empress.jpg",
+    "image": "/images/cards/RWS_Tarot_03_Empress.jpg",
     "relationships": {
       "supporting_cards": [
         "Three of Pentacles",
@@ -219,7 +219,7 @@
       "spirituality": "Reversed spirituality - disconnection from: establishing a firm set of beliefs; practical application of faith."
     },
     "description": "Represents fatherhood, law, order, and grounded authority.",
-    "image": "/images/cards/04-the-emperor.jpg",
+    "image": "/images/cards/RWS_Tarot_04_Emperor.jpg",
     "relationships": {
       "supporting_cards": [
         "King of Swords",
@@ -266,7 +266,7 @@
       "spirituality": "Reversed spirituality - disconnection from: organized religion; studying ancient teachings; following a doctrine."
     },
     "description": "Represents social structures, institutions, and religious wisdom.",
-    "image": "/images/cards/05-the-hierophant.jpg",
+    "image": "/images/cards/RWS_Tarot_05_Hierophant.jpg",
     "relationships": {
       "supporting_cards": [
         "Five of Pentacles",
@@ -313,7 +313,7 @@
       "spirituality": "Reversed spirituality - disconnection from: aligning actions with spiritual beliefs; integrating different aspects of self."
     },
     "description": "Represents harmony, attraction, and critical choices in life.",
-    "image": "/images/cards/06-the-lovers.jpg",
+    "image": "/images/cards/RWS_Tarot_06_Lovers.jpg",
     "relationships": {
       "supporting_cards": [
         "Two of Cups",
@@ -360,7 +360,7 @@
       "spirituality": "Reversed spirituality - disconnection from: disciplined practice; using willpower to overcome spiritual obstacles."
     },
     "description": "Represents triumph, self-discipline, and forward momentum.",
-    "image": "/images/cards/07-the-chariot.jpg",
+    "image": "/images/cards/RWS_Tarot_07_Chariot.jpg",
     "relationships": {
       "supporting_cards": [
         "Ace of Swords",
@@ -407,7 +407,7 @@
       "spirituality": "Reversed spirituality - disconnection from: connecting with the soul's power; spiritual discipline tempered with love."
     },
     "description": "Represents the mastery of emotions through gentle inner power.",
-    "image": "/images/cards/08-strength.jpg",
+    "image": "/images/cards/RWS_Tarot_08_Strength.jpg",
     "relationships": {
       "supporting_cards": [
         "Temperance",
@@ -454,7 +454,7 @@
       "spirituality": "Reversed spirituality - disconnection from: deep meditation; seeking enlightenment; focusing on inner truth."
     },
     "description": "Represents the need for solitude to gain wisdom and guidance.",
-    "image": "/images/cards/09-the-hermit.jpg",
+    "image": "/images/cards/RWS_Tarot_09_Hermit.jpg",
     "relationships": {
       "supporting_cards": [
         "Four of Swords",
@@ -501,7 +501,7 @@
       "spirituality": "Reversed spirituality - disconnection from: understanding karma; recognizing life patterns; divine intervention."
     },
     "description": "Represents the ever-changing cycles of life, fate, and karma.",
-    "image": "/images/cards/10-wheel-of-fortune.jpg",
+    "image": "/images/cards/RWS_Tarot_10_Wheel_of_Fortune.jpg",
     "relationships": {
       "supporting_cards": [
         "The Sun",
@@ -548,7 +548,7 @@
       "spirituality": "Reversed spirituality - disconnection from: the concept of karma; aligning to universal moral laws."
     },
     "description": "Represents truth, legal outcomes, and equilibrium.",
-    "image": "/images/cards/11-justice.jpg",
+    "image": "/images/cards/RWS_Tarot_11_Justice.jpg",
     "relationships": {
       "supporting_cards": [
         "Two of Swords",
@@ -595,7 +595,7 @@
       "spirituality": "Reversed spirituality - disconnection from: surrender to the divine will; meditation; viewing the world spiritually."
     },
     "description": "Represents a period of suspension and necessary change in perspective.",
-    "image": "/images/cards/12-the-hanged-man.jpg",
+    "image": "/images/cards/RWS_Tarot_12_Hanged_Man.jpg",
     "relationships": {
       "supporting_cards": [
         "Four of Swords",
@@ -642,7 +642,7 @@
       "spirituality": "Reversed spirituality - disconnection from: shedding old spiritual beliefs; a spiritual rebirth or awakening."
     },
     "description": "Represents radical transformation and the inevitable end of cycles (not literal death).",
-    "image": "/images/cards/13-death.jpg",
+    "image": "/images/cards/RWS_Tarot_13_Death.jpg",
     "relationships": {
       "supporting_cards": [
         "The Tower",
@@ -689,7 +689,7 @@
       "spirituality": "Reversed spirituality - disconnection from: integration of the self; divine timing; connecting to one's higher purpose."
     },
     "description": "Represents self-control, balance, and the synthesis of opposites.",
-    "image": "/images/cards/14-temperance.jpg",
+    "image": "/images/cards/RWS_Tarot_14_Temperance.jpg",
     "relationships": {
       "supporting_cards": [
         "Two of Cups",
@@ -736,7 +736,7 @@
       "spirituality": "Reversed spirituality - disconnection from: focusing too much on the material world; denying spiritual freedom."
     },
     "description": "Represents the chains of material attachment and earthly desires.",
-    "image": "/images/cards/15-the-devil.jpg",
+    "image": "/images/cards/RWS_Tarot_15_Devil.jpg",
     "relationships": {
       "supporting_cards": [
         "Five of Pentacles",
@@ -783,7 +783,7 @@
       "spirituality": "Reversed spirituality - disconnection from: a sudden, radical shift in belief system; spiritual awakening through crisis."
     },
     "description": "Represents the sudden destruction of outdated structures and beliefs.",
-    "image": "/images/cards/16-the-tower.jpg",
+    "image": "/images/cards/RWS_Tarot_16_Tower.jpg",
     "relationships": {
       "supporting_cards": [
         "Death",
@@ -830,7 +830,7 @@
       "spirituality": "Reversed spirituality - disconnection from: feeling connected to the universe; profound spiritual healing and guidance."
     },
     "description": "Represents hope, serenity, and a guiding light after a dark period.",
-    "image": "/images/cards/17-the-star.jpg",
+    "image": "/images/cards/RWS_Tarot_17_Star.jpg",
     "relationships": {
       "supporting_cards": [
         "Nine of Cups",
@@ -877,7 +877,7 @@
       "spirituality": "Reversed spirituality - disconnection from: exploring the shadow self; vivid dreams; tapping into psychic abilities."
     },
     "description": "Represents the fear of the unknown, illusion, and intuition.",
-    "image": "/images/cards/18-the-moon.jpg",
+    "image": "/images/cards/RWS_Tarot_18_Moon.jpg",
     "relationships": {
       "supporting_cards": [
         "Seven of Cups",
@@ -924,7 +924,7 @@
       "spirituality": "Reversed spirituality - disconnection from: enlightenment; pure spiritual connection; being one with the source."
     },
     "description": "Represents pure joy, success, and the light of consciousness.",
-    "image": "/images/cards/19-the-sun.jpg",
+    "image": "/images/cards/RWS_Tarot_19_Sun.jpg",
     "relationships": {
       "supporting_cards": [
         "Ace of Wands",
@@ -971,7 +971,7 @@
       "spirituality": "Reversed spirituality - disconnection from: following one's destiny; spiritual awakening; forgiveness."
     },
     "description": "Represents a time of reckoning, forgiveness, and major decision-making.",
-    "image": "/images/cards/20-judgement.jpg",
+    "image": "/images/cards/RWS_Tarot_20_Judgement.jpg",
     "relationships": {
       "supporting_cards": [
         "The World",
@@ -1018,7 +1018,7 @@
       "spirituality": "Reversed spirituality - disconnection from: attaining enlightenment; unity with the universe; perfect harmony."
     },
     "description": "Represents the successful completion of a major cycle and cosmic consciousness.",
-    "image": "/images/cards/21-the-world.jpg",
+    "image": "/images/cards/RWS_Tarot_21_World.jpg",
     "relationships": {
       "supporting_cards": [
         "Ten of Pentacles",
@@ -1064,7 +1064,7 @@
       "spirituality": "Reversed spirituality - disconnection from: a flash of spiritual insight; beginning a new spiritual practice."
     },
     "description": "The seed of creative energy and new beginnings.",
-    "image": "/images/cards/ace-of-wands.jpg",
+    "image": "/images/cards/Wands01.jpg",
     "relationships": {
       "supporting_cards": [
         "The Fool",
@@ -1110,7 +1110,7 @@
       "spirituality": "Reversed spirituality - disconnection from: planning a spiritual retreat; deciding on a belief path."
     },
     "description": "Represents stepping out of one's comfort zone and planning.",
-    "image": "/images/cards/two-of-wands.jpg",
+    "image": "/images/cards/Wands02.jpg",
     "relationships": {
       "supporting_cards": [
         "The Magician",
@@ -1156,7 +1156,7 @@
       "spirituality": "Reversed spirituality - disconnection from: sharing spiritual knowledge; a vision of the future."
     },
     "description": "Represents established success and future expansion.",
-    "image": "/images/cards/three-of-wands.jpg",
+    "image": "/images/cards/Wands03.jpg",
     "relationships": {
       "supporting_cards": [
         "The Chariot",
@@ -1202,7 +1202,7 @@
       "spirituality": "Reversed spirituality - disconnection from: celebrating a spiritual passage; feeling connected to one's spiritual home."
     },
     "description": "Represents stability, security, and a joyful home environment.",
-    "image": "/images/cards/four-of-wands.jpg",
+    "image": "/images/cards/Wands04.jpg",
     "relationships": {
       "supporting_cards": [
         "The Lovers",
@@ -1248,7 +1248,7 @@
       "spirituality": "Reversed spirituality - disconnection from: inner conflict between different desires or beliefs."
     },
     "description": "Represents friendly competition or internal friction.",
-    "image": "/images/cards/five-of-wands.jpg",
+    "image": "/images/cards/Wands05.jpg",
     "relationships": {
       "supporting_cards": [
         "Seven of Wands",
@@ -1294,7 +1294,7 @@
       "spirituality": "Reversed spirituality - disconnection from: sharing spiritual success; becoming a spiritual leader/guide."
     },
     "description": "Represents public victory and recognition for hard work.",
-    "image": "/images/cards/six-of-wands.jpg",
+    "image": "/images/cards/Wands06.jpg",
     "relationships": {
       "supporting_cards": [
         "The Chariot",
@@ -1340,7 +1340,7 @@
       "spirituality": "Reversed spirituality - disconnection from: defending spiritual principles; spiritual warfare."
     },
     "description": "Represents holding one's own against opposition.",
-    "image": "/images/cards/seven-of-wands.jpg",
+    "image": "/images/cards/Wands07.jpg",
     "relationships": {
       "supporting_cards": [
         "Strength",
@@ -1386,7 +1386,7 @@
       "spirituality": "Reversed spirituality - disconnection from: rapid spiritual progress; sudden insights."
     },
     "description": "Represents quick, rapid-fire activity and incoming news.",
-    "image": "/images/cards/eight-of-wands.jpg",
+    "image": "/images/cards/Wands08.jpg",
     "relationships": {
       "supporting_cards": [
         "Wheel of Fortune",
@@ -1432,7 +1432,7 @@
       "spirituality": "Reversed spirituality - disconnection from: spiritual endurance; protecting your sacred space."
     },
     "description": "Represents the final push before success; guardedness.",
-    "image": "/images/cards/nine-of-wands.jpg",
+    "image": "/images/cards/Wands09.jpg",
     "relationships": {
       "supporting_cards": [
         "Strength",
@@ -1478,7 +1478,7 @@
       "spirituality": "Reversed spirituality - disconnection from: the burden of dogmatic belief; carrying guilt."
     },
     "description": "Represents carrying a heavy load, often self-imposed.",
-    "image": "/images/cards/ten-of-wands.jpg",
+    "image": "/images/cards/Wands10.jpg",
     "relationships": {
       "supporting_cards": [
         "Four of Swords",
@@ -1524,7 +1524,7 @@
       "spirituality": "Reversed spirituality - disconnection from: curiosity about a new spiritual path; beginner's mind."
     },
     "description": "A messenger of new ideas, passion, and excitement.",
-    "image": "/images/cards/page-of-wands.jpg",
+    "image": "/images/cards/Wands11.jpg",
     "relationships": {
       "supporting_cards": [
         "Ace of Wands",
@@ -1570,7 +1570,7 @@
       "spirituality": "Reversed spirituality - disconnection from: an energetic pursuit of a spiritual goal; a spiritual journey."
     },
     "description": "Represents quick action, movement, and passionate pursuit.",
-    "image": "/images/cards/knight-of-wands.jpg",
+    "image": "/images/cards/Wands12.jpg",
     "relationships": {
       "supporting_cards": [
         "The Chariot",
@@ -1616,7 +1616,7 @@
       "spirituality": "Reversed spirituality - disconnection from: connecting with fierce, creative spiritual power."
     },
     "description": "A charismatic, energetic, and powerful woman; inner fire.",
-    "image": "/images/cards/queen-of-wands.jpg",
+    "image": "/images/cards/Wands13.jpg",
     "relationships": {
       "supporting_cards": [
         "The Empress",
@@ -1662,7 +1662,7 @@
       "spirituality": "Reversed spirituality - disconnection from: a spiritual teacher or guru; leading others on a path."
     },
     "description": "A visionary leader with magnetic energy and integrity.",
-    "image": "/images/cards/king-of-wands.jpg",
+    "image": "/images/cards/Wands14.jpg",
     "relationships": {
       "supporting_cards": [
         "The Emperor",
@@ -1708,7 +1708,7 @@
       "spirituality": "Reversed spirituality - disconnection from: spiritual awakening; deep connection to the divine source of love."
     },
     "description": "The seed of pure emotion, love, and spiritual fulfillment.",
-    "image": "/images/cards/ace-of-cups.jpg",
+    "image": "/images/cards/Cups01.jpg",
     "relationships": {
       "supporting_cards": [
         "The Star",
@@ -1754,7 +1754,7 @@
       "spirituality": "Reversed spirituality - disconnection from: union with a spiritual partner; connection between inner male/female."
     },
     "description": "Represents the beautiful union of two people or energies.",
-    "image": "/images/cards/two-of-cups.jpg",
+    "image": "/images/cards/Cups02.jpg",
     "relationships": {
       "supporting_cards": [
         "The Lovers",
@@ -1800,7 +1800,7 @@
       "spirituality": "Reversed spirituality - disconnection from: joining a spiritual community; sharing joy with others."
     },
     "description": "Represents celebration, fun, and the joy of social connection.",
-    "image": "/images/cards/three-of-cups.jpg",
+    "image": "/images/cards/Cups03.jpg",
     "relationships": {
       "supporting_cards": [
         "The Sun",
@@ -1846,7 +1846,7 @@
       "spirituality": "Reversed spirituality - disconnection from: spiritual stagnation; turning down a spiritual gift."
     },
     "description": "Represents feeling emotionally disconnected and unenthusiastic.",
-    "image": "/images/cards/four-of-cups.jpg",
+    "image": "/images/cards/Cups04.jpg",
     "relationships": {
       "supporting_cards": [
         "The Hermit",
@@ -1892,7 +1892,7 @@
       "spirituality": "Reversed spirituality - disconnection from: feeling spiritually bankrupt; focusing on past 'sins'."
     },
     "description": "Represents focusing on what has been lost rather than what remains.",
-    "image": "/images/cards/five-of-cups.jpg",
+    "image": "/images/cards/Cups05.jpg",
     "relationships": {
       "supporting_cards": [
         "Three of Swords",
@@ -1938,7 +1938,7 @@
       "spirituality": "Reversed spirituality - disconnection from: connecting with the spiritual wisdom of childhood; past life awareness."
     },
     "description": "Represents reminiscing, revisiting the past, and giving/receiving gifts.",
-    "image": "/images/cards/six-of-cups.jpg",
+    "image": "/images/cards/Cups06.jpg",
     "relationships": {
       "supporting_cards": [
         "The Sun",
@@ -1984,7 +1984,7 @@
       "spirituality": "Reversed spirituality - disconnection from: spiritual illusions; confusing ego with true guidance."
     },
     "description": "Represents being overwhelmed by choices, often based on illusion.",
-    "image": "/images/cards/seven-of-cups.jpg",
+    "image": "/images/cards/Cups07.jpg",
     "relationships": {
       "supporting_cards": [
         "The Moon",
@@ -2030,7 +2030,7 @@
       "spirituality": "Reversed spirituality - disconnection from: a spiritual pilgrimage; leaving comfort for enlightenment."
     },
     "description": "Represents the difficult but necessary choice to walk away from the known.",
-    "image": "/images/cards/eight-of-cups.jpg",
+    "image": "/images/cards/Cups08.jpg",
     "relationships": {
       "supporting_cards": [
         "Death",
@@ -2076,7 +2076,7 @@
       "spirituality": "Reversed spirituality - disconnection from: deep gratitude; spiritual contentment; answered prayers."
     },
     "description": "Often called the 'Wish Card'; represents emotional joy and satisfaction.",
-    "image": "/images/cards/nine-of-cups.jpg",
+    "image": "/images/cards/Cups09.jpg",
     "relationships": {
       "supporting_cards": [
         "The Star",
@@ -2122,7 +2122,7 @@
       "spirituality": "Reversed spirituality - disconnection from: ultimate spiritual harmony; a state of grace."
     },
     "description": "Represents ultimate emotional fulfillment and joyful domestic life.",
-    "image": "/images/cards/ten-of-cups.jpg",
+    "image": "/images/cards/Cups10.jpg",
     "relationships": {
       "supporting_cards": [
         "Four of Wands",
@@ -2168,7 +2168,7 @@
       "spirituality": "Reversed spirituality - disconnection from: beginner's intuition; exploring meditation or dream work."
     },
     "description": "A sensitive messenger of emotional beginnings and creative ideas.",
-    "image": "/images/cards/page-of-cups.jpg",
+    "image": "/images/cards/Cups11.jpg",
     "relationships": {
       "supporting_cards": [
         "Ace of Cups",
@@ -2214,7 +2214,7 @@
       "spirituality": "Reversed spirituality - disconnection from: seeking emotional truth; a spiritual calling or quest."
     },
     "description": "A charismatic, emotional messenger of love and creativity.",
-    "image": "/images/cards/knight-of-cups.jpg",
+    "image": "/images/cards/Cups12.jpg",
     "relationships": {
       "supporting_cards": [
         "The Lovers",
@@ -2260,7 +2260,7 @@
       "spirituality": "Reversed spirituality - disconnection from: powerful intuition; mediumship; deep spiritual connection and guidance."
     },
     "description": "A deeply compassionate, intuitive, and emotionally stable woman.",
-    "image": "/images/cards/queen-of-cups.jpg",
+    "image": "/images/cards/Cups13.jpg",
     "relationships": {
       "supporting_cards": [
         "The High Priestess",
@@ -2306,7 +2306,7 @@
       "spirituality": "Reversed spirituality - disconnection from: a spiritual mentor; deep mastery of emotional and spiritual life."
     },
     "description": "A mature, emotionally balanced, and wise man.",
-    "image": "/images/cards/king-of-cups.jpg",
+    "image": "/images/cards/Cups14.jpg",
     "relationships": {
       "supporting_cards": [
         "Justice",
@@ -2352,7 +2352,7 @@
       "spirituality": "Reversed spirituality - disconnection from: clarity of vision; spiritual discipline and truth-seeking."
     },
     "description": "The seed of mental power, truth, and decisive action.",
-    "image": "/images/cards/ace-of-swords.jpg",
+    "image": "/images/cards/Swords01.jpg",
     "relationships": {
       "supporting_cards": [
         "The Magician",
@@ -2398,7 +2398,7 @@
       "spirituality": "Reversed spirituality - disconnection from: stuck between two opposing belief systems; intellectual blockade."
     },
     "description": "Represents mental stalemate and willful ignorance of facts.",
-    "image": "/images/cards/two-of-swords.jpg",
+    "image": "/images/cards/Swords02.jpg",
     "relationships": {
       "supporting_cards": [
         "Justice",
@@ -2444,7 +2444,7 @@
       "spirituality": "Reversed spirituality - disconnection from: the pain of spiritual separation or doubt."
     },
     "description": "Represents the pain of betrayal or emotional wound.",
-    "image": "/images/cards/three-of-swords.jpg",
+    "image": "/images/cards/Swords03.jpg",
     "relationships": {
       "supporting_cards": [
         "Five of Cups",
@@ -2490,7 +2490,7 @@
       "spirituality": "Reversed spirituality - disconnection from: meditation retreat; deep focus on inner work."
     },
     "description": "Represents a needed period of rest and mental isolation.",
-    "image": "/images/cards/four-of-swords.jpg",
+    "image": "/images/cards/Swords04.jpg",
     "relationships": {
       "supporting_cards": [
         "The Hermit",
@@ -2536,7 +2536,7 @@
       "spirituality": "Reversed spirituality - disconnection from: spiritual ego; using beliefs to judge others."
     },
     "description": "Represents a conflict where no one truly wins.",
-    "image": "/images/cards/five-of-swords.jpg",
+    "image": "/images/cards/Swords05.jpg",
     "relationships": {
       "supporting_cards": [
         "The Devil",
@@ -2582,7 +2582,7 @@
       "spirituality": "Reversed spirituality - disconnection from: a transition in belief systems; leaving an old spiritual path."
     },
     "description": "Represents moving away from difficulty toward a more peaceful future.",
-    "image": "/images/cards/six-of-swords.jpg",
+    "image": "/images/cards/Swords06.jpg",
     "relationships": {
       "supporting_cards": [
         "Temperance",
@@ -2628,7 +2628,7 @@
       "spirituality": "Reversed spirituality - disconnection from: spiritual bypassing; intellectualizing faith to avoid true commitment."
     },
     "description": "Represents acting sneakily or getting away with a secret plan.",
-    "image": "/images/cards/seven-of-swords.jpg",
+    "image": "/images/cards/Swords07.jpg",
     "relationships": {
       "supporting_cards": [
         "The Devil",
@@ -2674,7 +2674,7 @@
       "spirituality": "Reversed spirituality - disconnection from: dogmatic thought; fear of spiritual exploration."
     },
     "description": "Represents feeling trapped by one's own thoughts and fears.",
-    "image": "/images/cards/eight-of-swords.jpg",
+    "image": "/images/cards/Swords08.jpg",
     "relationships": {
       "supporting_cards": [
         "The Moon",
@@ -2720,7 +2720,7 @@
       "spirituality": "Reversed spirituality - disconnection from: spiritual crisis; intense doubt and fear."
     },
     "description": "Represents intense worry, anxiety, and mental distress.",
-    "image": "/images/cards/nine-of-swords.jpg",
+    "image": "/images/cards/Swords09.jpg",
     "relationships": {
       "supporting_cards": [
         "Five of Pentacles",
@@ -2766,7 +2766,7 @@
       "spirituality": "Reversed spirituality - disconnection from: shedding all illusion; spiritual ego death."
     },
     "description": "Represents the painful but final end of a difficult cycle.",
-    "image": "/images/cards/ten-of-swords.jpg",
+    "image": "/images/cards/Swords10.jpg",
     "relationships": {
       "supporting_cards": [
         "Death",
@@ -2812,7 +2812,7 @@
       "spirituality": "Reversed spirituality - disconnection from: intellectual exploration of a spiritual path; questioning beliefs."
     },
     "description": "A clever, curious, and restless messenger of mental energy.",
-    "image": "/images/cards/page-of-swords.jpg",
+    "image": "/images/cards/Swords11.jpg",
     "relationships": {
       "supporting_cards": [
         "Ace of Swords",
@@ -2858,7 +2858,7 @@
       "spirituality": "Reversed spirituality - disconnection from: fanatical adherence to a belief; aggressively defending a belief."
     },
     "description": "Represents swift, often aggressive, movement and action.",
-    "image": "/images/cards/knight-of-swords.jpg",
+    "image": "/images/cards/Swords12.jpg",
     "relationships": {
       "supporting_cards": [
         "The Chariot",
@@ -2904,7 +2904,7 @@
       "spirituality": "Reversed spirituality - disconnection from: intellectual pursuit of truth; detached observation."
     },
     "description": "An intelligent, independent woman who values truth and clarity.",
-    "image": "/images/cards/queen-of-swords.jpg",
+    "image": "/images/cards/Swords13.jpg",
     "relationships": {
       "supporting_cards": [
         "Justice",
@@ -2950,7 +2950,7 @@
       "spirituality": "Reversed spirituality - disconnection from: intellectual mastery of spiritual texts; clear, unbiased views."
     },
     "description": "A master of logic, intellect, and impartial judgment.",
-    "image": "/images/cards/king-of-swords.jpg",
+    "image": "/images/cards/Swords14.jpg",
     "relationships": {
       "supporting_cards": [
         "The Emperor",
@@ -2996,7 +2996,7 @@
       "spirituality": "Reversed spirituality - disconnection from: finding spiritual grounding; manifesting spiritual goals into reality."
     },
     "description": "The seed of material opportunity, wealth, and grounded potential.",
-    "image": "/images/cards/ace-of-pentacles.jpg",
+    "image": "/images/cards/Pents01.jpg",
     "relationships": {
       "supporting_cards": [
         "The World",
@@ -3042,7 +3042,7 @@
       "spirituality": "Reversed spirituality - disconnection from: balancing material needs with spiritual goals."
     },
     "description": "Represents maintaining balance between competing demands.",
-    "image": "/images/cards/two-of-pentacles.jpg",
+    "image": "/images/cards/Pents02.jpg",
     "relationships": {
       "supporting_cards": [
         "Temperance",
@@ -3088,7 +3088,7 @@
       "spirituality": "Reversed spirituality - disconnection from: learning from a teacher or community; practicing a craft."
     },
     "description": "Represents the successful collaboration of skilled individuals.",
-    "image": "/images/cards/three-of-pentacles.jpg",
+    "image": "/images/cards/Pents03.jpg",
     "relationships": {
       "supporting_cards": [
         "The Empress",
@@ -3134,7 +3134,7 @@
       "spirituality": "Reversed spirituality - disconnection from: rigid adherence to spiritual rules; spiritual materialism."
     },
     "description": "Represents a powerful focus on security, often bordering on possessiveness.",
-    "image": "/images/cards/four-of-pentacles.jpg",
+    "image": "/images/cards/Pents04.jpg",
     "relationships": {
       "supporting_cards": [
         "The Emperor",
@@ -3180,7 +3180,7 @@
       "spirituality": "Reversed spirituality - disconnection from: feeling abandoned by the divine; a crisis of faith."
     },
     "description": "Represents feeling isolated and having a sense of material lack.",
-    "image": "/images/cards/five-of-pentacles.jpg",
+    "image": "/images/cards/Pents05.jpg",
     "relationships": {
       "supporting_cards": [
         "The Devil",
@@ -3226,7 +3226,7 @@
       "spirituality": "Reversed spirituality - disconnection from: charitable work; balancing spiritual teaching with receiving gratitude."
     },
     "description": "Represents the balance of giving and receiving, and financial fairness.",
-    "image": "/images/cards/six-of-pentacles.jpg",
+    "image": "/images/cards/Pents06.jpg",
     "relationships": {
       "supporting_cards": [
         "Justice",
@@ -3272,7 +3272,7 @@
       "spirituality": "Reversed spirituality - disconnection from: patience with spiritual growth; assessing the path's benefits."
     },
     "description": "Represents pausing to assess the yield of one's efforts.",
-    "image": "/images/cards/seven-of-pentacles.jpg",
+    "image": "/images/cards/Pents07.jpg",
     "relationships": {
       "supporting_cards": [
         "The Hermit",
@@ -3318,7 +3318,7 @@
       "spirituality": "Reversed spirituality - disconnection from: dedicated spiritual practice; mastering a spiritual discipline."
     },
     "description": "Represents diligently working on a craft or skill.",
-    "image": "/images/cards/eight-of-pentacles.jpg",
+    "image": "/images/cards/Pents08.jpg",
     "relationships": {
       "supporting_cards": [
         "The Hermit",
@@ -3364,7 +3364,7 @@
       "spirituality": "Reversed spirituality - disconnection from: spiritual maturity; self-contained spiritual peace."
     },
     "description": "Represents financial security, luxury, and self-reliance.",
-    "image": "/images/cards/nine-of-pentacles.jpg",
+    "image": "/images/cards/Pents09.jpg",
     "relationships": {
       "supporting_cards": [
         "The Lovers",
@@ -3410,7 +3410,7 @@
       "spirituality": "Reversed spirituality - disconnection from: spiritual legacy; traditions and ancestral beliefs."
     },
     "description": "Represents ultimate material and family security and success.",
-    "image": "/images/cards/ten-of-pentacles.jpg",
+    "image": "/images/cards/Pents10.jpg",
     "relationships": {
       "supporting_cards": [
         "The World",
@@ -3456,7 +3456,7 @@
       "spirituality": "Reversed spirituality - disconnection from: beginning a new spiritual practice with dedication; practical magic."
     },
     "description": "A serious, diligent messenger of material beginnings and practical news.",
-    "image": "/images/cards/page-of-pentacles.jpg",
+    "image": "/images/cards/Pents11.jpg",
     "relationships": {
       "supporting_cards": [
         "Ace of Pentacles",
@@ -3502,7 +3502,7 @@
       "spirituality": "Reversed spirituality - disconnection from: consistent daily spiritual practice; grounded in routine."
     },
     "description": "Represents slow, consistent, and reliable progress.",
-    "image": "/images/cards/knight-of-pentacles.jpg",
+    "image": "/images/cards/Pents12.jpg",
     "relationships": {
       "supporting_cards": [
         "The Emperor",
@@ -3548,7 +3548,7 @@
       "spirituality": "Reversed spirituality - disconnection from: connecting with nature; practical application of spiritual beliefs."
     },
     "description": "A warm, nurturing, and practically successful woman; mother nature.",
-    "image": "/images/cards/queen-of-pentacles.jpg",
+    "image": "/images/cards/Pents13.jpg",
     "relationships": {
       "supporting_cards": [
         "The Empress",
@@ -3594,7 +3594,7 @@
       "spirituality": "Reversed spirituality - disconnection from: spiritual wisdom applied practically; being a pillar of the community."
     },
     "description": "A powerful, successful, and reliable businessman or leader.",
-    "image": "/images/cards/king-of-pentacles.jpg",
+    "image": "/images/cards/Pents14.jpg",
     "relationships": {
       "supporting_cards": [
         "The Emperor",

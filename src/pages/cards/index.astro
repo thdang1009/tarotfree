@@ -1,0 +1,240 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import cardsData from '../../data/cards.json';
+
+// Organize cards by type
+const majorArcana = cardsData.filter(c => c.arcana === 'major');
+const wands = cardsData.filter(c => c.suit === 'wands');
+const cups = cardsData.filter(c => c.suit === 'cups');
+const swords = cardsData.filter(c => c.suit === 'swords');
+const pentacles = cardsData.filter(c => c.suit === 'pentacles');
+---
+
+<Layout
+  title="Tarot Card Meanings"
+  description="Explore all 78 tarot cards and their meanings. Complete guide to Major and Minor Arcana including upright and reversed interpretations."
+>
+  <div class="container mx-auto px-4 py-12">
+    <!-- Header -->
+    <div class="text-center mb-12">
+      <h1 class="text-4xl md:text-5xl font-bold mb-4 text-violet-deep">
+        Tarot Card Meanings
+      </h1>
+      <p class="text-xl text-gray-600 max-w-2xl mx-auto">
+        Explore all 78 tarot cards from the Rider-Waite deck. Click any card to learn its full meaning.
+      </p>
+    </div>
+
+    <!-- Search Bar (Client-side component placeholder) -->
+    <div class="max-w-2xl mx-auto mb-8">
+      <div id="search-container"></div>
+    </div>
+
+    <!-- Filter Tabs -->
+    <div class="flex flex-wrap justify-center gap-2 mb-8">
+      <button data-filter="all" class="filter-btn active px-6 py-2 rounded-full bg-violet-deep text-white hover:bg-violet-medium transition-colors">
+        All Cards (78)
+      </button>
+      <button data-filter="major" class="filter-btn px-6 py-2 rounded-full bg-white border-2 border-violet-medium text-violet-medium hover:bg-violet-medium hover:text-white transition-all">
+        Major Arcana (22)
+      </button>
+      <button data-filter="wands" class="filter-btn px-6 py-2 rounded-full bg-white border-2 border-violet-medium text-violet-medium hover:bg-violet-medium hover:text-white transition-all">
+        Wands (14)
+      </button>
+      <button data-filter="cups" class="filter-btn px-6 py-2 rounded-full bg-white border-2 border-violet-medium text-violet-medium hover:bg-violet-medium hover:text-white transition-all">
+        Cups (14)
+      </button>
+      <button data-filter="swords" class="filter-btn px-6 py-2 rounded-full bg-white border-2 border-violet-medium text-violet-medium hover:bg-violet-medium hover:text-white transition-all">
+        Swords (14)
+      </button>
+      <button data-filter="pentacles" class="filter-btn px-6 py-2 rounded-full bg-white border-2 border-violet-medium text-violet-medium hover:bg-violet-medium hover:text-white transition-all">
+        Pentacles (14)
+      </button>
+    </div>
+
+    <!-- Major Arcana Section -->
+    <section id="section-major" class="card-section mb-16">
+      <h2 class="text-3xl font-heading text-violet-deep mb-6">
+        ✨ Major Arcana
+      </h2>
+      <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-4">
+        {majorArcana.map((card) => (
+          <a
+            href={`/cards/${card.slug}`}
+            class="card-item bg-white rounded-lg shadow-md hover:shadow-xl transition-all card-hover p-4"
+            data-type="major"
+          >
+            <div class="aspect-[2/3] rounded-lg bg-gradient-to-br from-violet-deep to-violet-medium mb-3 flex items-center justify-center">
+              <div class="text-white text-center">
+                <div class="text-4xl mb-2">🎴</div>
+                <div class="text-xs font-bold px-2">{card.name}</div>
+              </div>
+            </div>
+            <h3 class="font-heading text-sm text-violet-deep text-center mb-1">
+              {card.name}
+            </h3>
+            <p class="text-xs text-gray-600 text-center line-clamp-2">
+              {card.description}
+            </p>
+          </a>
+        ))}
+      </div>
+    </section>
+
+    <!-- Wands Section -->
+    <section id="section-wands" class="card-section mb-16">
+      <h2 class="text-3xl font-heading text-violet-deep mb-6">
+        🔥 Suit of Wands
+      </h2>
+      <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-7 gap-4">
+        {wands.map((card) => (
+          <a
+            href={`/cards/${card.slug}`}
+            class="card-item bg-white rounded-lg shadow-md hover:shadow-xl transition-all card-hover p-4"
+            data-type="wands"
+          >
+            <div class="aspect-[2/3] rounded-lg bg-gradient-to-br from-red-600 to-orange-500 mb-3 flex items-center justify-center">
+              <div class="text-white text-center">
+                <div class="text-4xl mb-2">🔥</div>
+                <div class="text-xs font-bold px-2">{card.name}</div>
+              </div>
+            </div>
+            <h3 class="font-heading text-sm text-violet-deep text-center">
+              {card.name}
+            </h3>
+          </a>
+        ))}
+      </div>
+    </section>
+
+    <!-- Cups Section -->
+    <section id="section-cups" class="card-section mb-16">
+      <h2 class="text-3xl font-heading text-violet-deep mb-6">
+        💧 Suit of Cups
+      </h2>
+      <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-7 gap-4">
+        {cups.map((card) => (
+          <a
+            href={`/cards/${card.slug}`}
+            class="card-item bg-white rounded-lg shadow-md hover:shadow-xl transition-all card-hover p-4"
+            data-type="cups"
+          >
+            <div class="aspect-[2/3] rounded-lg bg-gradient-to-br from-blue-600 to-cyan-500 mb-3 flex items-center justify-center">
+              <div class="text-white text-center">
+                <div class="text-4xl mb-2">💧</div>
+                <div class="text-xs font-bold px-2">{card.name}</div>
+              </div>
+            </div>
+            <h3 class="font-heading text-sm text-violet-deep text-center">
+              {card.name}
+            </h3>
+          </a>
+        ))}
+      </div>
+    </section>
+
+    <!-- Swords Section -->
+    <section id="section-swords" class="card-section mb-16">
+      <h2 class="text-3xl font-heading text-violet-deep mb-6">
+        ⚔️ Suit of Swords
+      </h2>
+      <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-7 gap-4">
+        {swords.map((card) => (
+          <a
+            href={`/cards/${card.slug}`}
+            class="card-item bg-white rounded-lg shadow-md hover:shadow-xl transition-all card-hover p-4"
+            data-type="swords"
+          >
+            <div class="aspect-[2/3] rounded-lg bg-gradient-to-br from-gray-700 to-gray-500 mb-3 flex items-center justify-center">
+              <div class="text-white text-center">
+                <div class="text-4xl mb-2">⚔️</div>
+                <div class="text-xs font-bold px-2">{card.name}</div>
+              </div>
+            </div>
+            <h3 class="font-heading text-sm text-violet-deep text-center">
+              {card.name}
+            </h3>
+          </a>
+        ))}
+      </div>
+    </section>
+
+    <!-- Pentacles Section -->
+    <section id="section-pentacles" class="card-section mb-16">
+      <h2 class="text-3xl font-heading text-violet-deep mb-6">
+        🪙 Suit of Pentacles
+      </h2>
+      <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-7 gap-4">
+        {pentacles.map((card) => (
+          <a
+            href={`/cards/${card.slug}`}
+            class="card-item bg-white rounded-lg shadow-md hover:shadow-xl transition-all card-hover p-4"
+            data-type="pentacles"
+          >
+            <div class="aspect-[2/3] rounded-lg bg-gradient-to-br from-green-700 to-emerald-500 mb-3 flex items-center justify-center">
+              <div class="text-white text-center">
+                <div class="text-4xl mb-2">🪙</div>
+                <div class="text-xs font-bold px-2">{card.name}</div>
+              </div>
+            </div>
+            <h3 class="font-heading text-sm text-violet-deep text-center">
+              {card.name}
+            </h3>
+          </a>
+        ))}
+      </div>
+    </section>
+
+    <!-- Footer Note -->
+    <div class="text-center mt-12 text-gray-500 text-sm">
+      <p>Based on the Rider-Waite Tarot Deck (Public Domain)</p>
+      <p class="mt-2">
+        <a href="/" class="text-violet-medium hover:text-gold-soft">← Back to readings</a>
+      </p>
+    </div>
+  </div>
+
+  <!-- Client-side Filter Script -->
+  <script>
+    // Filter functionality
+    const filterBtns = document.querySelectorAll('.filter-btn');
+    const cardSections = document.querySelectorAll('.card-section');
+    const cardItems = document.querySelectorAll('.card-item');
+
+    filterBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        const filter = btn.dataset.filter;
+
+        // Update active button
+        filterBtns.forEach(b => b.classList.remove('active', 'bg-violet-deep', 'text-white'));
+        filterBtns.forEach(b => b.classList.add('bg-white', 'border-2', 'border-violet-medium', 'text-violet-medium'));
+        btn.classList.add('active', 'bg-violet-deep', 'text-white');
+        btn.classList.remove('bg-white', 'border-2', 'border-violet-medium', 'text-violet-medium');
+
+        // Show/hide sections and cards
+        if (filter === 'all') {
+          cardSections.forEach(section => section.style.display = 'block');
+          cardItems.forEach(item => item.style.display = 'block');
+        } else {
+          cardSections.forEach(section => {
+            const sectionId = section.id.replace('section-', '');
+            section.style.display = sectionId === filter ? 'block' : 'none';
+          });
+
+          cardItems.forEach(item => {
+            item.style.display = item.dataset.type === filter ? 'block' : 'none';
+          });
+        }
+      });
+    });
+  </script>
+</Layout>
+
+<style>
+  .line-clamp-2 {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+</style>

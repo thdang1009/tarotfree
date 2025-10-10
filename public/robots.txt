@@ -1,0 +1,12 @@
+# Tarot by the Stars - Robots.txt
+
+User-agent: *
+Allow: /
+Allow: /cards/
+Allow: /about/
+
+# Disallow result pages (they're user-specific)
+Disallow: /result
+
+# Sitemap
+Sitemap: https://yourdomain.com/sitemap-index.xml

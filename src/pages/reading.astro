@@ -1,0 +1,132 @@
+---
+import Layout from '../layouts/Layout.astro';
+import spreads from '../data/spreads.json';
+
+// Get spread ID from URL
+const spreadId = Astro.url.searchParams.get('spread') || '1-card';
+const spread = spreads.find(s => s.id === spreadId);
+
+if (!spread) {
+  return Astro.redirect('/');
+}
+---
+
+<Layout
+  title={`${spread.name} Reading`}
+  description={`Get your ${spread.name} tarot reading. ${spread.description}`}
+  noindex={true}
+>
+  <div class="container mx-auto px-4 py-12">
+    <!-- Header -->
+    <div class="text-center mb-8">
+      <h1 class="text-4xl font-bold mb-2 text-violet-deep">
+        {spread.name}
+      </h1>
+      <p class="text-lg text-gray-600 mb-4">
+        {spread.description}
+      </p>
+      <p class="text-sm text-gray-500">
+        Select {spread.cardCount} {spread.cardCount === 1 ? 'card' : 'cards'} from the deck below
+      </p>
+    </div>
+
+    <!-- Card Selection Component -->
+    <div class="max-w-5xl mx-auto">
+      <div id="card-selection-container"></div>
+    </div>
+
+    <!-- Spread Information -->
+    <div class="max-w-3xl mx-auto mt-12">
+      <h2 class="text-2xl font-heading text-violet-medium mb-4 text-center">
+        About This Spread
+      </h2>
+      <div class="grid gap-4">
+        {spread.positions.map((pos) => (
+          <div class="bg-white rounded-lg p-4 shadow">
+            <h3 class="font-bold text-violet-deep mb-1">
+              Position {pos.position}: {pos.name}
+            </h3>
+            <p class="text-gray-600 text-sm">
+              {pos.description}
+            </p>
+          </div>
+        ))}
+      </div>
+    </div>
+
+    <!-- Back Link -->
+    <div class="text-center mt-8">
+      <a href="/" class="text-violet-medium hover:text-gold-soft transition-colors">
+        ← Choose a different spread
+      </a>
+    </div>
+  </div>
+
+  <!-- Client-side Script -->
+  <script>
+    import { createRoot } from 'react-dom/client';
+    import { createElement } from 'react';
+    import CardDeck from '../components/CardDeck';
+    import { recordReading, canDoReading } from '../utils/storage';
+
+    // Get spread info from page
+    const urlParams = new URLSearchParams(window.location.search);
+    const spreadId = urlParams.get('spread') || '1-card';
+
+    // Parse spread data from the page
+    const spreadData = {
+      '1-card': 1,
+      '3-card': 3,
+      '5-card': 5,
+    };
+
+    const cardCount = spreadData[spreadId] || 1;
+
+    // Check reading limit
+    const limitCheck = canDoReading();
+    if (!limitCheck.allowed) {
+      alert(`You've reached your reading limit. Please try again in ${limitCheck.hoursLeft} hours.`);
+      window.location.href = '/';
+    }
+
+    // Mount React component
+    const container = document.getElementById('card-selection-container');
+    if (container) {
+      const root = createRoot(container);
+
+      root.render(
+        createElement(CardDeck, {
+          cardCount: cardCount,
+          onCardsSelected: (selectedCards) => {
+            // Record the reading
+            recordReading();
+
+            // Encode selected cards in URL and navigate to result page
+            const cardIds = selectedCards.map(sc => sc.cardId).join('-');
+            const reversed = selectedCards.map(sc => sc.reversed ? '1' : '0').join('');
+
+            window.location.href = `/result?spread=${spreadId}&cards=${cardIds}&reversed=${reversed}`;
+          }
+        })
+      );
+    }
+  </script>
+</Layout>
+
+<style>
+  /* Add any additional styles here */
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .animate-fade-in {
+    animation: fadeIn 0.5s ease-out;
+  }
+</style>
