@@ -74,7 +74,7 @@ export default function CardDeck({ cardCount, spread, onCardsSelected }: CardDec
   const canDrawNext = remainingCards > 0 && !isRevealing;
 
   return (
-    <div className="space-y-8">
+    <div>
       {/* Shuffling Animation */}
       {isShuffling && (
         <div className="text-center py-12">
@@ -109,68 +109,67 @@ export default function CardDeck({ cardCount, spread, onCardsSelected }: CardDec
 
       {/* Main Content - Spread and Deck */}
       {!isShuffling && deck.length > 0 && (
-        <div className="space-y-8">
+        <div>
 
           {/* Card Deck - Fan Spread Style with Shuffle Button */}
           {canDrawNext && (
-            <div className="relative">
-              <div className="relative min-h-[280px] sm:min-h-[320px] md:min-h-[360px] flex items-center justify-center py-8">
-                <div className="relative w-full max-w-[90vw] md:max-w-[700px] h-[280px] sm:h-[320px] md:h-[360px] mx-auto">
-                  {/* All 78 cards in fan spread */}
-                  {deck.map((cardId, index) => {
-                    const isSelected = selectedCards.some(sc => sc.cardId === cardId);
-                    const canSelect = !isSelected && canDrawNext;
+            <div className="relative w-full flex items-end justify-center">
+              <div className="relative w-full max-w-[95vw] md:max-w-[750px]" style={{ height: '220px' }}>
+                {/* All 78 cards in fan spread - always */}
+                {deck.map((cardId, index) => {
+                  const isSelected = selectedCards.some(sc => sc.cardId === cardId);
+                  const canSelect = !isSelected && canDrawNext;
 
-                    // Calculate spread angle for fan effect - all 78 cards
-                    const totalCards = 78;
-                    const spreadAngle = 140; // Wider angle for more cards
-                    const startAngle = -spreadAngle / 2;
-                    const angleStep = spreadAngle / (totalCards - 1);
-                    const rotation = startAngle + (angleStep * index);
+                  // Calculate spread angle for fan effect - all 78 cards
+                  const totalCards = 78;
+                  const spreadAngle = 140; // Wide angle for full deck
+                  const startAngle = -spreadAngle / 2;
+                  const angleStep = spreadAngle / (totalCards - 1);
+                  const rotation = startAngle + (angleStep * index);
 
-                    // Responsive radius
-                    const baseRadius = typeof window !== 'undefined' && window.innerWidth < 768 ? 180 : 220;
-                    const translateX = Math.sin((rotation * Math.PI) / 180) * baseRadius;
-                    const translateY = -Math.abs(Math.cos((rotation * Math.PI) / 180)) * 60;
+                  // Responsive radius - smaller on mobile
+                  const baseRadius = typeof window !== 'undefined' && window.innerWidth < 640 ? 150 :
+                                     typeof window !== 'undefined' && window.innerWidth < 768 ? 180 : 220;
+                  const translateX = Math.sin((rotation * Math.PI) / 180) * baseRadius;
+                  const translateY = -Math.abs(Math.cos((rotation * Math.PI) / 180)) * 55;
 
-                    return (
-                      <button
-                        key={index}
-                        type="button"
-                        onClick={() => canSelect && selectCard(index)}
-                        disabled={!canSelect}
-                        style={{
-                          transform: `translateX(${translateX}px) translateY(${translateY}px) rotate(${rotation}deg) ${isSelected ? 'scale(0)' : 'scale(1)'}`,
-                          zIndex: isSelected ? 0 : totalCards - Math.abs(index - totalCards / 2),
-                        }}
-                        className={`
-                          absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2
-                          w-16 h-24 sm:w-20 sm:h-32 md:w-24 md:h-36 rounded-md transition-all duration-300 overflow-hidden
-                          ${isSelected
-                            ? 'opacity-0 pointer-events-none'
-                            : canSelect
-                              ? 'hover:scale-150 hover:z-[1000] cursor-pointer shadow-lg hover:shadow-2xl border-2 border-gold-soft hover:border-gold-light'
-                              : 'cursor-not-allowed opacity-30'
-                          }
-                        `}
-                        aria-label={`Draw card ${index + 1}`}
-                      >
-                        {/* Card Back */}
-                        <div className="w-full h-full bg-gradient-to-br from-violet-900 to-purple-800 flex items-center justify-center relative">
-                          <img
-                            src="/images/cards/cardback.jpg"
-                            alt="Card back"
-                            className="w-full h-full object-cover"
-                          />
-                        </div>
-                      </button>
-                    );
-                  })}
-                </div>
+                  return (
+                    <button
+                      key={index}
+                      type="button"
+                      onClick={() => canSelect && selectCard(index)}
+                      disabled={!canSelect}
+                      style={{
+                        transform: `translateX(${translateX}px) translateY(${translateY}px) rotate(${rotation}deg) ${isSelected ? 'scale(0)' : 'scale(1)'}`,
+                        zIndex: isSelected ? 0 : totalCards - Math.abs(index - totalCards / 2),
+                      }}
+                      className={`
+                        absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2
+                        w-12 h-18 sm:w-14 sm:h-20 md:w-20 md:h-32 rounded-md transition-all duration-300 overflow-hidden
+                        ${isSelected
+                          ? 'opacity-0 pointer-events-none'
+                          : canSelect
+                            ? 'hover:scale-150 hover:z-[1000] cursor-pointer shadow-lg hover:shadow-2xl border-2 border-gold-soft hover:border-gold-light'
+                            : 'cursor-not-allowed opacity-30'
+                        }
+                      `}
+                      aria-label={`Draw card ${index + 1}`}
+                    >
+                      {/* Card Back */}
+                      <div className="w-full h-full bg-gradient-to-br from-violet-900 to-purple-800 flex items-center justify-center relative">
+                        <img
+                          src="/images/cards/cardback.jpg"
+                          alt="Card back"
+                          className="w-full h-full object-cover"
+                        />
+                      </div>
+                    </button>
+                  );
+                })}
               </div>
 
               {/* Shuffle Button - Positioned on the right */}
-              <div className="absolute top-4 right-4 md:top-8 md:right-8">
+              <div className="absolute top-2 right-2 md:top-4 md:right-4">
                 <button
                   type="button"
                   onClick={shuffleCards}
