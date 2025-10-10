@@ -2,7 +2,7 @@
 import Layout from '../../layouts/Layout.astro';
 import spreads from '../../data/spreads.json';
 import cardsData from '../../data/cards.json';
-export const prerender = true;
+export const prerender = false;
 // Parse URL params: /result/3-card/1-2-3/010
 const params = Astro.params.params || '';
 const [spreadId, cardIdsStr, reversedStr] = params.split('/');
