@@ -8,11 +8,13 @@ import sitemap from '@astrojs/sitemap';
 
 // https://astro.build/config
 export default defineConfig({
-  site: 'https://yourdomain.com', // Update this to your actual domain
-
+  site: 'https://tarotfree.netlify.app',
+  output: 'static',
   vite: {
     plugins: [tailwindcss()]
   },
-
+  build: {
+    format: 'directory', // each page in its own folder
+  },
   integrations: [react(), sitemap()]
 });
