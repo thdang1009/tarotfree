@@ -110,6 +110,31 @@ npm run build
 
 ---
 
+## Issue #3: Using Real Card Images (SOLVED)
+
+After the initial implementation with placeholder cards, actual Rider-Waite tarot card images were integrated.
+
+### Changes Made
+
+**Files Updated:**
+1. `src/components/CardDeck.tsx` - Display actual card images in selection interface
+2. `src/pages/result.astro` - Show real cards in reading results
+3. `src/pages/cards/index.astro` - Card library with actual images
+4. `src/pages/cards/[slug].astro` - Individual card pages with real images
+
+**Implementation:**
+```tsx
+// Card images now use the .image property from cards.json
+<img src={card.image} alt={card.name} class="w-full h-full object-cover" />
+```
+
+**Card Sources:**
+- All 78 cards copied from `src/assets/images/cards/` to `public/images/cards/`
+- Images accessible via `/images/cards/` URLs as specified in cards.json
+- Includes `cardback.jpg` for face-down cards in the spread
+
+---
+
 **Date:** 2025-10-10
-**Fix Type:** Component Architecture
-**Impact:** Critical feature now functional
+**Fix Type:** Component Architecture & Image Integration
+**Impact:** Critical features now functional with production-ready visuals

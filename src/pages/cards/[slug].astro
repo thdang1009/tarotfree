@@ -68,13 +68,14 @@ const relatedCards = card.relationships.supporting_cards
 
       <!-- Card Image and Quick Meanings -->
       <div class="grid md:grid-cols-2 gap-8 mb-12">
-        <!-- Card Image Placeholder -->
+        <!-- Card Image -->
         <div>
-          <div class="aspect-[2/3] rounded-lg bg-gradient-to-br from-violet-deep to-violet-medium flex items-center justify-center shadow-2xl">
-            <div class="text-white text-center p-8">
-              <div class="text-8xl mb-4">🎴</div>
-              <div class="text-2xl font-bold">{card.name}</div>
-            </div>
+          <div class="aspect-[2/3] rounded-lg overflow-hidden shadow-2xl">
+            <img
+              src={card.image}
+              alt={card.name}
+              class="w-full h-full object-cover"
+            />
           </div>
         </div>
 
@@ -197,11 +198,12 @@ const relatedCards = card.relationships.supporting_cards
                 href={`/cards/${relatedCard.slug}`}
                 class="bg-white rounded-lg shadow-md hover:shadow-xl transition-all card-hover p-4 text-center"
               >
-                <div class="aspect-[2/3] rounded-lg bg-gradient-to-br from-violet-light to-violet-medium mb-3 flex items-center justify-center">
-                  <div class="text-white text-center">
-                    <div class="text-3xl mb-2">🎴</div>
-                    <div class="text-xs font-bold px-2">{relatedCard.name}</div>
-                  </div>
+                <div class="aspect-[2/3] rounded-lg overflow-hidden mb-3">
+                  <img
+                    src={relatedCard.image}
+                    alt={relatedCard.name}
+                    class="w-full h-full object-cover"
+                  />
                 </div>
                 <h3 class="font-heading text-sm text-violet-deep">
                   {relatedCard.name}

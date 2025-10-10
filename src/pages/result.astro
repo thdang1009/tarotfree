@@ -60,13 +60,14 @@ const reading = cardIds.map((cardId, index) => {
 
           <!-- Card Info -->
           <div class="flex flex-col md:flex-row gap-6">
-            <!-- Card Image Placeholder -->
+            <!-- Card Image -->
             <div class="md:w-48 flex-shrink-0">
-              <div class={`aspect-[2/3] rounded-lg bg-gradient-to-br from-violet-deep to-violet-medium flex items-center justify-center ${item.reversed ? 'rotate-180' : ''}`}>
-                <div class="text-white text-center p-4">
-                  <div class="text-6xl mb-2">🎴</div>
-                  <div class="text-sm font-bold">{item.card.name}</div>
-                </div>
+              <div class={`aspect-[2/3] rounded-lg overflow-hidden shadow-lg ${item.reversed ? 'rotate-180' : ''}`}>
+                <img
+                  src={item.card.image}
+                  alt={item.card.name}
+                  class="w-full h-full object-cover"
+                />
               </div>
               {item.reversed && (
                 <p class="text-center text-sm text-red-600 mt-2 font-bold">

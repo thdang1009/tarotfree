@@ -64,17 +64,18 @@ const pentacles = cardsData.filter(c => c.suit === 'pentacles');
             class="card-item bg-white rounded-lg shadow-md hover:shadow-xl transition-all card-hover p-4"
             data-type="major"
           >
-            <div class="aspect-[2/3] rounded-lg bg-gradient-to-br from-violet-deep to-violet-medium mb-3 flex items-center justify-center">
-              <div class="text-white text-center">
-                <div class="text-4xl mb-2">🎴</div>
-                <div class="text-xs font-bold px-2">{card.name}</div>
-              </div>
+            <div class="aspect-[2/3] rounded-lg overflow-hidden mb-3">
+              <img
+                src={card.image}
+                alt={card.name}
+                class="w-full h-full object-cover"
+              />
             </div>
             <h3 class="font-heading text-sm text-violet-deep text-center mb-1">
               {card.name}
             </h3>
             <p class="text-xs text-gray-600 text-center line-clamp-2">
-              {card.description}
+              {card.keywords.join(', ')}
             </p>
           </a>
         ))}
@@ -93,11 +94,12 @@ const pentacles = cardsData.filter(c => c.suit === 'pentacles');
             class="card-item bg-white rounded-lg shadow-md hover:shadow-xl transition-all card-hover p-4"
             data-type="wands"
           >
-            <div class="aspect-[2/3] rounded-lg bg-gradient-to-br from-red-600 to-orange-500 mb-3 flex items-center justify-center">
-              <div class="text-white text-center">
-                <div class="text-4xl mb-2">🔥</div>
-                <div class="text-xs font-bold px-2">{card.name}</div>
-              </div>
+            <div class="aspect-[2/3] rounded-lg overflow-hidden mb-3">
+              <img
+                src={card.image}
+                alt={card.name}
+                class="w-full h-full object-cover"
+              />
             </div>
             <h3 class="font-heading text-sm text-violet-deep text-center">
               {card.name}
@@ -119,11 +121,12 @@ const pentacles = cardsData.filter(c => c.suit === 'pentacles');
             class="card-item bg-white rounded-lg shadow-md hover:shadow-xl transition-all card-hover p-4"
             data-type="cups"
           >
-            <div class="aspect-[2/3] rounded-lg bg-gradient-to-br from-blue-600 to-cyan-500 mb-3 flex items-center justify-center">
-              <div class="text-white text-center">
-                <div class="text-4xl mb-2">💧</div>
-                <div class="text-xs font-bold px-2">{card.name}</div>
-              </div>
+            <div class="aspect-[2/3] rounded-lg overflow-hidden mb-3">
+              <img
+                src={card.image}
+                alt={card.name}
+                class="w-full h-full object-cover"
+              />
             </div>
             <h3 class="font-heading text-sm text-violet-deep text-center">
               {card.name}
@@ -145,11 +148,12 @@ const pentacles = cardsData.filter(c => c.suit === 'pentacles');
             class="card-item bg-white rounded-lg shadow-md hover:shadow-xl transition-all card-hover p-4"
             data-type="swords"
           >
-            <div class="aspect-[2/3] rounded-lg bg-gradient-to-br from-gray-700 to-gray-500 mb-3 flex items-center justify-center">
-              <div class="text-white text-center">
-                <div class="text-4xl mb-2">⚔️</div>
-                <div class="text-xs font-bold px-2">{card.name}</div>
-              </div>
+            <div class="aspect-[2/3] rounded-lg overflow-hidden mb-3">
+              <img
+                src={card.image}
+                alt={card.name}
+                class="w-full h-full object-cover"
+              />
             </div>
             <h3 class="font-heading text-sm text-violet-deep text-center">
               {card.name}
@@ -171,11 +175,12 @@ const pentacles = cardsData.filter(c => c.suit === 'pentacles');
             class="card-item bg-white rounded-lg shadow-md hover:shadow-xl transition-all card-hover p-4"
             data-type="pentacles"
           >
-            <div class="aspect-[2/3] rounded-lg bg-gradient-to-br from-green-700 to-emerald-500 mb-3 flex items-center justify-center">
-              <div class="text-white text-center">
-                <div class="text-4xl mb-2">🪙</div>
-                <div class="text-xs font-bold px-2">{card.name}</div>
-              </div>
+            <div class="aspect-[2/3] rounded-lg overflow-hidden mb-3">
+              <img
+                src={card.image}
+                alt={card.name}
+                class="w-full h-full object-cover"
+              />
             </div>
             <h3 class="font-heading text-sm text-violet-deep text-center">
               {card.name}

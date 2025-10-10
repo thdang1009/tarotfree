@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { shuffleDeck, isReversed } from '../utils/rng';
+import cardsData from '../data/cards.json';
 
 interface CardDeckProps {
   cardCount: number;
@@ -92,19 +93,19 @@ export default function CardDeck({ cardCount, onCardsSelected }: CardDeckProps) 
         ) : (
           <div className="relative">
             {/* Deck of Cards - Spread Fan Style */}
-            <div className="relative w-[400px] h-[250px] mx-auto">
+            <div className="relative w-[600px] h-[300px] mx-auto">
               {deck.slice(0, 20).map((cardId, index) => {
                 const isSelected = selectedCards.some(sc => sc.cardId === cardId);
                 const canSelect = selectedCards.length < cardCount && !isSelected;
 
                 // Calculate spread angle for fan effect
                 const totalCards = 20;
-                const spreadAngle = 60; // degrees
+                const spreadAngle = 80; // degrees
                 const startAngle = -spreadAngle / 2;
                 const angleStep = spreadAngle / (totalCards - 1);
                 const rotation = startAngle + (angleStep * index);
-                const translateX = Math.sin((rotation * Math.PI) / 180) * 100;
-                const translateY = -Math.abs(Math.cos((rotation * Math.PI) / 180)) * 30;
+                const translateX = Math.sin((rotation * Math.PI) / 180) * 150;
+                const translateY = -Math.abs(Math.cos((rotation * Math.PI) / 180)) * 40;
 
                 return (
                   <button
@@ -117,19 +118,22 @@ export default function CardDeck({ cardCount, onCardsSelected }: CardDeckProps) 
                     }}
                     className={`
                       absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2
-                      w-24 h-36 rounded-lg transition-all duration-300
+                      w-28 h-44 rounded-lg transition-all duration-300 overflow-hidden
                       ${isSelected
                         ? 'opacity-0'
                         : canSelect
-                          ? 'bg-gradient-to-br from-violet-deep to-violet-medium hover:scale-110 hover:z-50 cursor-pointer shadow-lg'
-                          : 'bg-gray-400 cursor-not-allowed opacity-40'
+                          ? 'hover:scale-125 hover:z-50 cursor-pointer shadow-xl border-2 border-gold-soft'
+                          : 'cursor-not-allowed opacity-40'
                       }
                     `}
                     aria-label={`Draw card ${index + 1}`}
                   >
-                    <div className="w-full h-full flex items-center justify-center text-white text-4xl">
-                      {canSelect ? '🎴' : ''}
-                    </div>
+                    {/* Card Back Image */}
+                    <img
+                      src="/images/cards/cardback.jpg"
+                      alt="Card back"
+                      className="w-full h-full object-cover"
+                    />
                   </button>
                 );
               })}
@@ -150,23 +154,37 @@ export default function CardDeck({ cardCount, onCardsSelected }: CardDeckProps) 
             Your Selected Cards
           </h3>
           <div className="flex justify-center gap-4 flex-wrap">
-            {selectedCards.map((card, i) => (
-              <div
-                key={i}
-                className="text-center"
-              >
-                <div className="w-20 h-28 rounded-lg bg-gold-soft border-4 border-gold-light shadow-lg flex items-center justify-center text-white text-3xl">
-                  🎴
+            {selectedCards.map((card, i) => {
+              const cardData = cardsData[card.cardId];
+              return (
+                <div
+                  key={i}
+                  className="text-center"
+                >
+                  <div
+                    className={`w-24 h-36 rounded-lg border-4 border-gold-light shadow-lg overflow-hidden ${
+                      card.reversed ? 'rotate-180' : ''
+                    }`}
+                  >
+                    <img
+                      src={cardData.image}
+                      alt={cardData.name}
+                      className="w-full h-full object-cover"
+                    />
+                  </div>
+                  <p className="text-sm text-gray-600 mt-2">
+                    {cardData.name}
+                    {card.reversed && <span className="text-red-600"> (R)</span>}
+                  </p>
                 </div>
-                <p className="text-sm text-gray-600 mt-2">Card {i + 1}</p>
-              </div>
-            ))}
+              );
+            })}
             {selectedCards.length < cardCount && Array.from({ length: cardCount - selectedCards.length }).map((_, i) => (
               <div
                 key={`empty-${i}`}
                 className="text-center opacity-40"
               >
-                <div className="w-20 h-28 rounded-lg bg-gray-200 border-2 border-gray-300 border-dashed flex items-center justify-center text-gray-400 text-2xl">
+                <div className="w-24 h-36 rounded-lg bg-gray-200 border-2 border-gray-300 border-dashed flex items-center justify-center text-gray-400 text-2xl">
                   ?
                 </div>
                 <p className="text-sm text-gray-400 mt-2">Card {selectedCards.length + i + 1}</p>
