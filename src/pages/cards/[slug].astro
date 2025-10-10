@@ -1,6 +1,7 @@
 ---
 import Layout from '../../layouts/Layout.astro';
 import cardsData from '../../data/cards.json';
+export const prerender = true;
 
 export async function getStaticPaths() {
   return cardsData.map((card) => ({

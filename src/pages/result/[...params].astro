@@ -2,28 +2,15 @@
 import Layout from '../../layouts/Layout.astro';
 import spreads from '../../data/spreads.json';
 import cardsData from '../../data/cards.json';
-export const prerender = false;
+export const prerender = true;
 // Parse URL params: /result/3-card/1-2-3/010
 const params = Astro.params.params || '';
 const [spreadId, cardIdsStr, reversedStr] = params.split('/');
 
-console.log('[result/[...params].astro] Params:', params);
-console.log('[result/[...params].astro] Spread ID:', spreadId);
-console.log('[result/[...params].astro] Card IDs string:', cardIdsStr);
-console.log('[result/[...params].astro] Reversed string:', reversedStr);
-
 const cardIds = cardIdsStr?.split('-').map(id => parseInt(id)) || [];
 const spread = spreads.find(s => s.id === spreadId);
 
-console.log('[result/[...params].astro] Card IDs:', cardIds);
-console.log('[result/[...params].astro] Card IDs length:', cardIds.length);
-console.log('[result/[...params].astro] Spread:', spread);
-console.log('[result/[...params].astro] Expected card count:', spread?.cardCount);
-
 if (!spread || cardIds.length !== spread.cardCount) {
-  console.log('[result/[...params].astro] VALIDATION FAILED - Redirecting to home');
-  console.log('[result/[...params].astro] Spread found:', !!spread);
-  console.log('[result/[...params].astro] Card count match:', cardIds.length === spread?.cardCount);
   return Astro.redirect('/');
 }
 

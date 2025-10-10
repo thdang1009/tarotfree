@@ -2,6 +2,7 @@
 import Layout from '../../layouts/Layout.astro';
 import CardDeckWrapper from '../../components/CardDeckWrapper';
 import spreads from '../../data/spreads.json';
+export const prerender = true;
 
 export async function getStaticPaths() {
   return spreads.map((spread) => ({
