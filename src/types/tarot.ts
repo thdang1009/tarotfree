@@ -43,6 +43,8 @@ export interface TarotSpread {
   name: string;
   description: string;
   cardCount: number;
+  layout_type: string;
+  layout_grid: number[];
   positions: SpreadPosition[];
 }
 

@@ -249,7 +249,7 @@ Users can share their reading via link!
 ## 🎯 Next Steps (Optional Enhancements)
 
 ### Phase 1: Content
-- [ ] Add actual tarot card images (78 images)
+- [x] Add actual tarot card images (78 images)
 - [ ] Create blog posts about tarot
 - [ ] Add FAQ page
 
@@ -339,3 +339,40 @@ MIT License - Free to use and modify
 **Project Status**: ✅ **READY FOR DEPLOYMENT**
 
 Build your spiritual community with Tarot by the Stars! 🔮✨
+
+## Feature & Improvement Requests for Tarot Web Application
+
+**1. Spread Management & Interaction**
+
+- **Add 20+ Tarot Spreads and Enhance Card Positioning:**
+    - Implement over 20 new spreads (using the provided JSON structure).
+    - Ensure that the **Spread Layout** is correctly rendered based on the `layout_grid` property in the spread data (e.g., 3-2-3-2 formation for the Career spread).
+    - Implement interactive draw mechanics: **Subsequent cards (e.g., Card 2, 3, etc.) must only become available/visible for selection AFTER the previous card (Card 1) has been drawn.**
+    - Crucially, the deck/pile of remaining cards **must not visually obscure** any already-drawn and revealed cards in the spread layout.
+
+**2. Visual & User Experience (UX) Enhancements**
+
+- **Improve Card Shuffling Animation:**
+    - Replace or significantly enhance the current card shuffling animation with a **smoother, more visually appealing effect** to improve user engagement.
+
+**3. Interpretation & Logic**
+
+- **Implement Comprehensive Spread Interpretation:**
+    - Develop a logic layer for generating a **Summary Interpretation** based on the chosen spread and the drawn cards.
+    - This interpretation must go beyond individual card meanings, including an analysis of the **interrelation, theme, or story** created by the combination of cards within the context of the spread positions.
+
+**4. Code & Quality of Life (QoL) Fixes**
+
+- **Correct/Adjust Iconography:**
+    - Review and update icons used for card status. Specifically, **replace any overly severe warning icon (e.g., ⚠️)** used to denote a Reversed (reversed/inverted) card, as this status is not inherently critical or severe. Use a neutral or descriptive icon instead (e.g., a simple rotation arrow).
+
+**5. Performance & Architecture**
+
+- **Ensure Optimal Performance & SEO:**
+    - Confirm and optimize configurations for **Server-Side Rendering (SSR)** and **Static Site Generation (SSG)** (or equivalent framework features like Next.js/Nuxt.js/Gatsby).
+    - Verify that all pages (especially spread result pages) are correctly rendered with content for **Search Engine Optimization (SEO)** purposes.
+
+**6. Code & Localization**
+
+- **Refactor for Vietnamese Language Support (i18n):**
+    - Implement or refactor the code base to properly support **Internationalization (i18n)**, specifically ensuring full support and rendering capabilities for the **Vietnamese language**.

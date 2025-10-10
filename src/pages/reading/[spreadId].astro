@@ -26,17 +26,14 @@ const { spreadId } = Astro.params;
       <h1 class="text-4xl font-bold mb-2 text-violet-deep">
         {spread.name}
       </h1>
-      <p class="text-lg text-gray-600 mb-4">
+      <p class="text-lg text-gray-600">
         {spread.description}
-      </p>
-      <p class="text-sm text-gray-500">
-        Select {spread.cardCount} {spread.cardCount === 1 ? 'card' : 'cards'} from the deck below
       </p>
     </div>
 
     <!-- Card Selection Component -->
     <div class="max-w-5xl mx-auto">
-      <CardDeckWrapper client:load cardCount={spread.cardCount} spreadId={spreadId} />
+      <CardDeckWrapper client:load cardCount={spread.cardCount} spreadId={spreadId} spread={spread} />
     </div>
 
     <!-- Spread Information -->
