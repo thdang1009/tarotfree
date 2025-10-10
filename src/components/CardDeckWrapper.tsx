@@ -7,20 +7,12 @@ interface CardDeckWrapperProps {
 }
 
 export default function CardDeckWrapper({ cardCount, spreadId }: CardDeckWrapperProps) {
-  console.log('[CardDeckWrapper] Mounted with cardCount:', cardCount, 'spreadId:', spreadId);
-
   const handleCardsSelected = (selectedCards: any[]) => {
-    console.log('[CardDeckWrapper] Cards selected:', selectedCards);
-    console.log('[CardDeckWrapper] Spread ID:', spreadId);
-    console.log('[CardDeckWrapper] Card count:', cardCount);
-
-    // Encode selected cards in URL and navigate to result page
+    // Encode selected cards in URL path and navigate to result page
+    // Format: /result/3-card/1-2-3/010
     const cardIds = selectedCards.map(sc => sc.cardId).join('-');
     const reversed = selectedCards.map(sc => sc.reversed ? '1' : '0').join('');
-
-    const url = `/result?spread=${spreadId}&cards=${cardIds}&reversed=${reversed}`;
-    console.log('[CardDeckWrapper] Navigating to:', url);
-    console.log('[CardDeckWrapper] Selected cards length:', selectedCards.length, 'Expected:', cardCount);
+    const url = `/result/${spreadId}/${cardIds}/${reversed}`;
 
     window.location.href = url;
   };

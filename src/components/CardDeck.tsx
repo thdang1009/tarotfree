@@ -38,11 +38,7 @@ export default function CardDeck({ cardCount, onCardsSelected }: CardDeckProps) 
   };
 
   const selectCard = (index: number) => {
-    console.log('[CardDeck] selectCard called, index:', index);
-    console.log('[CardDeck] Current selected count:', selectedCards.length, 'Card count:', cardCount);
-
     if (selectedCards.length >= cardCount) {
-      console.log('[CardDeck] Already have enough cards, returning');
       return;
     }
 
@@ -56,18 +52,13 @@ export default function CardDeck({ cardCount, onCardsSelected }: CardDeckProps) 
     };
 
     const newSelection = [...selectedCards, newCard];
-    console.log('[CardDeck] New selection:', newSelection);
     setSelectedCards(newSelection);
 
     // If we've selected all cards, notify parent
     if (newSelection.length === cardCount) {
-      console.log('[CardDeck] All cards selected! Will navigate in 500ms');
       setTimeout(() => {
-        console.log('[CardDeck] Calling onCardsSelected with:', newSelection);
         onCardsSelected(newSelection);
       }, 500);
-    } else {
-      console.log('[CardDeck] Need more cards:', newSelection.length, '/', cardCount);
     }
   };
 

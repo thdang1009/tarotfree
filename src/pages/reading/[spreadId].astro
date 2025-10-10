@@ -12,9 +12,6 @@ export async function getStaticPaths() {
 
 const { spread } = Astro.props;
 const { spreadId } = Astro.params;
-
-console.log('[reading/[spreadId].astro] Spread ID from params:', spreadId);
-console.log('[reading/[spreadId].astro] Spread:', spread);
 ---
 
 <Layout
