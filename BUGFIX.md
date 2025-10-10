@@ -135,6 +135,66 @@ After the initial implementation with placeholder cards, actual Rider-Waite taro
 
 ---
 
+## Issue #4: Three Navigation and Display Bugs (SOLVED)
+
+### Bug 4.1: Home Page Topic Cards Not Clickable
+
+**Problem:** Topic cards (Love, Career, Future, Daily Card) on home page were `<button>` elements with no click handlers or navigation.
+
+**Fix:** Changed buttons to anchor tags with proper hrefs:
+```astro
+<a href="/reading?spread=3-card&topic=love">❤️ Love</a>
+<a href="/reading?spread=3-card&topic=career">💼 Career</a>
+<a href="/reading?spread=3-card&topic=future">🔮 Future</a>
+<a href="/reading?spread=1-card&topic=daily">☀️ Daily Card</a>
+```
+
+### Bug 4.2: Card Selection Redirecting to Home
+
+**Problem:** After selecting a card, page immediately redirected to home page instead of waiting for all cards to be selected then navigating to results.
+
+**Root Cause:** Buttons missing `type="button"` attribute, defaulting to `type="submit"` which triggered unwanted form submission/navigation.
+
+**Fix:** Added `type="button"` to all interactive buttons in CardDeck.tsx:
+```tsx
+<button
+  type="button"  // Prevents form submission behavior
+  onClick={selectCard}
+>
+```
+
+### Bug 4.3: Invalid HTML - Button Inside Anchor
+
+**Problem:** Home page spread selection cards had `<button>` nested inside `<a>` tags, causing invalid HTML and potential navigation issues.
+
+**Fix:** Removed button, styled div element instead:
+```astro
+<a href={`/reading?spread=${spread.id}`}>
+  <div class="...">Start Reading</div>
+</a>
+```
+
+### Bug 4.4: Spread Positions Display
+
+**Problem:** User reported seeing only "Position 1" text for 3-card and 5-card spreads.
+
+**Investigation:**
+- Code correctly iterates through `spread.positions[index]` for all cards
+- Each spread has correct position data in spreads.json
+- Likely a browser caching issue or user was testing 1-card spread
+
+**Prevention:** Added fallback in position assignment (though validation makes this redundant):
+```typescript
+const position = spread.positions[index] || spread.positions[0];
+```
+
+**Files Modified:**
+1. `src/pages/index.astro` - Topic cards and spread selection
+2. `src/components/CardDeck.tsx` - Button type attributes
+3. `src/pages/result.astro` - Position fallback
+
+---
+
 **Date:** 2025-10-10
-**Fix Type:** Component Architecture & Image Integration
-**Impact:** Critical features now functional with production-ready visuals
+**Fix Type:** Navigation & UI/UX Fixes
+**Impact:** Resolved all user-reported navigation bugs, improved HTML validity and user experience

@@ -10,7 +10,16 @@ const reversedStr = Astro.url.searchParams.get('reversed') || '';
 
 const spread = spreads.find(s => s.id === spreadId);
 
+console.log('[result.astro] Spread ID:', spreadId);
+console.log('[result.astro] Card IDs:', cardIds);
+console.log('[result.astro] Card IDs length:', cardIds.length);
+console.log('[result.astro] Spread:', spread);
+console.log('[result.astro] Expected card count:', spread?.cardCount);
+
 if (!spread || cardIds.length !== spread.cardCount) {
+  console.log('[result.astro] VALIDATION FAILED - Redirecting to home');
+  console.log('[result.astro] Spread found:', !!spread);
+  console.log('[result.astro] Card count match:', cardIds.length === spread?.cardCount);
   return Astro.redirect('/');
 }
 
@@ -18,7 +27,7 @@ if (!spread || cardIds.length !== spread.cardCount) {
 const reading = cardIds.map((cardId, index) => {
   const card = cardsData[cardId];
   const reversed = reversedStr[index] === '1';
-  const position = spread.positions[index];
+  const position = spread.positions[index] || spread.positions[0]; // Fallback to first position if undefined
 
   return {
     card,

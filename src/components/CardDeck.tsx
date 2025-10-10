@@ -38,7 +38,13 @@ export default function CardDeck({ cardCount, onCardsSelected }: CardDeckProps) 
   };
 
   const selectCard = (index: number) => {
-    if (selectedCards.length >= cardCount) return;
+    console.log('[CardDeck] selectCard called, index:', index);
+    console.log('[CardDeck] Current selected count:', selectedCards.length, 'Card count:', cardCount);
+
+    if (selectedCards.length >= cardCount) {
+      console.log('[CardDeck] Already have enough cards, returning');
+      return;
+    }
 
     const cardId = deck[index];
     const reversed = isReversed();
@@ -50,13 +56,18 @@ export default function CardDeck({ cardCount, onCardsSelected }: CardDeckProps) 
     };
 
     const newSelection = [...selectedCards, newCard];
+    console.log('[CardDeck] New selection:', newSelection);
     setSelectedCards(newSelection);
 
     // If we've selected all cards, notify parent
     if (newSelection.length === cardCount) {
+      console.log('[CardDeck] All cards selected! Will navigate in 500ms');
       setTimeout(() => {
+        console.log('[CardDeck] Calling onCardsSelected with:', newSelection);
         onCardsSelected(newSelection);
       }, 500);
+    } else {
+      console.log('[CardDeck] Need more cards:', newSelection.length, '/', cardCount);
     }
   };
 
@@ -75,6 +86,7 @@ export default function CardDeck({ cardCount, onCardsSelected }: CardDeckProps) 
       {/* Shuffle Button */}
       <div className="text-center">
         <button
+          type="button"
           onClick={shuffleCards}
           disabled={isShuffling || selectedCards.length > 0}
           className="px-6 py-3 bg-violet-deep text-white rounded-lg hover:bg-violet-medium transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
@@ -110,6 +122,7 @@ export default function CardDeck({ cardCount, onCardsSelected }: CardDeckProps) 
                 return (
                   <button
                     key={index}
+                    type="button"
                     onClick={() => !isSelected && canSelect && selectCard(index)}
                     disabled={!canSelect || isSelected}
                     style={{

@@ -1,24 +1,20 @@
 ---
-import Layout from '../layouts/Layout.astro';
-import CardDeckWrapper from '../components/CardDeckWrapper';
-import spreads from '../data/spreads.json';
+import Layout from '../../layouts/Layout.astro';
+import CardDeckWrapper from '../../components/CardDeckWrapper';
+import spreads from '../../data/spreads.json';
 
-// Get spread ID from URL
-console.log('[reading.astro] Full URL:', Astro.url.href);
-console.log('[reading.astro] URL search params:', Astro.url.search);
-console.log('[reading.astro] All params:', Object.fromEntries(Astro.url.searchParams));
-
-const spreadId = Astro.url.searchParams.get('spread') || '1-card';
-const spread = spreads.find(s => s.id === spreadId);
-
-console.log('[reading.astro] Spread ID from URL:', spreadId);
-console.log('[reading.astro] Found spread:', spread);
-console.log('[reading.astro] Spread positions:', spread?.positions);
-
-if (!spread) {
-  console.log('[reading.astro] No spread found, redirecting to home');
-  return Astro.redirect('/');
+export async function getStaticPaths() {
+  return spreads.map((spread) => ({
+    params: { spreadId: spread.id },
+    props: { spread },
+  }));
 }
+
+const { spread } = Astro.props;
+const { spreadId } = Astro.params;
+
+console.log('[reading/[spreadId].astro] Spread ID from params:', spreadId);
+console.log('[reading/[spreadId].astro] Spread:', spread);
 ---
 
 <Layout
