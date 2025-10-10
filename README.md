@@ -5,7 +5,7 @@ A free, privacy-focused tarot reading web app built with Astro. No ads, no login
 ![Astro](https://img.shields.io/badge/Astro-5.x-FF5D01?logo=astro&logoColor=white)
 ![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-4.x-38B2AC?logo=tailwind-css&logoColor=white)
 ![React](https://img.shields.io/badge/React-19.x-61DAFB?logo=react&logoColor=black)
-![License](https://img.shields.io/badge/license-MIT-blue.svg)
+![License: CC BY-NC 4.0](https://img.shields.io/badge/License-CC_BY--NC_4.0-lightgrey.svg)
 
 ## ✨ Features
 
@@ -230,7 +230,7 @@ Contributions are welcome! Please feel free to submit a Pull Request.
 
 ## 📄 License
 
-This project is licensed under the MIT License. The Rider-Waite Tarot deck imagery is in the public domain.
+This project is licensed under the CC BY-NC 4.0
 
 ## 🙏 Acknowledgments
 

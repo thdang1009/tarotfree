@@ -500,7 +500,7 @@ xl:  1280px // Desktops
 
 ## 📝 License
 
-MIT License - Free to use and modify
+CC BY-NC 4.0
 
 ---
 
