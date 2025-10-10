@@ -1,0 +1,71 @@
+[
+  {
+    "id": "1-card",
+    "name": "Daily Card",
+    "description": "Quick daily guidance",
+    "cardCount": 1,
+    "positions": [
+      {
+        "position": 1,
+        "name": "Your Card",
+        "description": "This card represents the energy and guidance for your day"
+      }
+    ]
+  },
+  {
+    "id": "3-card",
+    "name": "Past - Present - Future",
+    "description": "Three-card spread for timeline insight",
+    "cardCount": 3,
+    "positions": [
+      {
+        "position": 1,
+        "name": "Past",
+        "description": "Events and influences from your past that affect the current situation"
+      },
+      {
+        "position": 2,
+        "name": "Present",
+        "description": "Your current situation and the energies surrounding you now"
+      },
+      {
+        "position": 3,
+        "name": "Future",
+        "description": "Potential outcome and where things are heading"
+      }
+    ]
+  },
+  {
+    "id": "5-card",
+    "name": "Deeper Insights",
+    "description": "Five-card spread for comprehensive guidance",
+    "cardCount": 5,
+    "positions": [
+      {
+        "position": 1,
+        "name": "Present Situation",
+        "description": "What is happening in your life right now"
+      },
+      {
+        "position": 2,
+        "name": "Challenge",
+        "description": "The obstacle or challenge you're facing"
+      },
+      {
+        "position": 3,
+        "name": "Past Influence",
+        "description": "Past events influencing the current situation"
+      },
+      {
+        "position": 4,
+        "name": "Future Influence",
+        "description": "What is approaching or developing"
+      },
+      {
+        "position": 5,
+        "name": "Outcome",
+        "description": "The potential outcome based on current path"
+      }
+    ]
+  }
+]

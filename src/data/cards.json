@@ -1,0 +1,56 @@
+[
+  {
+    "id": 0,
+    "name": "The Fool",
+    "slug": "the-fool",
+    "arcana": "major",
+    "suit": null,
+    "number": 0,
+    "keywords": ["new beginnings", "innocence", "spontaneity", "free spirit"],
+    "upright": {
+      "short": "New beginnings, innocence, spontaneity, a free spirit",
+      "detailed": "The Fool represents new beginnings, having faith in the future, being inexperienced, not knowing what to expect, having beginner's luck, improvisation and believing in the universe. The Fool is a very powerful card in the Tarot deck, usually representing a new beginning and, consequently, an end to something in your old life."
+    },
+    "reversed": {
+      "short": "Recklessness, taken advantage of, inconsideration",
+      "detailed": "When The Fool reversed appears in a reading, it can indicate that you are living in the moment and not fully considering the consequences of your actions. You may be taking unnecessary risks or acting recklessly. It can also suggest naivety or being taken advantage of."
+    },
+    "image": "/images/cards/00-fool.jpg"
+  },
+  {
+    "id": 1,
+    "name": "The Magician",
+    "slug": "the-magician",
+    "arcana": "major",
+    "suit": null,
+    "number": 1,
+    "keywords": ["manifestation", "resourcefulness", "power", "inspired action"],
+    "upright": {
+      "short": "Manifestation, resourcefulness, power, inspired action",
+      "detailed": "The Magician represents manifestation, resourcefulness, power, and inspired action. When this card appears, you are being reminded you have the power to manifest your desires. You have all the tools and resources you need to achieve your goals. The Magician urges you to tap into your full potential rather than holding back."
+    },
+    "reversed": {
+      "short": "Manipulation, poor planning, untapped talents",
+      "detailed": "The Magician reversed suggests you may be exploring what you wish to manifest, but you are not taking action yet. You are unsure about what you want or how to achieve it. You may lack confidence in your abilities or feel like you don't have the resources to succeed."
+    },
+    "image": "/images/cards/01-magician.jpg"
+  },
+  {
+    "id": 2,
+    "name": "The High Priestess",
+    "slug": "the-high-priestess",
+    "arcana": "major",
+    "suit": null,
+    "number": 2,
+    "keywords": ["intuition", "sacred knowledge", "divine feminine", "subconscious"],
+    "upright": {
+      "short": "Intuition, sacred knowledge, divine feminine, the subconscious mind",
+      "detailed": "The High Priestess signifies spiritual enlightenment, inner illumination, divine knowledge and wisdom. She represents your unconscious mind and intuition. The answers you seek will come from within, not from external sources. Trust your instincts and look beyond the obvious."
+    },
+    "reversed": {
+      "short": "Secrets, disconnected from intuition, withdrawal",
+      "detailed": "The High Priestess reversed suggests that you have lost touch with your intuition and inner voice. You may be ignoring the signs and messages that your subconscious is sending you. It's time to reconnect with your spiritual side and trust your gut feelings."
+    },
+    "image": "/images/cards/02-high-priestess.jpg"
+  }
+]

@@ -1,0 +1,96 @@
+---
+import Layout from '../layouts/Layout.astro';
+import spreads from '../data/spreads.json';
+---
+
+<Layout title="Free Tarot Readings">
+  <div class="container mx-auto px-4 py-12">
+    <!-- Hero Section -->
+    <div class="text-center mb-16">
+      <h1 class="text-5xl md:text-6xl font-bold mb-4 text-violet-deep">
+        Tarot by the Stars
+      </h1>
+      <p class="text-xl text-gray-600 mb-8">
+        Free, private tarot readings — no ads, no login
+      </p>
+
+      <div class="max-w-2xl mx-auto">
+        <h2 class="text-2xl font-heading mb-6 text-violet-medium">
+          What do you wish to understand today?
+        </h2>
+
+        <!-- Suggested Topics -->
+        <div class="flex flex-wrap justify-center gap-4 mb-12">
+          <button class="px-6 py-3 bg-white border-2 border-violet-light rounded-full hover:bg-violet-light hover:text-white transition-all card-hover">
+            ❤️ Love
+          </button>
+          <button class="px-6 py-3 bg-white border-2 border-violet-light rounded-full hover:bg-violet-light hover:text-white transition-all card-hover">
+            💼 Career
+          </button>
+          <button class="px-6 py-3 bg-white border-2 border-violet-light rounded-full hover:bg-violet-light hover:text-white transition-all card-hover">
+            🔮 Future
+          </button>
+          <button class="px-6 py-3 bg-white border-2 border-violet-light rounded-full hover:bg-violet-light hover:text-white transition-all card-hover">
+            ☀️ Daily Card
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Spread Selection -->
+    <div class="max-w-4xl mx-auto">
+      <h2 class="text-3xl font-heading text-center mb-8 text-violet-deep">
+        Choose Your Spread
+      </h2>
+
+      <div class="grid md:grid-cols-3 gap-6">
+        {spreads.map((spread) => (
+          <a
+            href={`/reading?spread=${spread.id}`}
+            class="bg-white rounded-lg p-6 shadow-lg card-hover border-2 border-transparent hover:border-gold-soft"
+          >
+            <div class="text-center mb-4">
+              <div class="text-4xl font-bold text-gold-soft mb-2">
+                {spread.cardCount}
+              </div>
+              <h3 class="text-xl font-heading text-violet-deep mb-2">
+                {spread.name}
+              </h3>
+              <p class="text-gray-600 text-sm">
+                {spread.description}
+              </p>
+            </div>
+
+            <div class="border-t pt-4">
+              <button class="w-full bg-violet-deep text-white py-2 rounded-lg hover:bg-violet-medium transition-colors">
+                Start Reading
+              </button>
+            </div>
+          </a>
+        ))}
+      </div>
+    </div>
+
+    <!-- Decorative Element -->
+    <div class="text-center mt-16 text-gray-400">
+      <p class="italic">
+        "Tarot reflects your inner world"
+      </p>
+    </div>
+  </div>
+</Layout>
+
+<style>
+  @keyframes float {
+    0%, 100% {
+      transform: translateY(0px);
+    }
+    50% {
+      transform: translateY(-10px);
+    }
+  }
+
+  .float-animation {
+    animation: float 3s ease-in-out infinite;
+  }
+</style>

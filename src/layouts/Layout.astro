@@ -1,0 +1,110 @@
+---
+import '../styles/global.css';
+
+interface Props {
+  title: string;
+  description?: string;
+  image?: string;
+  noindex?: boolean;
+}
+
+const {
+  title,
+  description = "Free, private tarot readings with no ads, no login. Explore the wisdom of tarot cards for daily guidance and deeper insights.",
+  image = "/og-image.jpg",
+  noindex = false
+} = Astro.props;
+
+const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+const siteTitle = "Tarot by the Stars";
+const fullTitle = title ? `${title} | ${siteTitle}` : siteTitle;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="generator" content={Astro.generator} />
+
+    <!-- SEO Meta Tags -->
+    <title>{fullTitle}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonicalURL} />
+    {noindex && <meta name="robots" content="noindex, nofollow" />}
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={canonicalURL} />
+    <meta property="og:title" content={fullTitle} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={new URL(image, Astro.site)} />
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content={canonicalURL} />
+    <meta property="twitter:title" content={fullTitle} />
+    <meta property="twitter:description" content={description} />
+    <meta property="twitter:image" content={new URL(image, Astro.site)} />
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Schema.org markup -->
+    <script type="application/ld+json" set:html={JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "WebApplication",
+      "name": siteTitle,
+      "description": description,
+      "url": canonicalURL,
+      "applicationCategory": "Entertainment",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      }
+    })} />
+  </head>
+  <body>
+    <div class="min-h-screen flex flex-col">
+      <header class="bg-violet-deep text-white py-6">
+        <nav class="container mx-auto px-4">
+          <div class="flex items-center justify-between">
+            <a href="/" class="text-2xl font-bold font-heading">
+              {siteTitle}
+            </a>
+            <div class="flex gap-6">
+              <a href="/cards" class="hover:text-gold-soft transition-colors">Cards</a>
+              <a href="/about" class="hover:text-gold-soft transition-colors">About</a>
+            </div>
+          </div>
+        </nav>
+      </header>
+
+      <main class="flex-grow">
+        <slot />
+      </main>
+
+      <footer class="bg-violet-deep text-white py-8 mt-12">
+        <div class="container mx-auto px-4 text-center">
+          <div class="flex justify-center gap-8 mb-4">
+            <a href="/about" class="hover:text-gold-soft transition-colors">About Tarot</a>
+            <a href="/about#disclaimer" class="hover:text-gold-soft transition-colors">Disclaimer</a>
+          </div>
+          <p class="text-sm text-gray-300">
+            Based on Rider-Waite Tarot Deck (Public Domain)
+          </p>
+          <p class="text-xs text-gray-400 mt-2">
+            Free, private tarot readings - No ads, no login, no data collection
+          </p>
+        </div>
+      </footer>
+    </div>
+  </body>
+</html>

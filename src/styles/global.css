@@ -1,0 +1,59 @@
+@import "tailwindcss";
+
+@theme {
+  /* Custom color palette for tarot theme */
+  --color-violet-deep: #2c1a47;
+  --color-violet-medium: #4a3366;
+  --color-violet-light: #6b4d94;
+  --color-gold-soft: #d4af37;
+  --color-gold-light: #e6c968;
+  --color-off-white: #faf8f5;
+  --color-charcoal: #1a1a1a;
+  --color-navy: #1a1a3e;
+
+  /* Custom font families */
+  --font-family-heading: "Cinzel", serif;
+  --font-family-body: "Inter", sans-serif;
+}
+
+/* Custom utilities */
+@layer utilities {
+  .text-gradient {
+    @apply bg-gradient-to-r from-violet-deep to-navy bg-clip-text text-transparent;
+  }
+
+  .glow-gold {
+    box-shadow: 0 0 20px rgba(212, 175, 55, 0.5);
+  }
+
+  .card-hover {
+    transition: all 0.3s ease;
+  }
+
+  .card-hover:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
+  }
+}
+
+/* Base styles */
+body {
+  font-family: var(--font-family-body);
+  background-color: var(--color-off-white);
+  color: var(--color-charcoal);
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-family-heading);
+}
+
+/* Respect reduced motion preference */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
