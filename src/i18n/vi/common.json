@@ -1,0 +1,36 @@
+{
+  "nav": {
+    "home": "Trang Chủ",
+    "readings": "Xem Bài",
+    "cards": "Thư Viện Bài",
+    "about": "Giới Thiệu"
+  },
+  "buttons": {
+    "shuffle": "Xáo Bài",
+    "select": "Chọn Lá Bài",
+    "viewReading": "Xem Kết Quả",
+    "newReading": "Bài Mới",
+    "share": "Chia Sẻ",
+    "export": "Xuất Hình Ảnh",
+    "startReading": "Bắt Đầu Xem Bài",
+    "backToHome": "Về Trang Chủ"
+  },
+  "labels": {
+    "question": "Câu Hỏi Của Bạn",
+    "questionPlaceholder": "Bạn cần lời khuyên gì?",
+    "selectSpread": "Chọn Cách Xếp Bài",
+    "cardCount": "{count} lá bài",
+    "progress": "Đã chọn {current} trong {total} lá",
+    "selectCards": "Chọn {count} lá bài từ bộ bài",
+    "yourReading": "Bài Xem Của Bạn",
+    "position": "Vị Trí",
+    "meaning": "Ý Nghĩa",
+    "upright": "Ngửa",
+    "reversed": "Ngược"
+  },
+  "footer": {
+    "tagline": "Xem bài tarot miễn phí, bảo mật tuyệt đối. Không quảng cáo, không theo dõi, không cần đăng nhập.",
+    "madeWith": "Được tạo ra với tình yêu và bí ẩn",
+    "privacy": "Các bài xem của bạn hoàn toàn riêng tư và không bao giờ được lưu trữ trên máy chủ của chúng tôi."
+  }
+}

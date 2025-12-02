@@ -1,6 +1,16 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import spreads from '../data/spreads.json';
+import { detectLanguage, createTranslator } from '../utils/i18nServer';
+import { loadSpreads } from '../utils/loadData';
+
+// Detect language
+const lang = detectLanguage(Astro.request);
+
+// Load language-specific data
+const spreads = loadSpreads(lang);
+
+// Create translator for this page
+const t = createTranslator(lang, 'common');
 ---
 
 <Layout title="Free Tarot Readings">
@@ -11,7 +21,7 @@ import spreads from '../data/spreads.json';
         Tarot by the Stars
       </h1>
       <p class="text-xl text-gray-600 mb-8">
-        Free, private tarot readings — no ads, no login
+        {t('footer.tagline')}
       </p>
 
       <div class="max-w-2xl mx-auto">
@@ -63,7 +73,7 @@ import spreads from '../data/spreads.json';
 
             <div class="border-t pt-4">
               <div class="w-full bg-violet-deep text-white py-2 rounded-lg hover:bg-violet-medium transition-colors text-center">
-                Start Reading
+                {t('buttons.startReading')}
               </div>
             </div>
           </a>

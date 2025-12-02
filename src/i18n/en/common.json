@@ -1,0 +1,36 @@
+{
+  "nav": {
+    "home": "Home",
+    "readings": "Readings",
+    "cards": "Card Library",
+    "about": "About"
+  },
+  "buttons": {
+    "shuffle": "Shuffle",
+    "select": "Select Cards",
+    "viewReading": "View Reading",
+    "newReading": "New Reading",
+    "share": "Share",
+    "export": "Export as Image",
+    "startReading": "Start Reading",
+    "backToHome": "Back to Home"
+  },
+  "labels": {
+    "question": "Your Question",
+    "questionPlaceholder": "What guidance do you seek?",
+    "selectSpread": "Choose a Spread",
+    "cardCount": "{count} cards",
+    "progress": "Selected {current} of {total} cards",
+    "selectCards": "Select {count} cards from the deck",
+    "yourReading": "Your Reading",
+    "position": "Position",
+    "meaning": "Meaning",
+    "upright": "Upright",
+    "reversed": "Reversed"
+  },
+  "footer": {
+    "tagline": "Free, privacy-first tarot readings. No ads, no tracking, no login required.",
+    "madeWith": "Made with love and mystery",
+    "privacy": "Your readings are completely private and never stored on our servers."
+  }
+}

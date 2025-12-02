@@ -1,0 +1,777 @@
+[
+  {
+    "id": "1-card",
+    "name": "Daily Card",
+    "description": "Quick daily guidance, focus, or theme for the day ahead.",
+    "cardCount": 1,
+    "layout_type": "Line",
+    "layout_grid": [1],
+    "positions": [
+      {
+        "position": 1,
+        "name": "The Day's Focus",
+        "description": "This card represents the energy and guidance for your day."
+      }
+    ]
+  },
+  {
+    "id": "3-card-basic",
+    "name": "Past - Present - Future",
+    "description": "Three-card spread for timeline insight and flow of events.",
+    "cardCount": 3,
+    "layout_type": "Line",
+    "layout_grid": [3],
+    "positions": [
+      {
+        "position": 1,
+        "name": "Past",
+        "description": "Events and influences from your past that affect the current situation."
+      },
+      {
+        "position": 2,
+        "name": "Present",
+        "description": "Your current situation and the energies surrounding you now."
+      },
+      {
+        "position": 3,
+        "name": "Future",
+        "description": "Potential outcome and where things are heading."
+      }
+    ]
+  },
+  {
+    "id": "3-card-situational",
+    "name": "Situation - Action - Outcome",
+    "description": "A quick problem-solving spread for clear advice on a specific issue.",
+    "cardCount": 3,
+    "layout_type": "Line",
+    "layout_grid": [3],
+    "positions": [
+      {
+        "position": 1,
+        "name": "The Situation",
+        "description": "The current state of the issue you are inquiring about."
+      },
+      {
+        "position": 2,
+        "name": "The Action",
+        "description": "The course of action or attitude you should adopt."
+      },
+      {
+        "position": 3,
+        "name": "The Outcome",
+        "description": "The likely outcome if you follow the suggested action."
+      }
+    ]
+  },
+  {
+    "id": "4-card-elements",
+    "name": "The Four Elements",
+    "description": "A spread for holistic insight by dividing the situation into energetic components (Earth, Air, Fire, Water).",
+    "cardCount": 4,
+    "layout_type": "Cross",
+    "layout_grid": [2, 2],
+    "positions": [
+      {
+        "position": 1,
+        "name": "Earth (Material Reality)",
+        "description": "The practical and financial aspects of the situation."
+      },
+      {
+        "position": 2,
+        "name": "Air (Mental State)",
+        "description": "Your thoughts, clarity, and communication surrounding the issue."
+      },
+      {
+        "position": 3,
+        "name": "Fire (Action & Passion)",
+        "description": "The energy, drive, and motivation involved."
+      },
+      {
+        "position": 4,
+        "name": "Water (Emotions & Intuition)",
+        "description": "The feelings, intuition, and emotional currents at play."
+      }
+    ]
+  },
+  {
+    "id": "5-card-deeper",
+    "name": "Deeper Insights",
+    "description": "Five-card spread for comprehensive guidance on a life path.",
+    "cardCount": 5,
+    "layout_type": "Cross",
+    "layout_grid": [1, 3, 1],
+    "positions": [
+      {
+        "position": 1,
+        "name": "Present Situation",
+        "description": "What is happening in your life right now."
+      },
+      {
+        "position": 2,
+        "name": "Challenge",
+        "description": "The obstacle or challenge you're facing."
+      },
+      {
+        "position": 3,
+        "name": "Past Influence",
+        "description": "Past events influencing the current situation."
+      },
+      {
+        "position": 4,
+        "name": "Future Influence",
+        "description": "What is approaching or developing."
+      },
+      {
+        "position": 5,
+        "name": "Outcome",
+        "description": "The potential outcome based on current path."
+      }
+    ]
+  },
+  {
+    "id": "5-card-relationship",
+    "name": "Relationship Dynamics",
+    "description": "Analysis of the relationship between two people, be it romantic or professional.",
+    "cardCount": 5,
+    "layout_type": "Bridge",
+    "layout_grid": [2, 1, 2],
+    "positions": [
+      {
+        "position": 1,
+        "name": "Person A's Feelings",
+        "description": "How Person A (you or your partner) feels about the relationship."
+      },
+      {
+        "position": 2,
+        "name": "Person B's Feelings",
+        "description": "How Person B feels about the relationship."
+      },
+      {
+        "position": 3,
+        "name": "The Bond",
+        "description": "The core energy and current state of the relationship itself."
+      },
+      {
+        "position": 4,
+        "name": "External Challenge",
+        "description": "External factors or challenges affecting the relationship."
+      },
+      {
+        "position": 5,
+        "name": "Potential Outcome",
+        "description": "Where the relationship is likely heading."
+      }
+    ]
+  },
+  {
+    "id": "6-card-choice",
+    "name": "The Choice (Path A vs. Path B)",
+    "description": "A spread to explore two potential futures based on a critical decision.",
+    "cardCount": 6,
+    "layout_type": "VerticalSplit",
+    "layout_grid": [1, 2, 2, 1],
+    "positions": [
+      {
+        "position": 1,
+        "name": "The Root Issue",
+        "description": "The main concern or decision you are facing."
+      },
+      {
+        "position": 2,
+        "name": "Path A - Action",
+        "description": "The energy or action required if you choose Path A."
+      },
+      {
+        "position": 3,
+        "name": "Path B - Action",
+        "description": "The energy or action required if you choose Path B."
+      },
+      {
+        "position": 4,
+        "name": "Path A - Outcome",
+        "description": "The likely short-term outcome of choosing Path A."
+      },
+      {
+        "position": 5,
+        "name": "Path B - Outcome",
+        "description": "The likely short-term outcome of choosing Path B."
+      },
+      {
+        "position": 6,
+        "name": "Best Advice",
+        "description": "Advice on which path aligns better with your higher purpose."
+      }
+    ]
+  },
+  {
+    "id": "7-card-goal",
+    "name": "Goal Reaching Spread",
+    "description": "Focuses on identifying obstacles and resources needed to achieve a specific goal.",
+    "cardCount": 7,
+    "layout_type": "Arrow",
+    "layout_grid": [1, 2, 2, 2],
+    "positions": [
+      {
+        "position": 1,
+        "name": "The Goal",
+        "description": "Your clear intention for the goal."
+      },
+      {
+        "position": 2,
+        "name": "Inner Resource",
+        "description": "Your internal strength to help you succeed."
+      },
+      {
+        "position": 3,
+        "name": "Outer Resource",
+        "description": "External help or advantage available to you."
+      },
+      {
+        "position": 4,
+        "name": "Internal Obstacle",
+        "description": "Mental blocks or self-sabotaging behavior."
+      },
+      {
+        "position": 5,
+        "name": "External Obstacle",
+        "description": "People or circumstances that may hinder you."
+      },
+      {
+        "position": 6,
+        "name": "Action Step",
+        "description": "The most important next step to take."
+      },
+      {
+        "position": 7,
+        "name": "Likely Result",
+        "description": "The ultimate outcome if you follow the guidance."
+      }
+    ]
+  },
+  {
+    "id": "8-card-shadow",
+    "name": "Shadow Self Work",
+    "description": "A spread for introspection, revealing hidden aspects of the self and healing past wounds.",
+    "cardCount": 8,
+    "layout_type": "Diamond",
+    "layout_grid": [1, 2, 2, 2, 1],
+    "positions": [
+      {
+        "position": 1,
+        "name": "Ego's View",
+        "description": "How you consciously perceive the situation."
+      },
+      {
+        "position": 2,
+        "name": "The Shadow's Manifestation",
+        "description": "How the shadow self is expressing itself currently."
+      },
+      {
+        "position": 3,
+        "name": "Root of the Shadow",
+        "description": "The core past event or wound that created this shadow."
+      },
+      {
+        "position": 4,
+        "name": "What Needs Light",
+        "description": "The quality or truth you need to acknowledge and integrate."
+      },
+      {
+        "position": 5,
+        "name": "Action for Healing",
+        "description": "A step to take to confront and heal the shadow."
+      },
+      {
+        "position": 6,
+        "name": "Hidden Gift",
+        "description": "The positive potential contained within the shadow."
+      },
+      {
+        "position": 7,
+        "name": "Lesson Learned",
+        "description": "The wisdom gained from integrating this part of yourself."
+      },
+      {
+        "position": 8,
+        "name": "Future Self",
+        "description": "How you will feel once this shadow work is complete."
+      }
+    ]
+  },
+  {
+    "id": "10-card-celtic",
+    "name": "Celtic Cross",
+    "description": "A comprehensive spread for deep analysis of any issue, exploring past, present, future, external influences, and hopes/fears.",
+    "cardCount": 10,
+    "layout_type": "CelticCross",
+    "layout_grid": [2, 1, 1, 1, 4],
+    "positions": [
+      {
+        "position": 1,
+        "name": "The Present",
+        "description": "The immediate energy of the situation."
+      },
+      {
+        "position": 2,
+        "name": "The Challenge",
+        "description": "What crosses or opposes the present situation."
+      },
+      {
+        "position": 3,
+        "name": "The Root",
+        "description": "The subconscious foundation or origin of the issue."
+      },
+      {
+        "position": 4,
+        "name": "Recent Past",
+        "description": "Events and influences receding from the past."
+      },
+      {
+        "position": 5,
+        "name": "Potential Outcome",
+        "description": "The highest potential the situation can reach."
+      },
+      {
+        "position": 6,
+        "name": "Immediate Future",
+        "description": "What is immediately approaching."
+      },
+      {
+        "position": 7,
+        "name": "The Querent (Self)",
+        "description": "Your attitude, perspective, or role in the situation."
+      },
+      {
+        "position": 8,
+        "name": "External Influence",
+        "description": "How others perceive you or factors outside your control."
+      },
+      {
+        "position": 9,
+        "name": "Hopes & Fears",
+        "description": "Your internal hopes or secret anxieties."
+      },
+      {
+        "position": 10,
+        "name": "The Final Outcome",
+        "description": "The long-term result or destiny of the query."
+      }
+    ]
+  },
+  {
+    "id": "10-card-career",
+    "name": "Career Advancement Spread",
+    "description": "Analyzes the path to a promotion or new job, focusing on personal strengths and required changes.",
+    "cardCount": 10,
+    "layout_type": "Stairs",
+    "layout_grid": [3, 2, 3, 2],
+    "positions": [
+      {
+        "position": 1,
+        "name": "Current Job Status (Row 1)",
+        "description": "The foundation and current reality of your career."
+      },
+      {
+        "position": 2,
+        "name": "Your Core Skill (Row 1)",
+        "description": "Your best asset for advancement."
+      },
+      {
+        "position": 3,
+        "name": "Required Change (Row 1)",
+        "description": "The necessary internal shift for success."
+      },
+      {
+        "position": 4,
+        "name": "Immediate Challenge (Row 2)",
+        "description": "The obstacle directly ahead."
+      },
+      {
+        "position": 5,
+        "name": "External Aid (Row 2)",
+        "description": "Who or what can assist you."
+      },
+      {
+        "position": 6,
+        "name": "Next Step (Row 3)",
+        "description": "Concrete action to take."
+      },
+      {
+        "position": 7,
+        "name": "Potential (Row 3)",
+        "description": "The opportunity that awaits."
+      },
+      {
+        "position": 8,
+        "name": "Advice on Timing (Row 3)",
+        "description": "Guidance on when to move."
+      },
+      {
+        "position": 9,
+        "name": "Short-Term Outcome (Row 4)",
+        "description": "Result in the next few weeks/months."
+      },
+      {
+        "position": 10,
+        "name": "Long-Term Goal (Row 4)",
+        "description": "The overall success of your current path."
+      }
+    ]
+  },
+  {
+    "id": "3-card-money",
+    "name": "Financial Insight Spread",
+    "description": "Addresses the mental, physical, and future state of your finances.",
+    "cardCount": 3,
+    "layout_type": "Line",
+    "layout_grid": [3],
+    "positions": [
+      {
+        "position": 1,
+        "name": "Mental Wealth",
+        "description": "Your current mindset about money and abundance."
+      },
+      {
+        "position": 2,
+        "name": "Practical Action",
+        "description": "The best practical step to improve your finances."
+      },
+      {
+        "position": 3,
+        "name": "Future Financial Flow",
+        "description": "The flow of money in the near future."
+      }
+    ]
+  },
+  {
+    "id": "4-card-spiritual",
+    "name": "Spiritual Growth",
+    "description": "Examines your current spiritual path and potential for growth.",
+    "cardCount": 4,
+    "layout_type": "VerticalLine",
+    "layout_grid": [1, 1, 1, 1],
+    "positions": [
+      {
+        "position": 1,
+        "name": "Where Am I Now?",
+        "description": "Your current spiritual state or belief system."
+      },
+      {
+        "position": 2,
+        "name": "Challenge to Growth",
+        "description": "What is blocking your spiritual development."
+      },
+      {
+        "position": 3,
+        "name": "Next Step",
+        "description": "The practice or lesson you need to embrace."
+      },
+      {
+        "position": 4,
+        "name": "Higher Purpose",
+        "description": "A glimpse of your soul's current purpose."
+      }
+    ]
+  },
+  {
+    "id": "5-card-health",
+    "name": "Health & Well-being",
+    "description": "A holistic spread for physical, emotional, and mental health insight.",
+    "cardCount": 5,
+    "layout_type": "T-Shape",
+    "layout_grid": [3, 1, 1],
+    "positions": [
+      {
+        "position": 1,
+        "name": "Physical Body",
+        "description": "The current state of your physical health."
+      },
+      {
+        "position": 2,
+        "name": "Emotional Health",
+        "description": "Underlying emotional factors affecting your well-being."
+      },
+      {
+        "position": 3,
+        "name": "Mental Health",
+        "description": "Your stress levels and mental attitude."
+      },
+      {
+        "position": 4,
+        "name": "What to Release (Bottom)",
+        "description": "A habit or thought pattern to let go of."
+      },
+      {
+        "position": 5,
+        "name": "Advice for Healing (Top)",
+        "description": "The best path toward improvement."
+      }
+    ]
+  },
+  {
+    "id": "4-card-clarity",
+    "name": "Quick Clarity Check",
+    "description": "For when you need immediate, clear advice without overwhelming detail.",
+    "cardCount": 4,
+    "layout_type": "Square",
+    "layout_grid": [2, 2],
+    "positions": [
+      {
+        "position": 1,
+        "name": "What You Need to Know",
+        "description": "The most important piece of information right now."
+      },
+      {
+        "position": 2,
+        "name": "What to Stop Doing",
+        "description": "An action or habit that is counterproductive."
+      },
+      {
+        "position": 3,
+        "name": "What to Start Doing",
+        "description": "A new action or mindset to adopt."
+      },
+      {
+        "position": 4,
+        "name": "The Hidden Blessing",
+        "description": "The unexpected positive outcome of the situation."
+      }
+    ]
+  },
+  {
+    "id": "5-card-breakup",
+    "name": "Moving On Spread",
+    "description": "A spread to process the end of a relationship and find closure.",
+    "cardCount": 5,
+    "layout_type": "Arch",
+    "layout_grid": [2, 3],
+    "positions": [
+      {
+        "position": 1,
+        "name": "What Was Learned",
+        "description": "The main lesson from the relationship."
+      },
+      {
+        "position": 2,
+        "name": "The Pain Point",
+        "description": "What still hurts or needs to be released."
+      },
+      {
+        "position": 3,
+        "name": "What to Keep",
+        "description": "The positive memory or growth to hold onto."
+      },
+      {
+        "position": 4,
+        "name": "The Next Step for Self",
+        "description": "Action to take to rebuild your independence."
+      },
+      {
+        "position": 5,
+        "name": "The Future of Love",
+        "description": "The energy of your next relationship (after healing)."
+      }
+    ]
+  },
+  {
+    "id": "9-card-year",
+    "name": "Year Ahead Spread",
+    "description": "A spread covering the energy and lessons of the next 12 months.",
+    "cardCount": 9,
+    "layout_type": "Grid",
+    "layout_grid": [3, 3, 3],
+    "positions": [
+      {
+        "position": 1,
+        "name": "Self",
+        "description": "Your core energy and focus for the year."
+      },
+      {
+        "position": 2,
+        "name": "Relationships",
+        "description": "Insight into your love and social life."
+      },
+      {
+        "position": 3,
+        "name": "Career",
+        "description": "The major theme for your work life."
+      },
+      {
+        "position": 4,
+        "name": "Finances",
+        "description": "Guidance on money matters."
+      },
+      {
+        "position": 5,
+        "name": "Health",
+        "description": "Focus for physical and mental well-being."
+      },
+      {
+        "position": 6,
+        "name": "Obstacle",
+        "description": "The main challenge you will face."
+      },
+      {
+        "position": 7,
+        "name": "Support",
+        "description": "The resource or aid available to you."
+      },
+      {
+        "position": 8,
+        "name": "Lesson",
+        "description": "The most important spiritual lesson of the year."
+      },
+      {
+        "position": 9,
+        "name": "Overall Theme",
+        "description": "The overarching energy and outcome of the year."
+      }
+    ]
+  },
+  {
+    "id": "6-card-inner",
+    "name": "Inner Child Healing",
+    "description": "Connects to and heals wounds from childhood that still affect the present.",
+    "cardCount": 6,
+    "layout_type": "Spiral",
+    "layout_grid": [1, 1, 1, 1, 1, 1],
+    "positions": [
+      {
+        "position": 1,
+        "name": "The Wounded Child",
+        "description": "The core wound or need of your inner child."
+      },
+      {
+        "position": 2,
+        "name": "The Mask",
+        "description": "How you compensate for this wound as an adult."
+      },
+      {
+        "position": 3,
+        "name": "Adult Action",
+        "description": "What your adult self needs to do for the child."
+      },
+      {
+        "position": 4,
+        "name": "The Nurturing Parent",
+        "description": "The energy you need to bring to yourself (self-compassion)."
+      },
+      {
+        "position": 5,
+        "name": "Integration",
+        "description": "What healing this brings to your life now."
+      },
+      {
+        "position": 6,
+        "name": "Joyful Future",
+        "description": "The potential future self once healed."
+      }
+    ]
+  },
+  {
+    "id": "7-card-block",
+    "name": "Blockage Removal",
+    "description": "Identifies the source of a block and how to move past it.",
+    "cardCount": 7,
+    "layout_type": "Funnel",
+    "layout_grid": [3, 2, 1, 1],
+    "positions": [
+      {
+        "position": 1,
+        "name": "Current Blockage (Row 1)",
+        "description": "What the blockage feels like right now."
+      },
+      {
+        "position": 2,
+        "name": "Conscious Cause (Row 1)",
+        "description": "The obvious or acknowledged reason for the block."
+      },
+      {
+        "position": 3,
+        "name": "Unconscious Cause (Row 1)",
+        "description": "The deeper, hidden root of the block."
+      },
+      {
+        "position": 4,
+        "name": "Releasing Action (Row 2)",
+        "description": "What you need to physically do to release it."
+      },
+      {
+        "position": 5,
+        "name": "Releasing Mindset (Row 2)",
+        "description": "The belief you need to adopt to release it."
+      },
+      {
+        "position": 6,
+        "name": "The Flow (Row 3)",
+        "description": "How life will feel once the block is gone."
+      },
+      {
+        "position": 7,
+        "name": "Final Advice (Row 4)",
+        "description": "The final message from the universe."
+      }
+    ]
+  },
+  {
+    "id": "5-card-meridian",
+    "name": "Meridian Line Spread",
+    "description": "A spread focused on clarity, inspiration, and grounding for creative or business ventures.",
+    "cardCount": 5,
+    "layout_type": "VerticalLine",
+    "layout_grid": [1, 1, 1, 1, 1],
+    "positions": [
+      {
+        "position": 1,
+        "name": "The Vision (Top)",
+        "description": "The ultimate goal or highest vision for the project."
+      },
+      {
+        "position": 2,
+        "name": "The Inspiration",
+        "description": "The creative energy flowing into the project."
+      },
+      {
+        "position": 3,
+        "name": "The Pivot (Center)",
+        "description": "The necessary next step or adjustment to the plan."
+      },
+      {
+        "position": 4,
+        "name": "The Practicality",
+        "description": "The material or financial action needed."
+      },
+      {
+        "position": 5,
+        "name": "The Grounding (Bottom)",
+        "description": "How to stay grounded and stable through the process."
+      }
+    ]
+  },
+  {
+    "id": "3-card-yes-no",
+    "name": "Yes/No Analysis",
+    "description": "Gives a direct answer (Yes/No) with advice on the underlying energy.",
+    "cardCount": 3,
+    "layout_type": "Line",
+    "layout_grid": [3],
+    "positions": [
+      {
+        "position": 1,
+        "name": "The Yes/No Energy",
+        "description": "The card's main energy often gives the immediate 'Yes' or 'No' sentiment."
+      },
+      {
+        "position": 2,
+        "name": "The Advice",
+        "description": "Advice on why the answer is what it is, or what you should do next."
+      },
+      {
+        "position": 3,
+        "name": "The Clarifier",
+        "description": "A card to clarify the overall message or final outcome."
+      }
+    ]
+  }
+]
