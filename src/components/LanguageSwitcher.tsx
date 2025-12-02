@@ -27,13 +27,21 @@ export default function LanguageSwitcher() {
 
     setIsChanging(true);
 
-    // Update language
+    // Set cookie for server-side detection (expires in 1 year)
+    const expires = new Date();
+    expires.setFullYear(expires.getFullYear() + 1);
+    document.cookie = `tarot-language=${lang}; path=/; expires=${expires.toUTCString()}`;
+
+    // Update language in localStorage for client-side
     i18n.setLanguage(lang);
 
-    // Reload page to apply new language across all components
-    // This is the simplest approach for Astro pages
+    // Add lang parameter to current URL
+    const url = new URL(window.location.href);
+    url.searchParams.set('lang', lang);
+
+    // Navigate to URL with language parameter
     setTimeout(() => {
-      window.location.reload();
+      window.location.href = url.toString();
     }, 300); // Small delay for visual feedback
   };
 

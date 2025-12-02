@@ -13,7 +13,8 @@
     "share": "Chia Sẻ",
     "export": "Xuất Hình Ảnh",
     "startReading": "Bắt Đầu Xem Bài",
-    "backToHome": "Về Trang Chủ"
+    "backToHome": "Về Trang Chủ",
+    "copyShareLink": "Sao Chép Liên Kết"
   },
   "labels": {
     "question": "Câu Hỏi Của Bạn",
@@ -26,11 +27,81 @@
     "position": "Vị Trí",
     "meaning": "Ý Nghĩa",
     "upright": "Ngửa",
-    "reversed": "Ngược"
+    "reversed": "Ngược",
+    "keywords": "Từ Khóa",
+    "detailedInterpretation": "Giải Nghĩa Chi Tiết",
+    "general": "Tổng Quát",
+    "workCareer": "Công Việc & Sự Nghiệp",
+    "loveRelationships": "Tình Yêu & Các Mối Quan Hệ",
+    "health": "Sức Khỏe",
+    "spirituality": "Tâm Linh",
+    "reflection": "Suy Ngẫm",
+    "aboutThisSpread": "Về Cách Xếp Bài Này",
+    "browseAllCards": "Xem tất cả ý nghĩa của các lá bài tarot",
+    "linkCopied": "Đã Sao Chép Liên Kết!",
+    "whatGuidanceToday": "Hôm nay bạn muốn tìm hiểu điều gì?",
+    "chooseYourSpread": "Chọn Cách Xếp Bài Của Bạn",
+    "reflectOnCards": "Suy ngẫm về ý nghĩa của từng lá bài bên dưới"
+  },
+  "messages": {
+    "reflectionQuote": "Các lá bài phản ánh trí tuệ nội tại của bạn. Hãy tin vào trực giác của bạn khi giải nghĩa những thông điệp của chúng.",
+    "imageExportSoon": "Tính năng xuất hình ảnh sắp ra mắt! Hiện tại bạn có thể chụp màn hình bài xem của mình.",
+    "tarotQuote": "Tarot phản ánh thế giới nội tâm của bạn",
+    "yourReadingTitle": "Bài Xem {spreadName} Của Bạn",
+    "readingResultDesc": "Kết quả bài xem tarot của bạn"
+  },
+  "topics": {
+    "love": "Tình Yêu",
+    "career": "Sự Nghiệp",
+    "health": "Sức Khỏe",
+    "dailyCard": "Lá Bài Hàng Ngày"
   },
   "footer": {
     "tagline": "Xem bài tarot miễn phí, bảo mật tuyệt đối. Không quảng cáo, không theo dõi, không cần đăng nhập.",
     "madeWith": "Được tạo ra với tình yêu và bí ẩn",
     "privacy": "Các bài xem của bạn hoàn toàn riêng tư và không bao giờ được lưu trữ trên máy chủ của chúng tôi."
+  },
+  "cardsPage": {
+    "title": "Ý Nghĩa Các Lá Bài Tarot",
+    "description": "Khám phá tất cả 78 lá bài tarot và ý nghĩa của chúng. Hướng dẫn đầy đủ về Bài Lớn và Bài Nhỏ bao gồm giải nghĩa xuôi và ngược.",
+    "header": "Ý Nghĩa Các Lá Bài Tarot",
+    "subtitle": "Khám phá tất cả 78 lá bài tarot từ bộ bài Rider-Waite. Nhấp vào bất kỳ lá bài nào để tìm hiểu ý nghĩa đầy đủ.",
+    "filters": {
+      "all": "Tất Cả Lá Bài (78)",
+      "major": "Bài Lớn (22)",
+      "wands": "Gậy (14)",
+      "cups": "Chén (14)",
+      "swords": "Kiếm (14)",
+      "pentacles": "Xu (14)"
+    },
+    "sections": {
+      "majorArcana": "✨ Bài Lớn",
+      "suitOfWands": "🔥 Bộ Gậy",
+      "suitOfCups": "💧 Bộ Chén",
+      "suitOfSwords": "⚔️ Bộ Kiếm",
+      "suitOfPentacles": "🪙 Bộ Xu"
+    },
+    "footerNote": "Dựa trên Bộ Bài Tarot Rider-Waite (Phạm Vi Công Cộng)",
+    "backToReadings": "← Quay lại xem bài"
+  },
+  "cardDetail": {
+    "breadcrumb": {
+      "home": "Trang Chủ",
+      "cardLibrary": "Thư Viện Bài"
+    },
+    "arcana": {
+      "major": "Bài Lớn",
+      "minor": "Bài Nhỏ"
+    },
+    "uprightMeaning": "✨ Ý Nghĩa Ngửa",
+    "reversedMeaning": "⚠️ Ý Nghĩa Ngược",
+    "detailedInterpretations": "Giải Nghĩa Chi Tiết",
+    "uprightPosition": "Vị Trí Ngửa",
+    "reversedPosition": "Vị Trí Ngược",
+    "generalMeaning": "Ý Nghĩa Tổng Quát",
+    "healthWellness": "🏥 Sức Khỏe & Thể Chất",
+    "supportingCards": "Các Lá Bài Hỗ Trợ",
+    "getReadingWith": "🔮 Xem Bài Với",
+    "backToCardLibrary": "← Quay Lại Thư Viện Bài"
   }
 }

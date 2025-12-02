@@ -1,6 +1,14 @@
 ---
 import Layout from '../../layouts/Layout.astro';
+import { detectLanguage, createTranslator } from '../../utils/i18nServer';
+import { withLang } from '../../utils/linkHelper';
 import cardsData from '../../data/cards.json';
+
+// Detect language
+const lang = detectLanguage(Astro.request);
+
+// Create translator
+const t = createTranslator(lang, 'common');
 
 // Organize cards by type
 const majorArcana = cardsData.filter(c => c.arcana === 'major');
@@ -11,17 +19,17 @@ const pentacles = cardsData.filter(c => c.suit === 'pentacles');
 ---
 
 <Layout
-  title="Tarot Card Meanings"
-  description="Explore all 78 tarot cards and their meanings. Complete guide to Major and Minor Arcana including upright and reversed interpretations."
+  title={t('cardsPage.title')}
+  description={t('cardsPage.description')}
 >
   <div class="container mx-auto px-4 py-12">
     <!-- Header -->
     <div class="text-center mb-12">
       <h1 class="text-4xl md:text-5xl font-bold mb-4 text-violet-deep">
-        Tarot Card Meanings
+        {t('cardsPage.header')}
       </h1>
       <p class="text-xl text-gray-600 max-w-2xl mx-auto">
-        Explore all 78 tarot cards from the Rider-Waite deck. Click any card to learn its full meaning.
+        {t('cardsPage.subtitle')}
       </p>
     </div>
 
@@ -33,34 +41,34 @@ const pentacles = cardsData.filter(c => c.suit === 'pentacles');
     <!-- Filter Tabs -->
     <div class="flex flex-wrap justify-center gap-2 mb-8">
       <button data-filter="all" class="filter-btn active px-6 py-2 rounded-full bg-violet-deep text-white hover:bg-violet-medium transition-colors">
-        All Cards (78)
+        {t('cardsPage.filters.all')}
       </button>
       <button data-filter="major" class="filter-btn px-6 py-2 rounded-full bg-white border-2 border-violet-medium text-violet-medium hover:bg-violet-medium hover:text-white transition-all">
-        Major Arcana (22)
+        {t('cardsPage.filters.major')}
       </button>
       <button data-filter="wands" class="filter-btn px-6 py-2 rounded-full bg-white border-2 border-violet-medium text-violet-medium hover:bg-violet-medium hover:text-white transition-all">
-        Wands (14)
+        {t('cardsPage.filters.wands')}
       </button>
       <button data-filter="cups" class="filter-btn px-6 py-2 rounded-full bg-white border-2 border-violet-medium text-violet-medium hover:bg-violet-medium hover:text-white transition-all">
-        Cups (14)
+        {t('cardsPage.filters.cups')}
       </button>
       <button data-filter="swords" class="filter-btn px-6 py-2 rounded-full bg-white border-2 border-violet-medium text-violet-medium hover:bg-violet-medium hover:text-white transition-all">
-        Swords (14)
+        {t('cardsPage.filters.swords')}
       </button>
       <button data-filter="pentacles" class="filter-btn px-6 py-2 rounded-full bg-white border-2 border-violet-medium text-violet-medium hover:bg-violet-medium hover:text-white transition-all">
-        Pentacles (14)
+        {t('cardsPage.filters.pentacles')}
       </button>
     </div>
 
     <!-- Major Arcana Section -->
     <section id="section-major" class="card-section mb-16">
       <h2 class="text-3xl font-heading text-violet-deep mb-6">
-        ✨ Major Arcana
+        {t('cardsPage.sections.majorArcana')}
       </h2>
       <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-4">
         {majorArcana.map((card) => (
           <a
-            href={`/cards/${card.slug}`}
+            href={withLang(`/cards/${card.slug}`, lang)}
             class="card-item bg-white rounded-lg shadow-md hover:shadow-xl transition-all card-hover p-4"
             data-type="major"
           >
@@ -85,12 +93,12 @@ const pentacles = cardsData.filter(c => c.suit === 'pentacles');
     <!-- Wands Section -->
     <section id="section-wands" class="card-section mb-16">
       <h2 class="text-3xl font-heading text-violet-deep mb-6">
-        🔥 Suit of Wands
+        {t('cardsPage.sections.suitOfWands')}
       </h2>
       <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-7 gap-4">
         {wands.map((card) => (
           <a
-            href={`/cards/${card.slug}`}
+            href={withLang(`/cards/${card.slug}`, lang)}
             class="card-item bg-white rounded-lg shadow-md hover:shadow-xl transition-all card-hover p-4"
             data-type="wands"
           >
@@ -112,12 +120,12 @@ const pentacles = cardsData.filter(c => c.suit === 'pentacles');
     <!-- Cups Section -->
     <section id="section-cups" class="card-section mb-16">
       <h2 class="text-3xl font-heading text-violet-deep mb-6">
-        💧 Suit of Cups
+        {t('cardsPage.sections.suitOfCups')}
       </h2>
       <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-7 gap-4">
         {cups.map((card) => (
           <a
-            href={`/cards/${card.slug}`}
+            href={withLang(`/cards/${card.slug}`, lang)}
             class="card-item bg-white rounded-lg shadow-md hover:shadow-xl transition-all card-hover p-4"
             data-type="cups"
           >
@@ -139,12 +147,12 @@ const pentacles = cardsData.filter(c => c.suit === 'pentacles');
     <!-- Swords Section -->
     <section id="section-swords" class="card-section mb-16">
       <h2 class="text-3xl font-heading text-violet-deep mb-6">
-        ⚔️ Suit of Swords
+        {t('cardsPage.sections.suitOfSwords')}
       </h2>
       <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-7 gap-4">
         {swords.map((card) => (
           <a
-            href={`/cards/${card.slug}`}
+            href={withLang(`/cards/${card.slug}`, lang)}
             class="card-item bg-white rounded-lg shadow-md hover:shadow-xl transition-all card-hover p-4"
             data-type="swords"
           >
@@ -166,12 +174,12 @@ const pentacles = cardsData.filter(c => c.suit === 'pentacles');
     <!-- Pentacles Section -->
     <section id="section-pentacles" class="card-section mb-16">
       <h2 class="text-3xl font-heading text-violet-deep mb-6">
-        🪙 Suit of Pentacles
+        {t('cardsPage.sections.suitOfPentacles')}
       </h2>
       <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-7 gap-4">
         {pentacles.map((card) => (
           <a
-            href={`/cards/${card.slug}`}
+            href={withLang(`/cards/${card.slug}`, lang)}
             class="card-item bg-white rounded-lg shadow-md hover:shadow-xl transition-all card-hover p-4"
             data-type="pentacles"
           >
@@ -192,9 +200,9 @@ const pentacles = cardsData.filter(c => c.suit === 'pentacles');
 
     <!-- Footer Note -->
     <div class="text-center mt-12 text-gray-500 text-sm">
-      <p>Based on the Rider-Waite Tarot Deck (Public Domain)</p>
+      <p>{t('cardsPage.footerNote')}</p>
       <p class="mt-2">
-        <a href="/" class="text-violet-medium hover:text-gold-soft">← Back to readings</a>
+        <a href={withLang('/', lang)} class="text-violet-medium hover:text-gold-soft">{t('cardsPage.backToReadings')}</a>
       </p>
     </div>
   </div>

@@ -1,20 +1,34 @@
 ---
 import Layout from '../../layouts/Layout.astro';
-import cardsData from '../../data/cards.json';
-export const prerender = true;
+import { detectLanguage, createTranslator } from '../../utils/i18nServer';
+import { loadCards } from '../../utils/loadData';
+import { withLang } from '../../utils/linkHelper';
 
-export async function getStaticPaths() {
-  return cardsData.map((card) => ({
-    params: { slug: card.slug },
-    props: { card },
-  }));
+export const prerender = false;
+
+// Detect language
+const lang = detectLanguage(Astro.request);
+
+// Create translator
+const t = createTranslator(lang, 'common');
+
+// Load language-specific cards
+const cardsData = loadCards(lang);
+
+// Get slug from params
+const { slug } = Astro.params;
+
+// Find the card by slug
+const card = cardsData.find(c => c.slug === slug);
+
+// If card not found, redirect to cards page
+if (!card) {
+  return Astro.redirect(withLang('/cards', lang));
 }
-
-const { card } = Astro.props;
 
 // Get related cards
 const relatedCards = card.relationships.supporting_cards
-  .map(name => cardsData.find(c => c.name === name))
+  .map((name: string) => cardsData.find((c: any) => c.name === name))
   .filter(Boolean)
   .slice(0, 3);
 ---
@@ -26,9 +40,9 @@ const relatedCards = card.relationships.supporting_cards
   <div class="container mx-auto px-4 py-12">
     <!-- Breadcrumb -->
     <div class="mb-6 text-sm text-gray-600">
-      <a href="/" class="hover:text-violet-medium">Home</a>
+      <a href={withLang('/', lang)} class="hover:text-violet-medium">{t('cardDetail.breadcrumb.home')}</a>
       <span class="mx-2">→</span>
-      <a href="/cards" class="hover:text-violet-medium">Card Library</a>
+      <a href={withLang('/cards', lang)} class="hover:text-violet-medium">{t('cardDetail.breadcrumb.cardLibrary')}</a>
       <span class="mx-2">→</span>
       <span class="text-violet-deep">{card.name}</span>
     </div>
@@ -42,12 +56,12 @@ const relatedCards = card.relationships.supporting_cards
         <div class="flex justify-center gap-4 text-sm mb-4">
           {card.arcana === 'major' ? (
             <span class="px-4 py-1 bg-violet-deep text-white rounded-full">
-              Major Arcana
+              {t('cardDetail.arcana.major')}
             </span>
           ) : (
             <>
               <span class="px-4 py-1 bg-violet-medium text-white rounded-full">
-                Minor Arcana
+                {t('cardDetail.arcana.minor')}
               </span>
               <span class="px-4 py-1 bg-gold-soft text-white rounded-full capitalize">
                 {card.suit}
@@ -85,7 +99,7 @@ const relatedCards = card.relationships.supporting_cards
           <!-- Upright -->
           <div class="bg-green-50 border-l-4 border-green-500 p-6 rounded-r-lg">
             <h2 class="text-2xl font-heading text-green-700 mb-3">
-              ✨ Upright Meaning
+              {t('cardDetail.uprightMeaning')}
             </h2>
             <p class="text-gray-800 leading-relaxed">
               {card.upright.short}
@@ -95,7 +109,7 @@ const relatedCards = card.relationships.supporting_cards
           <!-- Reversed -->
           <div class="bg-red-50 border-l-4 border-red-500 p-6 rounded-r-lg">
             <h2 class="text-2xl font-heading text-red-700 mb-3">
-              ⚠️ Reversed Meaning
+              {t('cardDetail.reversedMeaning')}
             </h2>
             <p class="text-gray-800 leading-relaxed">
               {card.reversed.short}
@@ -107,40 +121,40 @@ const relatedCards = card.relationships.supporting_cards
       <!-- Detailed Meanings -->
       <div class="bg-white rounded-lg shadow-lg p-8 mb-12">
         <h2 class="text-3xl font-heading text-violet-deep mb-8 text-center">
-          Detailed Interpretations
+          {t('cardDetail.detailedInterpretations')}
         </h2>
 
         <!-- Upright Detailed -->
         <div class="mb-8">
           <h3 class="text-2xl font-heading text-green-700 mb-4">
-            Upright Position
+            {t('cardDetail.uprightPosition')}
           </h3>
           <div class="space-y-4 text-gray-700">
             <div>
-              <h4 class="font-bold text-violet-medium mb-1">General Meaning</h4>
+              <h4 class="font-bold text-violet-medium mb-1">{t('cardDetail.generalMeaning')}</h4>
               <p>{card.upright.general}</p>
             </div>
             {card.upright.work && (
               <div>
-                <h4 class="font-bold text-violet-medium mb-1">💼 Work & Career</h4>
+                <h4 class="font-bold text-violet-medium mb-1">{t('labels.workCareer')}</h4>
                 <p>{card.upright.work}</p>
               </div>
             )}
             {card.upright.love && (
               <div>
-                <h4 class="font-bold text-violet-medium mb-1">❤️ Love & Relationships</h4>
+                <h4 class="font-bold text-violet-medium mb-1">{t('labels.loveRelationships')}</h4>
                 <p>{card.upright.love}</p>
               </div>
             )}
             {card.upright.health && (
               <div>
-                <h4 class="font-bold text-violet-medium mb-1">🏥 Health & Wellness</h4>
+                <h4 class="font-bold text-violet-medium mb-1">{t('cardDetail.healthWellness')}</h4>
                 <p>{card.upright.health}</p>
               </div>
             )}
             {card.upright.spirituality && (
               <div>
-                <h4 class="font-bold text-violet-medium mb-1">✨ Spirituality</h4>
+                <h4 class="font-bold text-violet-medium mb-1">{t('labels.spirituality')}</h4>
                 <p>{card.upright.spirituality}</p>
               </div>
             )}
@@ -152,34 +166,34 @@ const relatedCards = card.relationships.supporting_cards
         <!-- Reversed Detailed -->
         <div>
           <h3 class="text-2xl font-heading text-red-700 mb-4">
-            Reversed Position
+            {t('cardDetail.reversedPosition')}
           </h3>
           <div class="space-y-4 text-gray-700">
             <div>
-              <h4 class="font-bold text-violet-medium mb-1">General Meaning</h4>
+              <h4 class="font-bold text-violet-medium mb-1">{t('cardDetail.generalMeaning')}</h4>
               <p>{card.reversed.general}</p>
             </div>
             {card.reversed.work && (
               <div>
-                <h4 class="font-bold text-violet-medium mb-1">💼 Work & Career</h4>
+                <h4 class="font-bold text-violet-medium mb-1">{t('labels.workCareer')}</h4>
                 <p>{card.reversed.work}</p>
               </div>
             )}
             {card.reversed.love && (
               <div>
-                <h4 class="font-bold text-violet-medium mb-1">❤️ Love & Relationships</h4>
+                <h4 class="font-bold text-violet-medium mb-1">{t('labels.loveRelationships')}</h4>
                 <p>{card.reversed.love}</p>
               </div>
             )}
             {card.reversed.health && (
               <div>
-                <h4 class="font-bold text-violet-medium mb-1">🏥 Health & Wellness</h4>
+                <h4 class="font-bold text-violet-medium mb-1">{t('cardDetail.healthWellness')}</h4>
                 <p>{card.reversed.health}</p>
               </div>
             )}
             {card.reversed.spirituality && (
               <div>
-                <h4 class="font-bold text-violet-medium mb-1">✨ Spirituality</h4>
+                <h4 class="font-bold text-violet-medium mb-1">{t('labels.spirituality')}</h4>
                 <p>{card.reversed.spirituality}</p>
               </div>
             )}
@@ -191,12 +205,12 @@ const relatedCards = card.relationships.supporting_cards
       {relatedCards.length > 0 && (
         <div class="mb-12">
           <h2 class="text-3xl font-heading text-violet-deep mb-6 text-center">
-            Supporting Cards
+            {t('cardDetail.supportingCards')}
           </h2>
           <div class="grid grid-cols-3 gap-4">
-            {relatedCards.map((relatedCard) => (
+            {relatedCards.map((relatedCard: any) => (
               <a
-                href={`/cards/${relatedCard.slug}`}
+                href={withLang(`/cards/${relatedCard.slug}`, lang)}
                 class="bg-white rounded-lg shadow-md hover:shadow-xl transition-all card-hover p-4 text-center"
               >
                 <div class="aspect-[2/3] rounded-lg overflow-hidden mb-3">
@@ -218,14 +232,14 @@ const relatedCards = card.relationships.supporting_cards
       <!-- CTA -->
       <div class="text-center space-y-4">
         <a
-          href="/?topic={card.name.toLowerCase()}"
+          href={withLang(`/?topic=${card.name.toLowerCase()}`, lang)}
           class="inline-block px-8 py-3 bg-violet-deep text-white rounded-lg hover:bg-violet-medium transition-colors text-lg"
         >
-          🔮 Get a Reading with {card.name}
+          {t('cardDetail.getReadingWith')} {card.name}
         </a>
         <div>
-          <a href="/cards" class="text-violet-medium hover:text-gold-soft transition-colors">
-            ← Back to Card Library
+          <a href={withLang('/cards', lang)} class="text-violet-medium hover:text-gold-soft transition-colors">
+            {t('cardDetail.backToCardLibrary')}
           </a>
         </div>
       </div>

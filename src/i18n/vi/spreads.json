@@ -1,776 +1,776 @@
 [
   {
     "id": "1-card",
-    "name": "Daily Card",
-    "description": "Quick daily guidance, focus, or theme for the day ahead.",
+    "name": "Lá Bài Hằng Ngày",
+    "description": "Hướng dẫn nhanh, trọng tâm hoặc chủ đề cho ngày tới.",
     "cardCount": 1,
     "layout_type": "Line",
     "layout_grid": [1],
     "positions": [
       {
         "position": 1,
-        "name": "The Day's Focus",
-        "description": "This card represents the energy and guidance for your day."
+        "name": "Trọng Tâm Của Ngày",
+        "description": "Lá bài này đại diện cho năng lượng và sự hướng dẫn cho ngày của bạn."
       }
     ]
   },
   {
     "id": "3-card-basic",
-    "name": "Past - Present - Future",
-    "description": "Three-card spread for timeline insight and flow of events.",
+    "name": "Quá Khứ - Hiện Tại - Tương Lai",
+    "description": "Trải bài ba lá để nhìn nhận dòng thời gian và dòng chảy sự kiện.",
     "cardCount": 3,
     "layout_type": "Line",
     "layout_grid": [3],
     "positions": [
       {
         "position": 1,
-        "name": "Past",
-        "description": "Events and influences from your past that affect the current situation."
+        "name": "Quá Khứ",
+        "description": "Sự kiện và ảnh hưởng từ quá khứ tác động đến tình huống hiện tại."
       },
       {
         "position": 2,
-        "name": "Present",
-        "description": "Your current situation and the energies surrounding you now."
+        "name": "Hiện Tại",
+        "description": "Tình huống hiện tại của bạn và những năng lượng xung quanh bạn lúc này."
       },
       {
         "position": 3,
-        "name": "Future",
-        "description": "Potential outcome and where things are heading."
+        "name": "Tương Lai",
+        "description": "Kết quả tiềm năng và hướng đi của mọi việc."
       }
     ]
   },
   {
     "id": "3-card-situational",
-    "name": "Situation - Action - Outcome",
-    "description": "A quick problem-solving spread for clear advice on a specific issue.",
+    "name": "Tình Huống - Hành Động - Kết Quả",
+    "description": "Trải bài giải quyết vấn đề nhanh chóng để có lời khuyên rõ ràng về một vấn đề cụ thể.",
     "cardCount": 3,
     "layout_type": "Line",
     "layout_grid": [3],
     "positions": [
       {
         "position": 1,
-        "name": "The Situation",
-        "description": "The current state of the issue you are inquiring about."
+        "name": "Tình Huống",
+        "description": "Trạng thái hiện tại của vấn đề bạn đang hỏi."
       },
       {
         "position": 2,
-        "name": "The Action",
-        "description": "The course of action or attitude you should adopt."
+        "name": "Hành Động",
+        "description": "Hướng hành động hoặc thái độ bạn nên áp dụng."
       },
       {
         "position": 3,
-        "name": "The Outcome",
-        "description": "The likely outcome if you follow the suggested action."
+        "name": "Kết Quả",
+        "description": "Kết quả có thể xảy ra nếu bạn làm theo hành động được gợi ý."
       }
     ]
   },
   {
     "id": "4-card-elements",
-    "name": "The Four Elements",
-    "description": "A spread for holistic insight by dividing the situation into energetic components (Earth, Air, Fire, Water).",
+    "name": "Bốn Nguyên Tố",
+    "description": "Trải bài cho cái nhìn toàn diện bằng cách chia tình huống thành các thành phần năng lượng (Đất, Khí, Lửa, Nước).",
     "cardCount": 4,
     "layout_type": "Cross",
     "layout_grid": [2, 2],
     "positions": [
       {
         "position": 1,
-        "name": "Earth (Material Reality)",
-        "description": "The practical and financial aspects of the situation."
+        "name": "Đất (Thực Tại Vật Chất)",
+        "description": "Các khía cạnh thực tế và tài chính của tình huống."
       },
       {
         "position": 2,
-        "name": "Air (Mental State)",
-        "description": "Your thoughts, clarity, and communication surrounding the issue."
+        "name": "Khí (Trạng Thái Tinh Thần)",
+        "description": "Suy nghĩ, sự rõ ràng và giao tiếp của bạn xoay quanh vấn đề."
       },
       {
         "position": 3,
-        "name": "Fire (Action & Passion)",
-        "description": "The energy, drive, and motivation involved."
+        "name": "Lửa (Hành Động & Đam Mê)",
+        "description": "Năng lượng, động lực và sự thôi thúc liên quan."
       },
       {
         "position": 4,
-        "name": "Water (Emotions & Intuition)",
-        "description": "The feelings, intuition, and emotional currents at play."
+        "name": "Nước (Cảm Xúc & Trực Giác)",
+        "description": "Cảm giác, trực giác và dòng chảy cảm xúc đang diễn ra."
       }
     ]
   },
   {
     "id": "5-card-deeper",
-    "name": "Deeper Insights",
-    "description": "Five-card spread for comprehensive guidance on a life path.",
+    "name": "Góc Nhìn Sâu Sắc Hơn",
+    "description": "Trải bài năm lá để có hướng dẫn toàn diện về con đường cuộc sống.",
     "cardCount": 5,
     "layout_type": "Cross",
     "layout_grid": [1, 3, 1],
     "positions": [
       {
         "position": 1,
-        "name": "Present Situation",
-        "description": "What is happening in your life right now."
+        "name": "Tình Huống Hiện Tại",
+        "description": "Điều gì đang diễn ra trong cuộc sống của bạn ngay lúc này."
       },
       {
         "position": 2,
-        "name": "Challenge",
-        "description": "The obstacle or challenge you're facing."
+        "name": "Thách Thức",
+        "description": "Chướng ngại vật hoặc thử thách bạn đang đối mặt."
       },
       {
         "position": 3,
-        "name": "Past Influence",
-        "description": "Past events influencing the current situation."
+        "name": "Ảnh Hưởng Quá Khứ",
+        "description": "Các sự kiện quá khứ ảnh hưởng đến tình huống hiện tại."
       },
       {
         "position": 4,
-        "name": "Future Influence",
-        "description": "What is approaching or developing."
+        "name": "Ảnh Hưởng Tương Lai",
+        "description": "Điều gì đang đến gần hoặc đang phát triển."
       },
       {
         "position": 5,
-        "name": "Outcome",
-        "description": "The potential outcome based on current path."
+        "name": "Kết Quả",
+        "description": "Kết quả tiềm năng dựa trên con đường hiện tại."
       }
     ]
   },
   {
     "id": "5-card-relationship",
-    "name": "Relationship Dynamics",
-    "description": "Analysis of the relationship between two people, be it romantic or professional.",
+    "name": "Động Lực Mối Quan Hệ",
+    "description": "Phân tích mối quan hệ giữa hai người, dù là tình cảm hay công việc.",
     "cardCount": 5,
     "layout_type": "Bridge",
     "layout_grid": [2, 1, 2],
     "positions": [
       {
         "position": 1,
-        "name": "Person A's Feelings",
-        "description": "How Person A (you or your partner) feels about the relationship."
+        "name": "Cảm Xúc Của Người A",
+        "description": "Cách Người A (bạn hoặc đối tác) cảm thấy về mối quan hệ."
       },
       {
         "position": 2,
-        "name": "Person B's Feelings",
-        "description": "How Person B feels about the relationship."
+        "name": "Cảm Xúc Của Người B",
+        "description": "Cách Người B cảm thấy về mối quan hệ."
       },
       {
         "position": 3,
-        "name": "The Bond",
-        "description": "The core energy and current state of the relationship itself."
+        "name": "Sự Gắn Kết",
+        "description": "Năng lượng cốt lõi và trạng thái hiện tại của chính mối quan hệ."
       },
       {
         "position": 4,
-        "name": "External Challenge",
-        "description": "External factors or challenges affecting the relationship."
+        "name": "Thách Thức Bên Ngoài",
+        "description": "Các yếu tố hoặc thách thức bên ngoài ảnh hưởng đến mối quan hệ."
       },
       {
         "position": 5,
-        "name": "Potential Outcome",
-        "description": "Where the relationship is likely heading."
+        "name": "Kết Quả Tiềm Năng",
+        "description": "Hướng đi có khả năng của mối quan hệ."
       }
     ]
   },
   {
     "id": "6-card-choice",
-    "name": "The Choice (Path A vs. Path B)",
-    "description": "A spread to explore two potential futures based on a critical decision.",
+    "name": "Sự Lựa Chọn (Hướng A so với Hướng B)",
+    "description": "Trải bài khám phá hai tương lai tiềm năng dựa trên một quyết định quan trọng.",
     "cardCount": 6,
     "layout_type": "VerticalSplit",
     "layout_grid": [1, 2, 2, 1],
     "positions": [
       {
         "position": 1,
-        "name": "The Root Issue",
-        "description": "The main concern or decision you are facing."
+        "name": "Vấn Đề Gốc Rễ",
+        "description": "Mối quan tâm chính hoặc quyết định bạn đang đối mặt."
       },
       {
         "position": 2,
-        "name": "Path A - Action",
-        "description": "The energy or action required if you choose Path A."
+        "name": "Hướng A - Hành Động",
+        "description": "Năng lượng hoặc hành động cần thiết nếu bạn chọn Hướng A."
       },
       {
         "position": 3,
-        "name": "Path B - Action",
-        "description": "The energy or action required if you choose Path B."
+        "name": "Hướng B - Hành Động",
+        "description": "Năng lượng hoặc hành động cần thiết nếu bạn chọn Hướng B."
       },
       {
         "position": 4,
-        "name": "Path A - Outcome",
-        "description": "The likely short-term outcome of choosing Path A."
+        "name": "Hướng A - Kết Quả",
+        "description": "Kết quả ngắn hạn có khả năng xảy ra khi chọn Hướng A."
       },
       {
         "position": 5,
-        "name": "Path B - Outcome",
-        "description": "The likely short-term outcome of choosing Path B."
+        "name": "Hướng B - Kết Quả",
+        "description": "Kết quả ngắn hạn có khả năng xảy ra khi chọn Hướng B."
       },
       {
         "position": 6,
-        "name": "Best Advice",
-        "description": "Advice on which path aligns better with your higher purpose."
+        "name": "Lời Khuyên Tốt Nhất",
+        "description": "Lời khuyên về hướng đi nào phù hợp hơn với mục đích cao cả của bạn."
       }
     ]
   },
   {
     "id": "7-card-goal",
-    "name": "Goal Reaching Spread",
-    "description": "Focuses on identifying obstacles and resources needed to achieve a specific goal.",
+    "name": "Trải Bài Đạt Mục Tiêu",
+    "description": "Tập trung vào việc xác định các chướng ngại vật và nguồn lực cần thiết để đạt được một mục tiêu cụ thể.",
     "cardCount": 7,
     "layout_type": "Arrow",
     "layout_grid": [1, 2, 2, 2],
     "positions": [
       {
         "position": 1,
-        "name": "The Goal",
-        "description": "Your clear intention for the goal."
+        "name": "Mục Tiêu",
+        "description": "Ý định rõ ràng của bạn cho mục tiêu."
       },
       {
         "position": 2,
-        "name": "Inner Resource",
-        "description": "Your internal strength to help you succeed."
+        "name": "Nguồn Lực Bên Trong",
+        "description": "Sức mạnh nội tại giúp bạn thành công."
       },
       {
         "position": 3,
-        "name": "Outer Resource",
-        "description": "External help or advantage available to you."
+        "name": "Nguồn Lực Bên Ngoài",
+        "description": "Sự giúp đỡ hoặc lợi thế bên ngoài có sẵn cho bạn."
       },
       {
         "position": 4,
-        "name": "Internal Obstacle",
-        "description": "Mental blocks or self-sabotaging behavior."
+        "name": "Chướng Ngại Bên Trong",
+        "description": "Các rào cản tinh thần hoặc hành vi tự hủy hoại."
       },
       {
         "position": 5,
-        "name": "External Obstacle",
-        "description": "People or circumstances that may hinder you."
+        "name": "Chướng Ngại Bên Ngoài",
+        "description": "Con người hoặc hoàn cảnh có thể cản trở bạn."
       },
       {
         "position": 6,
-        "name": "Action Step",
-        "description": "The most important next step to take."
+        "name": "Bước Hành Động",
+        "description": "Bước đi quan trọng nhất cần thực hiện tiếp theo."
       },
       {
         "position": 7,
-        "name": "Likely Result",
-        "description": "The ultimate outcome if you follow the guidance."
+        "name": "Kết Quả Có Thể",
+        "description": "Kết quả cuối cùng nếu bạn làm theo hướng dẫn."
       }
     ]
   },
   {
     "id": "8-card-shadow",
-    "name": "Shadow Self Work",
-    "description": "A spread for introspection, revealing hidden aspects of the self and healing past wounds.",
+    "name": "Làm Việc Với Phần Bóng Tối",
+    "description": "Trải bài để nội quan, tiết lộ những khía cạnh ẩn giấu của bản thân và chữa lành vết thương quá khứ.",
     "cardCount": 8,
     "layout_type": "Diamond",
     "layout_grid": [1, 2, 2, 2, 1],
     "positions": [
       {
         "position": 1,
-        "name": "Ego's View",
-        "description": "How you consciously perceive the situation."
+        "name": "Góc Nhìn Của Cái Tôi (Ego)",
+        "description": "Cách bạn nhìn nhận tình huống một cách có ý thức."
       },
       {
         "position": 2,
-        "name": "The Shadow's Manifestation",
-        "description": "How the shadow self is expressing itself currently."
+        "name": "Sự Biểu Hiện Của Bóng Tối",
+        "description": "Cách phần bóng tối đang thể hiện bản thân hiện tại."
       },
       {
         "position": 3,
-        "name": "Root of the Shadow",
-        "description": "The core past event or wound that created this shadow."
+        "name": "Gốc Rễ Của Bóng Tối",
+        "description": "Sự kiện hoặc vết thương cốt lõi trong quá khứ đã tạo ra bóng tối này."
       },
       {
         "position": 4,
-        "name": "What Needs Light",
-        "description": "The quality or truth you need to acknowledge and integrate."
+        "name": "Điều Cần Ánh Sáng",
+        "description": "Phẩm chất hoặc sự thật bạn cần thừa nhận và hòa hợp."
       },
       {
         "position": 5,
-        "name": "Action for Healing",
-        "description": "A step to take to confront and heal the shadow."
+        "name": "Hành Động Để Chữa Lành",
+        "description": "Một bước cần thực hiện để đối mặt và chữa lành phần bóng tối."
       },
       {
         "position": 6,
-        "name": "Hidden Gift",
-        "description": "The positive potential contained within the shadow."
+        "name": "Món Quà Ẩn Giấu",
+        "description": "Tiềm năng tích cực chứa đựng bên trong phần bóng tối."
       },
       {
         "position": 7,
-        "name": "Lesson Learned",
-        "description": "The wisdom gained from integrating this part of yourself."
+        "name": "Bài Học Đã Học",
+        "description": "Trí tuệ thu được từ việc hòa hợp phần này của bản thân."
       },
       {
         "position": 8,
-        "name": "Future Self",
-        "description": "How you will feel once this shadow work is complete."
+        "name": "Bản Thân Tương Lai",
+        "description": "Bạn sẽ cảm thấy thế nào khi công việc với bóng tối này hoàn tất."
       }
     ]
   },
   {
     "id": "10-card-celtic",
     "name": "Celtic Cross",
-    "description": "A comprehensive spread for deep analysis of any issue, exploring past, present, future, external influences, and hopes/fears.",
+    "description": "Trải bài toàn diện để phân tích sâu bất kỳ vấn đề nào, khám phá quá khứ, hiện tại, tương lai, ảnh hưởng bên ngoài và hy vọng/nỗi sợ.",
     "cardCount": 10,
     "layout_type": "CelticCross",
     "layout_grid": [2, 1, 1, 1, 4],
     "positions": [
       {
         "position": 1,
-        "name": "The Present",
-        "description": "The immediate energy of the situation."
+        "name": "Hiện Tại",
+        "description": "Năng lượng trực tiếp của tình huống."
       },
       {
         "position": 2,
-        "name": "The Challenge",
-        "description": "What crosses or opposes the present situation."
+        "name": "Thách Thức",
+        "description": "Điều gì cắt ngang hoặc chống lại tình huống hiện tại."
       },
       {
         "position": 3,
-        "name": "The Root",
-        "description": "The subconscious foundation or origin of the issue."
+        "name": "Gốc Rễ",
+        "description": "Nền tảng tiềm thức hoặc nguồn gốc của vấn đề."
       },
       {
         "position": 4,
-        "name": "Recent Past",
-        "description": "Events and influences receding from the past."
+        "name": "Quá Khứ Gần",
+        "description": "Các sự kiện và ảnh hưởng đang lùi xa khỏi quá khứ."
       },
       {
         "position": 5,
-        "name": "Potential Outcome",
-        "description": "The highest potential the situation can reach."
+        "name": "Kết Quả Tiềm Năng",
+        "description": "Tiềm năng cao nhất mà tình huống có thể đạt được."
       },
       {
         "position": 6,
-        "name": "Immediate Future",
-        "description": "What is immediately approaching."
+        "name": "Tương Lai Gần",
+        "description": "Điều gì đang đến ngay trước mắt."
       },
       {
         "position": 7,
-        "name": "The Querent (Self)",
-        "description": "Your attitude, perspective, or role in the situation."
+        "name": "Người Hỏi (Bản Thân)",
+        "description": "Thái độ, quan điểm hoặc vai trò của bạn trong tình huống."
       },
       {
         "position": 8,
-        "name": "External Influence",
-        "description": "How others perceive you or factors outside your control."
+        "name": "Ảnh Hưởng Bên Ngoài",
+        "description": "Cách người khác nhìn nhận bạn hoặc các yếu tố ngoài tầm kiểm soát của bạn."
       },
       {
         "position": 9,
-        "name": "Hopes & Fears",
-        "description": "Your internal hopes or secret anxieties."
+        "name": "Hy Vọng & Nỗi Sợ",
+        "description": "Những hy vọng bên trong hoặc nỗi lo lắng thầm kín của bạn."
       },
       {
         "position": 10,
-        "name": "The Final Outcome",
-        "description": "The long-term result or destiny of the query."
+        "name": "Kết Quả Cuối Cùng",
+        "description": "Kết quả lâu dài hoặc định mệnh của câu hỏi."
       }
     ]
   },
   {
     "id": "10-card-career",
-    "name": "Career Advancement Spread",
-    "description": "Analyzes the path to a promotion or new job, focusing on personal strengths and required changes.",
+    "name": "Trải Bài Thăng Tiến Sự Nghiệp",
+    "description": "Phân tích con đường thăng chức hoặc công việc mới, tập trung vào thế mạnh cá nhân và những thay đổi cần thiết.",
     "cardCount": 10,
     "layout_type": "Stairs",
     "layout_grid": [3, 2, 3, 2],
     "positions": [
       {
         "position": 1,
-        "name": "Current Job Status (Row 1)",
-        "description": "The foundation and current reality of your career."
+        "name": "Tình Trạng Công Việc Hiện Tại (Hàng 1)",
+        "description": "Nền tảng và thực tế hiện tại của sự nghiệp bạn."
       },
       {
         "position": 2,
-        "name": "Your Core Skill (Row 1)",
-        "description": "Your best asset for advancement."
+        "name": "Kỹ Năng Cốt Lõi Của Bạn (Hàng 1)",
+        "description": "Tài sản tốt nhất của bạn để thăng tiến."
       },
       {
         "position": 3,
-        "name": "Required Change (Row 1)",
-        "description": "The necessary internal shift for success."
+        "name": "Thay Đổi Cần Thiết (Hàng 1)",
+        "description": "Sự thay đổi nội tại cần thiết để thành công."
       },
       {
         "position": 4,
-        "name": "Immediate Challenge (Row 2)",
-        "description": "The obstacle directly ahead."
+        "name": "Thách Thức Trước Mắt (Hàng 2)",
+        "description": "Chướng ngại vật ngay phía trước."
       },
       {
         "position": 5,
-        "name": "External Aid (Row 2)",
-        "description": "Who or what can assist you."
+        "name": "Hỗ Trợ Bên Ngoài (Hàng 2)",
+        "description": "Ai hoặc cái gì có thể hỗ trợ bạn."
       },
       {
         "position": 6,
-        "name": "Next Step (Row 3)",
-        "description": "Concrete action to take."
+        "name": "Bước Tiếp Theo (Hàng 3)",
+        "description": "Hành động cụ thể cần thực hiện."
       },
       {
         "position": 7,
-        "name": "Potential (Row 3)",
-        "description": "The opportunity that awaits."
+        "name": "Tiềm Năng (Hàng 3)",
+        "description": "Cơ hội đang chờ đợi."
       },
       {
         "position": 8,
-        "name": "Advice on Timing (Row 3)",
-        "description": "Guidance on when to move."
+        "name": "Lời Khuyên Về Thời Điểm (Hàng 3)",
+        "description": "Hướng dẫn về thời điểm nên hành động."
       },
       {
         "position": 9,
-        "name": "Short-Term Outcome (Row 4)",
-        "description": "Result in the next few weeks/months."
+        "name": "Kết Quả Ngắn Hạn (Hàng 4)",
+        "description": "Kết quả trong vài tuần/tháng tới."
       },
       {
         "position": 10,
-        "name": "Long-Term Goal (Row 4)",
-        "description": "The overall success of your current path."
+        "name": "Mục Tiêu Dài Hạn (Hàng 4)",
+        "description": "Thành công tổng thể của con đường hiện tại của bạn."
       }
     ]
   },
   {
     "id": "3-card-money",
-    "name": "Financial Insight Spread",
-    "description": "Addresses the mental, physical, and future state of your finances.",
+    "name": "Trải Bài Nhìn Nhận Tài Chính",
+    "description": "Đề cập đến trạng thái tinh thần, vật chất và tương lai của tài chính bạn.",
     "cardCount": 3,
     "layout_type": "Line",
     "layout_grid": [3],
     "positions": [
       {
         "position": 1,
-        "name": "Mental Wealth",
-        "description": "Your current mindset about money and abundance."
+        "name": "Sự Thịnh Vượng Trong Tâm Trí",
+        "description": "Tư duy hiện tại của bạn về tiền bạc và sự sung túc."
       },
       {
         "position": 2,
-        "name": "Practical Action",
-        "description": "The best practical step to improve your finances."
+        "name": "Hành Động Thực Tế",
+        "description": "Bước thực tế tốt nhất để cải thiện tài chính."
       },
       {
         "position": 3,
-        "name": "Future Financial Flow",
-        "description": "The flow of money in the near future."
+        "name": "Dòng Chảy Tài Chính Tương Lai",
+        "description": "Dòng tiền trong tương lai gần."
       }
     ]
   },
   {
     "id": "4-card-spiritual",
-    "name": "Spiritual Growth",
-    "description": "Examines your current spiritual path and potential for growth.",
+    "name": "Phát Triển Tâm Linh",
+    "description": "Kiểm tra con đường tâm linh hiện tại của bạn và tiềm năng phát triển.",
     "cardCount": 4,
     "layout_type": "VerticalLine",
     "layout_grid": [1, 1, 1, 1],
     "positions": [
       {
         "position": 1,
-        "name": "Where Am I Now?",
-        "description": "Your current spiritual state or belief system."
+        "name": "Tôi Đang Ở Đâu?",
+        "description": "Trạng thái tâm linh hoặc hệ thống niềm tin hiện tại của bạn."
       },
       {
         "position": 2,
-        "name": "Challenge to Growth",
-        "description": "What is blocking your spiritual development."
+        "name": "Thách Thức Để Phát Triển",
+        "description": "Điều gì đang ngăn cản sự phát triển tâm linh của bạn."
       },
       {
         "position": 3,
-        "name": "Next Step",
-        "description": "The practice or lesson you need to embrace."
+        "name": "Bước Tiếp Theo",
+        "description": "Thực hành hoặc bài học bạn cần đón nhận."
       },
       {
         "position": 4,
-        "name": "Higher Purpose",
-        "description": "A glimpse of your soul's current purpose."
+        "name": "Mục Đích Cao Cả",
+        "description": "Cái nhìn thoáng qua về mục đích hiện tại của linh hồn bạn."
       }
     ]
   },
   {
     "id": "5-card-health",
-    "name": "Health & Well-being",
-    "description": "A holistic spread for physical, emotional, and mental health insight.",
+    "name": "Sức Khỏe & Hạnh Phúc",
+    "description": "Trải bài toàn diện cho cái nhìn sâu sắc về sức khỏe thể chất, cảm xúc và tinh thần.",
     "cardCount": 5,
     "layout_type": "T-Shape",
     "layout_grid": [3, 1, 1],
     "positions": [
       {
         "position": 1,
-        "name": "Physical Body",
-        "description": "The current state of your physical health."
+        "name": "Cơ Thể Vật Lý",
+        "description": "Trạng thái hiện tại của sức khỏe thể chất của bạn."
       },
       {
         "position": 2,
-        "name": "Emotional Health",
-        "description": "Underlying emotional factors affecting your well-being."
+        "name": "Sức Khỏe Cảm Xúc",
+        "description": "Các yếu tố cảm xúc tiềm ẩn ảnh hưởng đến hạnh phúc của bạn."
       },
       {
         "position": 3,
-        "name": "Mental Health",
-        "description": "Your stress levels and mental attitude."
+        "name": "Sức Khỏe Tinh Thần",
+        "description": "Mức độ căng thẳng và thái độ tinh thần của bạn."
       },
       {
         "position": 4,
-        "name": "What to Release (Bottom)",
-        "description": "A habit or thought pattern to let go of."
+        "name": "Điều Cần Buông Bỏ (Dưới Cùng)",
+        "description": "Một thói quen hoặc kiểu suy nghĩ cần từ bỏ."
       },
       {
         "position": 5,
-        "name": "Advice for Healing (Top)",
-        "description": "The best path toward improvement."
+        "name": "Lời Khuyên Chữa Lành (Trên Cùng)",
+        "description": "Con đường tốt nhất để cải thiện."
       }
     ]
   },
   {
     "id": "4-card-clarity",
-    "name": "Quick Clarity Check",
-    "description": "For when you need immediate, clear advice without overwhelming detail.",
+    "name": "Kiểm Tra Sự Rõ Ràng Nhanh",
+    "description": "Dành cho khi bạn cần lời khuyên ngay lập tức, rõ ràng mà không cần chi tiết quá mức.",
     "cardCount": 4,
     "layout_type": "Square",
     "layout_grid": [2, 2],
     "positions": [
       {
         "position": 1,
-        "name": "What You Need to Know",
-        "description": "The most important piece of information right now."
+        "name": "Điều Bạn Cần Biết",
+        "description": "Thông tin quan trọng nhất ngay lúc này."
       },
       {
         "position": 2,
-        "name": "What to Stop Doing",
-        "description": "An action or habit that is counterproductive."
+        "name": "Điều Cần Ngừng Làm",
+        "description": "Một hành động hoặc thói quen phản tác dụng."
       },
       {
         "position": 3,
-        "name": "What to Start Doing",
-        "description": "A new action or mindset to adopt."
+        "name": "Điều Cần Bắt Đầu Làm",
+        "description": "Một hành động hoặc tư duy mới cần áp dụng."
       },
       {
         "position": 4,
-        "name": "The Hidden Blessing",
-        "description": "The unexpected positive outcome of the situation."
+        "name": "Phước Lành Ẩn Giấu",
+        "description": "Kết quả tích cực bất ngờ của tình huống."
       }
     ]
   },
   {
     "id": "5-card-breakup",
-    "name": "Moving On Spread",
-    "description": "A spread to process the end of a relationship and find closure.",
+    "name": "Trải Bài Bước Tiếp",
+    "description": "Trải bài để xử lý sự kết thúc của một mối quan hệ và tìm sự khép lại.",
     "cardCount": 5,
     "layout_type": "Arch",
     "layout_grid": [2, 3],
     "positions": [
       {
         "position": 1,
-        "name": "What Was Learned",
-        "description": "The main lesson from the relationship."
+        "name": "Điều Đã Học Được",
+        "description": "Bài học chính từ mối quan hệ."
       },
       {
         "position": 2,
-        "name": "The Pain Point",
-        "description": "What still hurts or needs to be released."
+        "name": "Điểm Đau Đớn",
+        "description": "Điều vẫn còn đau hoặc cần được giải phóng."
       },
       {
         "position": 3,
-        "name": "What to Keep",
-        "description": "The positive memory or growth to hold onto."
+        "name": "Điều Cần Giữ Lại",
+        "description": "Ký ức tích cực hoặc sự trưởng thành cần nắm giữ."
       },
       {
         "position": 4,
-        "name": "The Next Step for Self",
-        "description": "Action to take to rebuild your independence."
+        "name": "Bước Tiếp Theo Cho Bản Thân",
+        "description": "Hành động cần thực hiện để xây dựng lại sự độc lập của bạn."
       },
       {
         "position": 5,
-        "name": "The Future of Love",
-        "description": "The energy of your next relationship (after healing)."
+        "name": "Tương Lai Tình Yêu",
+        "description": "Năng lượng của mối quan hệ tiếp theo (sau khi chữa lành)."
       }
     ]
   },
   {
     "id": "9-card-year",
-    "name": "Year Ahead Spread",
-    "description": "A spread covering the energy and lessons of the next 12 months.",
+    "name": "Trải Bài Năm Tới",
+    "description": "Trải bài bao quát năng lượng và bài học của 12 tháng tới.",
     "cardCount": 9,
     "layout_type": "Grid",
     "layout_grid": [3, 3, 3],
     "positions": [
       {
         "position": 1,
-        "name": "Self",
-        "description": "Your core energy and focus for the year."
+        "name": "Bản Thân",
+        "description": "Năng lượng cốt lõi và trọng tâm của bạn trong năm."
       },
       {
         "position": 2,
-        "name": "Relationships",
-        "description": "Insight into your love and social life."
+        "name": "Mối Quan Hệ",
+        "description": "Cái nhìn sâu sắc về đời sống tình cảm và xã hội của bạn."
       },
       {
         "position": 3,
-        "name": "Career",
-        "description": "The major theme for your work life."
+        "name": "Sự Nghiệp",
+        "description": "Chủ đề chính cho đời sống công việc của bạn."
       },
       {
         "position": 4,
-        "name": "Finances",
-        "description": "Guidance on money matters."
+        "name": "Tài Chính",
+        "description": "Hướng dẫn về các vấn đề tiền bạc."
       },
       {
         "position": 5,
-        "name": "Health",
-        "description": "Focus for physical and mental well-being."
+        "name": "Sức Khỏe",
+        "description": "Trọng tâm cho sức khỏe thể chất và tinh thần."
       },
       {
         "position": 6,
-        "name": "Obstacle",
-        "description": "The main challenge you will face."
+        "name": "Chướng Ngại Vật",
+        "description": "Thử thách chính bạn sẽ đối mặt."
       },
       {
         "position": 7,
-        "name": "Support",
-        "description": "The resource or aid available to you."
+        "name": "Hỗ Trợ",
+        "description": "Nguồn lực hoặc sự giúp đỡ có sẵn cho bạn."
       },
       {
         "position": 8,
-        "name": "Lesson",
-        "description": "The most important spiritual lesson of the year."
+        "name": "Bài Học",
+        "description": "Bài học tâm linh quan trọng nhất trong năm."
       },
       {
         "position": 9,
-        "name": "Overall Theme",
-        "description": "The overarching energy and outcome of the year."
+        "name": "Chủ Đề Tổng Thể",
+        "description": "Năng lượng bao trùm và kết quả của năm."
       }
     ]
   },
   {
     "id": "6-card-inner",
-    "name": "Inner Child Healing",
-    "description": "Connects to and heals wounds from childhood that still affect the present.",
+    "name": "Chữa Lành Đứa Trẻ Bên Trong",
+    "description": "Kết nối và chữa lành những vết thương từ thời thơ ấu vẫn còn ảnh hưởng đến hiện tại.",
     "cardCount": 6,
     "layout_type": "Spiral",
     "layout_grid": [1, 1, 1, 1, 1, 1],
     "positions": [
       {
         "position": 1,
-        "name": "The Wounded Child",
-        "description": "The core wound or need of your inner child."
+        "name": "Đứa Trẻ Bị Tổn Thương",
+        "description": "Vết thương cốt lõi hoặc nhu cầu của đứa trẻ bên trong bạn."
       },
       {
         "position": 2,
-        "name": "The Mask",
-        "description": "How you compensate for this wound as an adult."
+        "name": "Mặt Nạ",
+        "description": "Cách bạn bù đắp cho vết thương này khi là người lớn."
       },
       {
         "position": 3,
-        "name": "Adult Action",
-        "description": "What your adult self needs to do for the child."
+        "name": "Hành Động Của Người Lớn",
+        "description": "Điều bản thân người lớn của bạn cần làm cho đứa trẻ."
       },
       {
         "position": 4,
-        "name": "The Nurturing Parent",
-        "description": "The energy you need to bring to yourself (self-compassion)."
+        "name": "Người Cha Mẹ Nuôi Dưỡng",
+        "description": "Năng lượng bạn cần mang lại cho chính mình (lòng trắc ẩn với bản thân)."
       },
       {
         "position": 5,
-        "name": "Integration",
-        "description": "What healing this brings to your life now."
+        "name": "Sự Hòa Hợp",
+        "description": "Điều này mang lại sự chữa lành gì cho cuộc sống của bạn bây giờ."
       },
       {
         "position": 6,
-        "name": "Joyful Future",
-        "description": "The potential future self once healed."
+        "name": "Tương Lai Vui Vẻ",
+        "description": "Bản thân tương lai tiềm năng sau khi được chữa lành."
       }
     ]
   },
   {
     "id": "7-card-block",
-    "name": "Blockage Removal",
-    "description": "Identifies the source of a block and how to move past it.",
+    "name": "Gỡ Bỏ Tắc Nghẽn",
+    "description": "Xác định nguồn gốc của sự tắc nghẽn và cách vượt qua nó.",
     "cardCount": 7,
     "layout_type": "Funnel",
     "layout_grid": [3, 2, 1, 1],
     "positions": [
       {
         "position": 1,
-        "name": "Current Blockage (Row 1)",
-        "description": "What the blockage feels like right now."
+        "name": "Sự Tắc Nghẽn Hiện Tại (Hàng 1)",
+        "description": "Sự tắc nghẽn cảm thấy như thế nào ngay lúc này."
       },
       {
         "position": 2,
-        "name": "Conscious Cause (Row 1)",
-        "description": "The obvious or acknowledged reason for the block."
+        "name": "Nguyên Nhân Ý Thức (Hàng 1)",
+        "description": "Lý do hiển nhiên hoặc được thừa nhận cho sự tắc nghẽn."
       },
       {
         "position": 3,
-        "name": "Unconscious Cause (Row 1)",
-        "description": "The deeper, hidden root of the block."
+        "name": "Nguyên Nhân Vô Thức (Hàng 1)",
+        "description": "Gốc rễ sâu xa, ẩn giấu của sự tắc nghẽn."
       },
       {
         "position": 4,
-        "name": "Releasing Action (Row 2)",
-        "description": "What you need to physically do to release it."
+        "name": "Hành Động Giải Phóng (Hàng 2)",
+        "description": "Điều bạn cần làm về mặt vật lý để giải phóng nó."
       },
       {
         "position": 5,
-        "name": "Releasing Mindset (Row 2)",
-        "description": "The belief you need to adopt to release it."
+        "name": "Tư Duy Giải Phóng (Hàng 2)",
+        "description": "Niềm tin bạn cần áp dụng để giải phóng nó."
       },
       {
         "position": 6,
-        "name": "The Flow (Row 3)",
-        "description": "How life will feel once the block is gone."
+        "name": "Dòng Chảy (Hàng 3)",
+        "description": "Cuộc sống sẽ cảm thấy thế nào khi sự tắc nghẽn biến mất."
       },
       {
         "position": 7,
-        "name": "Final Advice (Row 4)",
-        "description": "The final message from the universe."
+        "name": "Lời Khuyên Cuối Cùng (Hàng 4)",
+        "description": "Thông điệp cuối cùng từ vũ trụ."
       }
     ]
   },
   {
     "id": "5-card-meridian",
-    "name": "Meridian Line Spread",
-    "description": "A spread focused on clarity, inspiration, and grounding for creative or business ventures.",
+    "name": "Trải Bài Đường Kinh Tuyến",
+    "description": "Trải bài tập trung vào sự rõ ràng, cảm hứng và nền tảng cho các dự án sáng tạo hoặc kinh doanh.",
     "cardCount": 5,
     "layout_type": "VerticalLine",
     "layout_grid": [1, 1, 1, 1, 1],
     "positions": [
       {
         "position": 1,
-        "name": "The Vision (Top)",
-        "description": "The ultimate goal or highest vision for the project."
+        "name": "Tầm Nhìn (Trên Cùng)",
+        "description": "Mục tiêu cuối cùng hoặc tầm nhìn cao nhất cho dự án."
       },
       {
         "position": 2,
-        "name": "The Inspiration",
-        "description": "The creative energy flowing into the project."
+        "name": "Cảm Hứng",
+        "description": "Năng lượng sáng tạo đang chảy vào dự án."
       },
       {
         "position": 3,
-        "name": "The Pivot (Center)",
-        "description": "The necessary next step or adjustment to the plan."
+        "name": "Điểm Xoay Chuyển (Trung Tâm)",
+        "description": "Bước tiếp theo cần thiết hoặc sự điều chỉnh cho kế hoạch."
       },
       {
         "position": 4,
-        "name": "The Practicality",
-        "description": "The material or financial action needed."
+        "name": "Tính Thực Tế",
+        "description": "Hành động vật chất hoặc tài chính cần thiết."
       },
       {
         "position": 5,
-        "name": "The Grounding (Bottom)",
-        "description": "How to stay grounded and stable through the process."
+        "name": "Nền Tảng (Dưới Cùng)",
+        "description": "Cách giữ vững vàng và ổn định trong suốt quá trình."
       }
     ]
   },
   {
     "id": "3-card-yes-no",
-    "name": "Yes/No Analysis",
-    "description": "Gives a direct answer (Yes/No) with advice on the underlying energy.",
+    "name": "Phân Tích Có/Không",
+    "description": "Đưa ra câu trả lời trực tiếp (Có/Không) với lời khuyên về năng lượng tiềm ẩn.",
     "cardCount": 3,
     "layout_type": "Line",
     "layout_grid": [3],
     "positions": [
       {
         "position": 1,
-        "name": "The Yes/No Energy",
-        "description": "The card's main energy often gives the immediate 'Yes' or 'No' sentiment."
+        "name": "Năng Lượng Có/Không",
+        "description": "Năng lượng chính của lá bài thường đưa ra cảm xúc 'Có' hoặc 'Không' ngay lập tức."
       },
       {
         "position": 2,
-        "name": "The Advice",
-        "description": "Advice on why the answer is what it is, or what you should do next."
+        "name": "Lời Khuyên",
+        "description": "Lời khuyên về lý do tại sao câu trả lời là như vậy, hoặc điều bạn nên làm tiếp theo."
       },
       {
         "position": 3,
-        "name": "The Clarifier",
-        "description": "A card to clarify the overall message or final outcome."
+        "name": "Sự Làm Rõ",
+        "description": "Một lá bài để làm rõ thông điệp tổng thể hoặc kết quả cuối cùng."
       }
     ]
   }

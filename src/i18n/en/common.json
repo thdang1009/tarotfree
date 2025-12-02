@@ -13,7 +13,8 @@
     "share": "Share",
     "export": "Export as Image",
     "startReading": "Start Reading",
-    "backToHome": "Back to Home"
+    "backToHome": "Back to Home",
+    "copyShareLink": "Copy Share Link"
   },
   "labels": {
     "question": "Your Question",
@@ -26,11 +27,81 @@
     "position": "Position",
     "meaning": "Meaning",
     "upright": "Upright",
-    "reversed": "Reversed"
+    "reversed": "Reversed",
+    "keywords": "Keywords",
+    "detailedInterpretation": "Detailed Interpretation",
+    "general": "General",
+    "workCareer": "Work & Career",
+    "loveRelationships": "Love & Relationships",
+    "health": "Health",
+    "spirituality": "Spirituality",
+    "reflection": "Reflection",
+    "aboutThisSpread": "About This Spread",
+    "browseAllCards": "Browse all tarot card meanings",
+    "linkCopied": "Link Copied!",
+    "whatGuidanceToday": "What do you wish to understand today?",
+    "chooseYourSpread": "Choose Your Spread",
+    "reflectOnCards": "Reflect on each card's meaning below"
+  },
+  "messages": {
+    "reflectionQuote": "The cards reflect your inner wisdom. Trust your intuition as you interpret their messages.",
+    "imageExportSoon": "Image export feature coming soon! For now, you can take a screenshot of your reading.",
+    "tarotQuote": "Tarot reflects your inner world",
+    "yourReadingTitle": "Your {spreadName} Reading",
+    "readingResultDesc": "Your tarot reading result"
+  },
+  "topics": {
+    "love": "Love",
+    "career": "Career",
+    "health": "Health",
+    "dailyCard": "Daily Card"
   },
   "footer": {
     "tagline": "Free, privacy-first tarot readings. No ads, no tracking, no login required.",
     "madeWith": "Made with love and mystery",
     "privacy": "Your readings are completely private and never stored on our servers."
+  },
+  "cardsPage": {
+    "title": "Tarot Card Meanings",
+    "description": "Explore all 78 tarot cards and their meanings. Complete guide to Major and Minor Arcana including upright and reversed interpretations.",
+    "header": "Tarot Card Meanings",
+    "subtitle": "Explore all 78 tarot cards from the Rider-Waite deck. Click any card to learn its full meaning.",
+    "filters": {
+      "all": "All Cards (78)",
+      "major": "Major Arcana (22)",
+      "wands": "Wands (14)",
+      "cups": "Cups (14)",
+      "swords": "Swords (14)",
+      "pentacles": "Pentacles (14)"
+    },
+    "sections": {
+      "majorArcana": "✨ Major Arcana",
+      "suitOfWands": "🔥 Suit of Wands",
+      "suitOfCups": "💧 Suit of Cups",
+      "suitOfSwords": "⚔️ Suit of Swords",
+      "suitOfPentacles": "🪙 Suit of Pentacles"
+    },
+    "footerNote": "Based on the Rider-Waite Tarot Deck (Public Domain)",
+    "backToReadings": "← Back to readings"
+  },
+  "cardDetail": {
+    "breadcrumb": {
+      "home": "Home",
+      "cardLibrary": "Card Library"
+    },
+    "arcana": {
+      "major": "Major Arcana",
+      "minor": "Minor Arcana"
+    },
+    "uprightMeaning": "✨ Upright Meaning",
+    "reversedMeaning": "⚠️ Reversed Meaning",
+    "detailedInterpretations": "Detailed Interpretations",
+    "uprightPosition": "Upright Position",
+    "reversedPosition": "Reversed Position",
+    "generalMeaning": "General Meaning",
+    "healthWellness": "🏥 Health & Wellness",
+    "supportingCards": "Supporting Cards",
+    "getReadingWith": "🔮 Get a Reading with",
+    "backToCardLibrary": "← Back to Card Library"
   }
 }

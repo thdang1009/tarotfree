@@ -1,14 +1,27 @@
 ---
 import Layout from '../../layouts/Layout.astro';
-import spreads from '../../data/spreads.json';
-import cardsData from '../../data/cards.json';
+import { detectLanguage, createTranslator } from '../../utils/i18nServer';
+import { loadSpreads, loadCards } from '../../utils/loadData';
+import { withLang } from '../../utils/linkHelper';
+
 export const prerender = false;
+
+// Detect language
+const lang = detectLanguage(Astro.request);
+
+// Create translator for this page
+const t = createTranslator(lang, 'common');
+
 // Parse URL params: /result/3-card/1-2-3/010
 const params = Astro.params.params || '';
 const [spreadId, cardIdsStr, reversedStr] = params.split('/');
 
 const cardIds = cardIdsStr?.split('-').map(id => parseInt(id)) || [];
+
+// Load language-specific spreads and cards
+const spreads = loadSpreads(lang);
 const spread = spreads.find(s => s.id === spreadId);
+const cardsData = loadCards(lang);
 
 if (!spread || cardIds.length !== spread.cardCount) {
   return Astro.redirect('/');
@@ -29,18 +42,18 @@ const reading = cardIds.map((cardId, index) => {
 ---
 
 <Layout
-  title={`Your ${spread.name} Reading`}
-  description="Your tarot reading result"
+  title={t('messages.yourReadingTitle').replace('{spreadName}', spread.name)}
+  description={t('messages.readingResultDesc')}
   noindex={true}
 >
   <div class="container mx-auto px-4 py-12">
     <!-- Header -->
     <div class="text-center mb-12">
       <h1 class="text-4xl font-bold mb-2 text-violet-deep">
-        Your {spread.name} Reading
+        {t('labels.yourReading')}: {spread.name}
       </h1>
       <p class="text-gray-600">
-        Reflect on each card's meaning below
+        {t('labels.reflectOnCards')}
       </p>
     </div>
 
@@ -51,7 +64,7 @@ const reading = cardIds.map((cardId, index) => {
           <!-- Position Info -->
           <div class="border-b pb-3 mb-4">
             <h2 class="text-xl font-heading text-violet-deep">
-              Position {item.position.position}: {item.position.name}
+              {t('labels.position')} {item.position.position}: {item.position.name}
             </h2>
             <p class="text-sm text-gray-600 mt-1">
               {item.position.description}
@@ -71,7 +84,7 @@ const reading = cardIds.map((cardId, index) => {
               </div>
               {item.reversed && (
                 <p class="text-center text-sm text-red-600 mt-2 font-bold">
-                  ⚠️ Reversed
+                  ⚠️ {t('labels.reversed')}
                 </p>
               )}
             </div>
@@ -80,11 +93,11 @@ const reading = cardIds.map((cardId, index) => {
             <div class="flex-1">
               <h3 class="text-2xl font-heading text-violet-medium mb-2">
                 {item.card.name}
-                {item.reversed && <span class="text-red-600 text-lg ml-2">(Reversed)</span>}
+                {item.reversed && <span class="text-red-600 text-lg ml-2">({t('labels.reversed')})</span>}
               </h3>
 
               <div class="mb-3">
-                <span class="text-sm text-gray-500">Keywords: </span>
+                <span class="text-sm text-gray-500">{t('labels.keywords')}: </span>
                 <span class="text-sm text-violet-deep">
                   {item.card.keywords.join(', ')}
                 </span>
@@ -100,34 +113,34 @@ const reading = cardIds.map((cardId, index) => {
               <!-- Detailed Meanings -->
               <details class="mb-2">
                 <summary class="cursor-pointer font-semibold text-violet-deep hover:text-gold-soft transition-colors mb-2">
-                  📖 Detailed Interpretation
+                  📖 {t('labels.detailedInterpretation')}
                 </summary>
                 <div class="pl-4 space-y-3 text-sm text-gray-700">
                   <div>
-                    <strong class="text-violet-medium">General:</strong>
+                    <strong class="text-violet-medium">{t('labels.general')}:</strong>
                     <p>{item.reversed ? item.card.reversed.general : item.card.upright.general}</p>
                   </div>
                   {(item.reversed ? item.card.reversed.work : item.card.upright.work) && (
                     <div>
-                      <strong class="text-violet-medium">💼 Work & Career:</strong>
+                      <strong class="text-violet-medium">💼 {t('labels.workCareer')}:</strong>
                       <p>{item.reversed ? item.card.reversed.work : item.card.upright.work}</p>
                     </div>
                   )}
                   {(item.reversed ? item.card.reversed.love : item.card.upright.love) && (
                     <div>
-                      <strong class="text-violet-medium">❤️ Love & Relationships:</strong>
+                      <strong class="text-violet-medium">❤️ {t('labels.loveRelationships')}:</strong>
                       <p>{item.reversed ? item.card.reversed.love : item.card.upright.love}</p>
                     </div>
                   )}
                   {(item.reversed ? item.card.reversed.health : item.card.upright.health) && (
                     <div>
-                      <strong class="text-violet-medium">🏥 Health:</strong>
+                      <strong class="text-violet-medium">🏥 {t('labels.health')}:</strong>
                       <p>{item.reversed ? item.card.reversed.health : item.card.upright.health}</p>
                     </div>
                   )}
                   {(item.reversed ? item.card.reversed.spirituality : item.card.upright.spirituality) && (
                     <div>
-                      <strong class="text-violet-medium">✨ Spirituality:</strong>
+                      <strong class="text-violet-medium">✨ {t('labels.spirituality')}:</strong>
                       <p>{item.reversed ? item.card.reversed.spirituality : item.card.upright.spirituality}</p>
                     </div>
                   )}
@@ -142,9 +155,9 @@ const reading = cardIds.map((cardId, index) => {
     <!-- Summary Section -->
     <div class="max-w-4xl mx-auto mt-12">
       <div class="bg-gradient-to-r from-violet-deep to-violet-medium text-white rounded-lg p-6 text-center">
-        <h2 class="text-2xl font-heading mb-3">✨ Reflection</h2>
+        <h2 class="text-2xl font-heading mb-3">✨ {t('labels.reflection')}</h2>
         <p class="text-lg italic">
-          "The cards reflect your inner wisdom. Trust your intuition as you interpret their messages."
+          "{t('messages.reflectionQuote')}"
         </p>
       </div>
     </div>
@@ -155,32 +168,32 @@ const reading = cardIds.map((cardId, index) => {
         id="share-btn"
         class="px-6 py-3 bg-gold-soft text-white rounded-lg hover:bg-gold-light transition-colors"
       >
-        🔗 Copy Share Link
+        🔗 {t('buttons.share')}
       </button>
       <button
         id="download-btn"
         class="px-6 py-3 bg-violet-medium text-white rounded-lg hover:bg-violet-deep transition-colors"
       >
-        📥 Download as Image
+        📥 {t('buttons.export')}
       </button>
       <a
-        href="/"
+        href={withLang('/', lang)}
         class="px-6 py-3 bg-white border-2 border-violet-medium text-violet-medium rounded-lg hover:bg-violet-medium hover:text-white transition-all"
       >
-        🎴 New Reading
+        🎴 {t('buttons.newReading')}
       </a>
     </div>
 
     <!-- Card Library Link -->
     <div class="text-center mt-8">
-      <a href="/cards" class="text-violet-medium hover:text-gold-soft transition-colors">
-        📚 Browse all tarot card meanings →
+      <a href={withLang('/cards', lang)} class="text-violet-medium hover:text-gold-soft transition-colors">
+        📚 {t('labels.browseAllCards')} →
       </a>
     </div>
   </div>
 
   <!-- Client-side Scripts -->
-  <script>
+  <script define:vars={{ lang, t_linkCopied: t('labels.linkCopied'), t_imageExportSoon: t('messages.imageExportSoon') }}>
     // Share functionality
     const shareBtn = document.getElementById('share-btn');
     if (shareBtn) {
@@ -188,7 +201,7 @@ const reading = cardIds.map((cardId, index) => {
         const url = window.location.href;
         navigator.clipboard.writeText(url).then(() => {
           const originalText = shareBtn.textContent;
-          shareBtn.textContent = '✅ Link Copied!';
+          shareBtn.textContent = `✅ ${t_linkCopied}`;
           setTimeout(() => {
             shareBtn.textContent = originalText;
           }, 2000);
@@ -200,7 +213,7 @@ const reading = cardIds.map((cardId, index) => {
     const downloadBtn = document.getElementById('download-btn');
     if (downloadBtn) {
       downloadBtn.addEventListener('click', async () => {
-        alert('Image export feature coming soon! For now, you can take a screenshot of your reading.');
+        alert(t_imageExportSoon);
         // TODO: Implement html2canvas functionality
       });
     }

@@ -14,7 +14,15 @@ export default function CardDeckWrapper({ cardCount, spreadId, spread }: CardDec
     // Format: /result/3-card/1-2-3/010
     const cardIds = selectedCards.map(sc => sc.cardId).join('-');
     const reversed = selectedCards.map(sc => sc.reversed ? '1' : '0').join('');
-    const url = `/result/${spreadId}/${cardIds}/${reversed}`;
+
+    // Preserve language parameter from current URL
+    const currentUrl = new URL(window.location.href);
+    const lang = currentUrl.searchParams.get('lang');
+
+    let url = `/result/${spreadId}/${cardIds}/${reversed}`;
+    if (lang) {
+      url += `?lang=${lang}`;
+    }
 
     window.location.href = url;
   };
