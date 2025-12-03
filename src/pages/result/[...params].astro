@@ -4,6 +4,7 @@ import { detectLanguage, createTranslator } from '../../utils/i18nServer';
 import { loadSpreads, loadCards } from '../../utils/loadData';
 import { withLang } from '../../utils/linkHelper';
 import FullReadingDisplay from '../../components/FullReadingDisplay';
+import SpreadLayout from '../../components/SpreadLayout';
 
 export const prerender = false;
 
@@ -49,6 +50,13 @@ const drawnCards = reading.map((item, index) => ({
   position: index + 1,
   reversed: item.reversed
 }));
+
+// Prepare selected cards for SpreadLayout (must match SelectedCard interface)
+const selectedCards = cardIds.map((cardId, index) => ({
+  cardId: cardId,
+  reversed: reversedStr?.[index] === '1',
+  position: index + 1
+}));
 ---
 
 <Layout
@@ -57,11 +65,28 @@ const drawnCards = reading.map((item, index) => ({
   noindex={true}
 >
   <div class="container mx-auto px-4 py-12">
-    <!-- Header -->
-    <div class="text-center mb-12">
+    <!-- Header with Compact Spread Preview -->
+    <div class="text-center mb-5">
       <h1 class="text-4xl font-bold mb-2 text-violet-deep">
         {t('labels.yourReading')}: {spread.name}
       </h1>
+      {question && (
+        <p class="text-lg text-gray-700 italic mb-4">
+          "{question}"
+        </p>
+      )}
+
+      <!-- Compact Spread Preview -->
+      <div class="max-w-3xl mx-auto mt-8 mb-0">
+        <div class="bg-gradient-to-br from-violet-50 to-purple-50 rounded-2xl p-4 md:p-6 shadow-lg border-2 border-violet-200 transform scale-90 md:scale-100 origin-top">
+          <SpreadLayout
+            spread={spread}
+            selectedCards={selectedCards}
+            cardsData={cardsData}
+            client:load
+          />
+        </div>
+      </div>
     </div>
 
     <!-- Full Reading Section - FIRST -->
