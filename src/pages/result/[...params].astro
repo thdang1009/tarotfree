@@ -3,6 +3,7 @@ import Layout from '../../layouts/Layout.astro';
 import { detectLanguage, createTranslator } from '../../utils/i18nServer';
 import { loadSpreads, loadCards } from '../../utils/loadData';
 import { withLang } from '../../utils/linkHelper';
+import FullReadingDisplay from '../../components/FullReadingDisplay';
 
 export const prerender = false;
 
@@ -11,10 +12,12 @@ const lang = detectLanguage(Astro.request);
 
 // Create translator for this page
 const t = createTranslator(lang, 'common');
+const tReading = createTranslator(lang, 'readings');
 
-// Parse URL params: /result/3-card/1-2-3/010
+// Parse URL params: /result/3-card/1-2-3/010?question=...
 const params = Astro.params.params || '';
 const [spreadId, cardIdsStr, reversedStr] = params.split('/');
+const question = Astro.url.searchParams.get('question') || '';
 
 const cardIds = cardIdsStr?.split('-').map(id => parseInt(id)) || [];
 
@@ -39,6 +42,13 @@ const reading = cardIds.map((cardId, index) => {
     position,
   };
 });
+
+// Prepare drawn cards for Full Reading
+const drawnCards = reading.map((item, index) => ({
+  card: item.card,
+  position: index + 1,
+  reversed: item.reversed
+}));
 ---
 
 <Layout
@@ -52,12 +62,29 @@ const reading = cardIds.map((cardId, index) => {
       <h1 class="text-4xl font-bold mb-2 text-violet-deep">
         {t('labels.yourReading')}: {spread.name}
       </h1>
-      <p class="text-gray-600">
-        {t('labels.reflectOnCards')}
+    </div>
+
+    <!-- Full Reading Section - FIRST -->
+    <div class="max-w-5xl mx-auto mb-16">
+      <FullReadingDisplay
+        cards={drawnCards}
+        spread={spread}
+        question={question}
+        client:load
+      />
+    </div>
+
+    <!-- Individual Cards Section Heading -->
+    <div class="max-w-4xl mx-auto mb-8">
+      <h2 class="text-3xl font-heading text-violet-deep text-center mb-4">
+        📇 Individual Card Meanings
+      </h2>
+      <p class="text-center text-gray-600">
+        Explore each card's detailed interpretation based on its position
       </p>
     </div>
 
-    <!-- Cards Display -->
+    <!-- Cards Display - SECOND -->
     <div class="max-w-4xl mx-auto space-y-8">
       {reading.map((item, index) => (
         <div class="bg-white rounded-lg shadow-lg p-6 animate-fade-in" style={`animation-delay: ${index * 0.2}s`}>

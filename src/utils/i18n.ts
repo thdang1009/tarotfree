@@ -14,6 +14,17 @@ export class I18nManager {
     this.translations = new Map();
     this.listeners = new Set();
     this.currentLanguage = this.detectLanguage();
+
+    // Re-detect language when page loads (handles navigation timing issues)
+    if (typeof window !== 'undefined') {
+      window.addEventListener('load', () => {
+        const detectedLang = this.detectLanguage();
+        if (detectedLang !== this.currentLanguage) {
+          this.currentLanguage = detectedLang;
+          this.listeners.forEach(listener => listener(detectedLang));
+        }
+      });
+    }
   }
 
   /**

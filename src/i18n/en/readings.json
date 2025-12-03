@@ -1,0 +1,43 @@
+{
+  "fullReading": {
+    "title": "Full Reading Synthesis",
+    "subtitle": "A cohesive interpretation of all cards in your reading",
+    "loading": "Analyzing your cards and their connections...",
+    "showFullReading": "Show Full Reading",
+    "hideFullReading": "Hide Full Reading",
+    "sections": {
+      "overview": "Reading Overview",
+      "interpretation": "Interpretation",
+      "interactions": "Key Card Interactions",
+      "supportingEnergies": "Supporting Energies",
+      "challengingEnergies": "Challenging Energies",
+      "outcomeInfluencers": "Outcome Influencers",
+      "conclusion": "Conclusion",
+      "advice": "Advice"
+    },
+    "labels": {
+      "overallEnergy": "Overall Energy",
+      "dominantTheme": "Dominant Theme",
+      "dominantSuit": "Dominant Suit",
+      "majorArcana": "Major Arcana",
+      "secondaryThemes": "Secondary Themes",
+      "strength": "Strength",
+      "cards": "card(s)",
+      "reversed": "Reversed"
+    },
+    "energy": {
+      "positive": "Positive",
+      "negative": "Negative",
+      "neutral": "Neutral",
+      "mixed": "Mixed"
+    },
+    "relationshipTypes": {
+      "supporting": "Supporting",
+      "challenging": "Challenging",
+      "complementary": "Complementary",
+      "contradicting": "Contradicting",
+      "neutral": "Neutral"
+    },
+    "disclaimer": "This reading is generated based on traditional tarot interpretations and card relationships. Trust your intuition as the final guide."
+  }
+}

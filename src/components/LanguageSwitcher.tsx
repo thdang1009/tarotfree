@@ -8,19 +8,26 @@ import { i18n } from '../utils/i18n';
 import { LANGUAGES, type SupportedLanguage } from '../types/i18n';
 
 export default function LanguageSwitcher() {
-  const [currentLang, setCurrentLang] = useState<SupportedLanguage>(
+  // Initialize state with a function to ensure fresh read on every mount
+  const [currentLang, setCurrentLang] = useState<SupportedLanguage>(() =>
     i18n.getCurrentLanguage()
   );
   const [isChanging, setIsChanging] = useState(false);
 
   useEffect(() => {
+    // Double-check language on mount (handles async hydration timing)
+    const detectedLang = i18n.getCurrentLanguage();
+    if (detectedLang !== currentLang) {
+      setCurrentLang(detectedLang);
+    }
+
     // Subscribe to language changes
     const unsubscribe = i18n.onChange((newLang) => {
       setCurrentLang(newLang);
     });
 
     return unsubscribe;
-  }, []);
+  }, [currentLang]);
 
   const handleLanguageChange = async (lang: SupportedLanguage) => {
     if (lang === currentLang || isChanging) return;

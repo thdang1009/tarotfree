@@ -1,0 +1,43 @@
+{
+  "fullReading": {
+    "title": "Tổng Hợp Bài Xem Đầy Đủ",
+    "subtitle": "Diễn giải liên kết của tất cả các lá bài trong bài xem của bạn",
+    "loading": "Đang phân tích các lá bài và mối liên hệ của chúng...",
+    "showFullReading": "Hiển Thị Bài Xem Đầy Đủ",
+    "hideFullReading": "Ẩn Bài Xem Đầy Đủ",
+    "sections": {
+      "overview": "Tổng Quan Bài Xem",
+      "interpretation": "Diễn Giải",
+      "interactions": "Tương Tác Chính Giữa Các Lá Bài",
+      "supportingEnergies": "Năng Lượng Hỗ Trợ",
+      "challengingEnergies": "Năng Lượng Thách Thức",
+      "outcomeInfluencers": "Yếu Tố Ảnh Hưởng Đến Kết Quả",
+      "conclusion": "Kết Luận",
+      "advice": "Lời Khuyên"
+    },
+    "labels": {
+      "overallEnergy": "Năng Lượng Tổng Thể",
+      "dominantTheme": "Chủ Đề Chính",
+      "dominantSuit": "Bộ Bài Chính",
+      "majorArcana": "Bài Lớn",
+      "secondaryThemes": "Chủ Đề Phụ",
+      "strength": "Độ Mạnh",
+      "cards": "lá bài",
+      "reversed": "Ngược"
+    },
+    "energy": {
+      "positive": "Tích Cực",
+      "negative": "Tiêu Cực",
+      "neutral": "Trung Tính",
+      "mixed": "Hỗn Hợp"
+    },
+    "relationshipTypes": {
+      "supporting": "Hỗ Trợ",
+      "challenging": "Thách Thức",
+      "complementary": "Bổ Sung",
+      "contradicting": "Mâu Thuẫn",
+      "neutral": "Trung Tính"
+    },
+    "disclaimer": "Bài xem này được tạo ra dựa trên các diễn giải tarot truyền thống và mối quan hệ giữa các lá bài. Hãy tin tưởng trực giác của bạn là hướng dẫn cuối cùng."
+  }
+}
