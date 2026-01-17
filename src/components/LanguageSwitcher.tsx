@@ -78,7 +78,6 @@ export default function LanguageSwitcher() {
             aria-current={isActive ? 'true' : 'false'}
           >
             <span className="text-base" aria-hidden="true">{lang.flag}</span>
-            <span className="hidden sm:inline">{lang.nativeName}</span>
             <span className="sm:hidden">{lang.code.toUpperCase()}</span>
           </button>
         );
