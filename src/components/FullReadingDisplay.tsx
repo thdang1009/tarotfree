@@ -51,11 +51,29 @@ function LoadingSkeleton() {
 }
 
 // ── Card thumbnail ────────────────────────────────────────────────────────────
-function CardThumb({ dc }: { dc: DrawnCard }) {
+function CardThumb({ dc, size = 'sm' }: { dc: DrawnCard; size?: 'sm' | 'md' }) {
+  const cls = size === 'md'
+    ? 'w-12 h-[72px] md:w-14 md:h-[84px]'
+    : 'w-8 h-12';
   return (
-    <div className={`w-8 h-12 rounded overflow-hidden shadow flex-shrink-0 ${dc.reversed ? 'rotate-180' : ''}`}>
+    <div className={`${cls} rounded overflow-hidden shadow flex-shrink-0 ${dc.reversed ? 'rotate-180' : ''}`}>
       <img src={dc.card.image} alt={dc.card.name} className="w-full h-full object-cover" />
     </div>
+  );
+}
+
+// ── Inline bold renderer (converts **text** to <strong>) ──────────────────────
+function InlineBold({ text }: { text: string }) {
+  const parts = text.split(/(\*\*[^*]+\*\*)/g);
+  return (
+    <>
+      {parts.map((part, i) => {
+        if (part.startsWith('**') && part.endsWith('**')) {
+          return <strong key={i} className="text-violet-deep font-semibold">{part.slice(2, -2)}</strong>;
+        }
+        return <span key={i}>{part}</span>;
+      })}
+    </>
   );
 }
 
@@ -184,21 +202,76 @@ export default function FullReadingDisplay({
             </p>
           </section>
 
-          {/* ── Your Story ── */}
-          {analysis.synthesis.body.length > 0 && (
+          {/* ── Story Beats — position-aware primary narrative ── */}
+          {analysis.storyBeats.length > 0 && (
             <section>
-              <h3 className="text-xl font-heading text-violet-deep mb-4 flex items-center gap-2">
+              <h3 className="text-xl font-heading text-violet-deep mb-5 flex items-center gap-2">
                 <span>📖</span>
                 <span>{isVi ? 'Câu Chuyện Của Bạn' : 'Your Story'}</span>
               </h3>
-              <div className="space-y-4">
+              <div className="space-y-0">
+                {analysis.storyBeats.map((beat, index) => (
+                  <div key={index}>
+                    {/* Beat card */}
+                    <div className="flex gap-4 items-start bg-white/70 rounded-xl border border-violet-100 px-4 py-4 shadow-sm">
+                      {/* Card image */}
+                      <div className="flex-shrink-0 pt-0.5">
+                        <CardThumb dc={beat.drawnCard} size="md" />
+                      </div>
+
+                      {/* Narrative */}
+                      <div className="flex-1 min-w-0">
+                        {/* Position badge */}
+                        <div className="flex items-center gap-2 mb-2 flex-wrap">
+                          <span className="text-[10px] font-bold uppercase tracking-widest text-violet-medium bg-violet-deep/10 px-2 py-0.5 rounded-full">
+                            {beat.position.name}
+                          </span>
+                          {beat.drawnCard.reversed && (
+                            <span className="text-[10px] text-orange-600 font-medium">
+                              ↑ {isVi ? 'Ngược' : 'Reversed'}
+                            </span>
+                          )}
+                        </div>
+                        <p className="text-sm md:text-base leading-relaxed text-gray-700">
+                          <InlineBold text={beat.narrative} />
+                        </p>
+                      </div>
+                    </div>
+
+                    {/* Connector arrow between beats */}
+                    {beat.connector && (
+                      <div className="flex items-center gap-3 pl-16 py-2.5">
+                        <div className="flex-shrink-0 flex flex-col items-center gap-0.5">
+                          <div className="w-px h-3 bg-violet-300/60" />
+                          <div className="text-violet-400 text-xs">▼</div>
+                        </div>
+                        <p className="text-xs md:text-sm text-violet-500 italic font-medium">
+                          {beat.connector}
+                        </p>
+                      </div>
+                    )}
+                  </div>
+                ))}
+              </div>
+            </section>
+          )}
+
+          {/* ── Reading Notes (meta-analysis, collapsible) ── */}
+          {analysis.synthesis.body.length > 0 && (
+            <details className="group">
+              <summary className="cursor-pointer list-none flex items-center gap-2 text-sm text-violet-medium hover:text-violet-deep transition-colors select-none">
+                <span className="text-base group-open:rotate-90 transition-transform inline-block">›</span>
+                <span className="font-semibold">{isVi ? 'Ghi Chú Phân Tích' : 'Reading Notes'}</span>
+                <span className="text-xs text-gray-400">{isVi ? '(mở rộng để xem)' : '(expand to view)'}</span>
+              </summary>
+              <div className="mt-3 pl-5 space-y-3 border-l-2 border-violet-200/60">
                 {analysis.synthesis.body.map((paragraph, index) => (
-                  <p key={index} className="text-base leading-relaxed text-gray-700">
+                  <p key={index} className="text-sm leading-relaxed text-gray-600">
                     {paragraph}
                   </p>
                 ))}
               </div>
-            </section>
+            </details>
           )}
 
           {/* ── With You / Watch For (2-col with thumbnails) ── */}

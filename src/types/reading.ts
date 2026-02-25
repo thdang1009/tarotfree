@@ -3,7 +3,7 @@
  * Analyzes card combinations and generates cohesive narratives
  */
 
-import type { TarotCard, DrawnCard } from './tarot';
+import type { TarotCard, DrawnCard, SpreadPosition } from './tarot';
 
 /**
  * Types of relationships between cards
@@ -44,11 +44,23 @@ export interface ReadingTheme {
 }
 
 /**
+ * A single position-aware narrative beat in the reading story
+ */
+export interface StoryBeat {
+  drawnCard: DrawnCard;
+  position: SpreadPosition;
+  /** The narrative paragraph for this card in its position */
+  narrative: string;
+  /** Short connector phrase to lead into the next beat (null for last card) */
+  connector: string | null;
+}
+
+/**
  * Complete synthesis narrative
  */
 export interface ReadingSynthesis {
   opening: string;        // Introduction acknowledging the question
-  body: string[];         // Main interpretation paragraphs
+  body: string[];         // Main interpretation paragraphs (meta-analysis)
   conclusion: string;     // Summary and final thoughts
   advice: string;         // Actionable guidance
 }
@@ -63,4 +75,6 @@ export interface FullReadingAnalysis {
   challengingCards: DrawnCard[];
   outcomeInfluencers: DrawnCard[];
   synthesis: ReadingSynthesis;
+  /** Position-aware story beats — the primary narrative */
+  storyBeats: StoryBeat[];
 }

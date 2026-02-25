@@ -3,13 +3,14 @@
  * Analyzes card combinations and generates cohesive narratives for Full Reading
  */
 
-import type { DrawnCard, TarotCard, TarotSpread } from '../types/tarot';
+import type { DrawnCard, TarotCard, TarotSpread, SpreadPosition } from '../types/tarot';
 import type {
   CardInteraction,
   ReadingTheme,
   FullReadingAnalysis,
   RelationshipType,
-  OverallEnergy
+  OverallEnergy,
+  StoryBeat,
 } from '../types/reading';
 import { i18n } from './i18n';
 import type { SupportedLanguage } from '../types/i18n';
@@ -36,6 +37,7 @@ export class ReadingAnalyzer {
     const { supporting, challenging } = this.categorizeCards(interactions);
     const outcomeInfluencers = this.identifyOutcomeInfluencers();
     const synthesis = this.generateSynthesis(theme, interactions, supporting, challenging);
+    const storyBeats = this.generateStoryBeats(interactions);
 
     return {
       theme,
@@ -43,7 +45,8 @@ export class ReadingAnalyzer {
       supportingCards: supporting,
       challengingCards: challenging,
       outcomeInfluencers,
-      synthesis
+      synthesis,
+      storyBeats,
     };
   }
 
@@ -592,6 +595,190 @@ export class ReadingAnalyzer {
     const pool = this.language === 'en' ? en : vi;
     const variants = pool[theme.overallEnergy];
     return variants[this.variantIndex(variants.length)];
+  }
+
+  // ─── Story Beats ────────────────────────────────────────────────────────────
+
+  /**
+   * Generate position-aware story beats — the primary narrative of the reading.
+   * Each beat tells the story of one card in the context of its spread position,
+   * connected to the next with a bridging phrase.
+   */
+  private generateStoryBeats(interactions: CardInteraction[]): StoryBeat[] {
+    const en = this.language === 'en';
+    const beats: StoryBeat[] = [];
+
+    for (let i = 0; i < this.cards.length; i++) {
+      const dc = this.cards[i];
+      const position = this.spread.positions[i];
+      const isFirst = i === 0;
+      const isLast = i === this.cards.length - 1;
+      const nextDc = this.cards[i + 1];
+
+      const narrative = this.buildBeatNarrative(dc, position, isFirst, isLast, en);
+      const connector = isLast
+        ? null
+        : this.buildConnector(position, nextDc ? this.spread.positions[i + 1] : null, interactions, dc, nextDc, en);
+
+      beats.push({ drawnCard: dc, position, narrative, connector });
+    }
+
+    return beats;
+  }
+
+  /**
+   * Build the narrative paragraph for one card in its position.
+   */
+  private buildBeatNarrative(
+    dc: DrawnCard,
+    position: SpreadPosition,
+    isFirst: boolean,
+    isLast: boolean,
+    en: boolean,
+  ): string {
+    const meaning = dc.reversed ? dc.card.reversed : dc.card.upright;
+    const shortMeaning = meaning.short;
+    const generalMeaning = meaning.general;
+    const cardName = dc.card.name;
+    const posName = position.name;
+    const posDesc = position.description;
+    const reversedNote = dc.reversed
+      ? (en ? ', though reversed' : ', dù ở vị trí ngược')
+      : '';
+
+    // Opening phrase — varies by position index
+    let openPhrase: string;
+    if (isFirst) {
+      openPhrase = en
+        ? `Your reading opens with **${cardName}** in the **${posName}** position — ${posDesc.toLowerCase()}`
+        : `Bài xem của bạn mở ra với **${cardName}** ở vị trí **${posName}** — ${posDesc.toLowerCase()}`;
+    } else if (isLast) {
+      openPhrase = en
+        ? `Finally, **${cardName}**${reversedNote} arrives in the **${posName}** position — ${posDesc.toLowerCase()}`
+        : `Cuối cùng, **${cardName}**${reversedNote} xuất hiện ở vị trí **${posName}** — ${posDesc.toLowerCase()}`;
+    } else {
+      openPhrase = en
+        ? `In the **${posName}** position — ${posDesc.toLowerCase()} — you find **${cardName}**${reversedNote}`
+        : `Ở vị trí **${posName}** — ${posDesc.toLowerCase()} — bạn thấy **${cardName}**${reversedNote}`;
+    }
+
+    // Core meaning sentence
+    const coreSentence = en
+      ? `${shortMeaning}.`
+      : `${shortMeaning}.`;
+
+    // Contextual elaboration — pull from general meaning, trimmed to 1–2 sentences
+    const generalSentences = generalMeaning.split(/(?<=[.!?])\s+/);
+    const elaboration = generalSentences.slice(0, 2).join(' ');
+
+    return `${openPhrase}. ${coreSentence} ${elaboration}`;
+  }
+
+  /**
+   * Build a connector phrase that bridges one beat to the next,
+   * sensitive to position roles and any known card interaction.
+   */
+  private buildConnector(
+    fromPosition: SpreadPosition,
+    toPosition: SpreadPosition | null,
+    interactions: CardInteraction[],
+    fromDc: DrawnCard,
+    toDc: DrawnCard | undefined,
+    en: boolean,
+  ): string {
+    if (!toDc || !toPosition) return '';
+
+    // Check if these two cards have a known interaction
+    const interaction = interactions.find(
+      ix =>
+        (ix.card1.id === fromDc.card.id && ix.card2.id === toDc.card.id) ||
+        (ix.card1.id === toDc.card.id && ix.card2.id === fromDc.card.id)
+    );
+
+    // Interaction-aware connectors
+    if (interaction) {
+      const type = interaction.relationshipType;
+      if (type === 'supporting') {
+        return en
+          ? `This energy flows naturally into what follows —`
+          : `Năng lượng này chuyển tiếp tự nhiên vào những gì tiếp theo —`;
+      }
+      if (type === 'challenging') {
+        return en
+          ? `Yet this meets a point of tension —`
+          : `Nhưng điều này gặp phải một điểm căng thẳng —`;
+      }
+      if (type === 'contradicting') {
+        return en
+          ? `This stands in contrast to what comes next —`
+          : `Điều này tương phản với những gì đến tiếp theo —`;
+      }
+    }
+
+    // Position-role-based connectors (read the to-position's name)
+    const toName = toPosition.name.toLowerCase();
+
+    if (toName.includes('challenge') || toName.includes('obstacle') || toName.includes('block')) {
+      return en
+        ? `But standing in the way is —`
+        : `Nhưng đứng cản đường là —`;
+    }
+    if (toName.includes('future') || toName.includes('outcome') || toName.includes('result') || toName.includes('likely')) {
+      return en
+        ? `And looking ahead to what may come —`
+        : `Và nhìn về phía trước những gì có thể đến —`;
+    }
+    if (toName.includes('action') || toName.includes('step') || toName.includes('advice')) {
+      return en
+        ? `The cards suggest a path forward —`
+        : `Các lá bài gợi ý một con đường tiến về phía trước —`;
+    }
+    if (toName.includes('past') || toName.includes('root') || toName.includes('foundation')) {
+      return en
+        ? `Underneath this lies something older —`
+        : `Bên dưới điều này ẩn chứa điều gì đó lâu đời hơn —`;
+    }
+    if (toName.includes('present') || toName.includes('now') || toName.includes('current')) {
+      return en
+        ? `This has shaped what you face right now —`
+        : `Điều này đã định hình những gì bạn đang đối mặt ngay bây giờ —`;
+    }
+    if (toName.includes('hidden') || toName.includes('shadow') || toName.includes('unconscious')) {
+      return en
+        ? `Beneath the surface, something else stirs —`
+        : `Bên dưới bề mặt, điều gì đó khác đang chuyển động —`;
+    }
+    if (toName.includes('hope') || toName.includes('fear') || toName.includes('desire')) {
+      return en
+        ? `Woven through this is an undercurrent of feeling —`
+        : `Xuyên suốt điều này là một dòng cảm xúc ngầm —`;
+    }
+    if (toName.includes('support') || toName.includes('resource') || toName.includes('aid') || toName.includes('gift')) {
+      return en
+        ? `Yet you are not navigating this alone —`
+        : `Nhưng bạn không điều hướng điều này một mình —`;
+    }
+    if (toName.includes('lesson') || toName.includes('wisdom') || toName.includes('purpose')) {
+      return en
+        ? `And from all of this emerges a deeper insight —`
+        : `Và từ tất cả những điều này nổi lên một hiểu biết sâu sắc hơn —`;
+    }
+
+    // Generic sequential connectors (cycle through a few so it feels varied)
+    const genericEn = [
+      'From here, the story shifts —',
+      'Building on this foundation —',
+      'The reading then turns to —',
+      'This energy carries forward into —',
+    ];
+    const genericVi = [
+      'Từ đây, câu chuyện chuyển sang —',
+      'Xây dựng trên nền tảng này —',
+      'Bài xem sau đó hướng đến —',
+      'Năng lượng này tiếp tục vào —',
+    ];
+    const seed = (fromDc.card.id + toDc.card.id) % genericEn.length;
+    return en ? genericEn[seed] : genericVi[seed];
   }
 
   /**
