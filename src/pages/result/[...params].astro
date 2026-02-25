@@ -328,13 +328,67 @@ const selectedCards = cardIds.map((cardId, index) => ({
   <script>
     import html2canvas from 'html2canvas';
 
+    // html2canvas cannot parse oklch() colors produced by Tailwind CSS v4.
+    // Strategy: use the html2canvas `onclone` callback to receive the cloned
+    // document before rendering, then patch every element's computed styles
+    // directly as inline styles in that clone. The live DOM is never touched.
+
+    const ALL_COLOR_PROPS = [
+      'color', 'backgroundColor',
+      'borderColor', 'borderTopColor', 'borderRightColor', 'borderBottomColor', 'borderLeftColor',
+      'outlineColor', 'textDecorationColor',
+      'boxShadow', 'backgroundImage',
+    ] as const;
+
+    // Resolve every oklch(...) token by probing the *live* document's browser engine.
+    function resolveOklchTokens(raw: string): string {
+      return raw.replace(/oklch\(([^)]+)\)/g, (_match, inner) => {
+        const probe = document.createElement('div');
+        probe.style.cssText = 'position:fixed;width:0;height:0;opacity:0;pointer-events:none;';
+        probe.style.color = `oklch(${inner})`;
+        document.body.appendChild(probe);
+        const rgb = getComputedStyle(probe).color;
+        probe.remove();
+        return rgb || 'rgb(0,0,0)';
+      });
+    }
+
+    // Patch all oklch values in the cloned document's elements as inline styles.
+    // We read computed styles from the *live* document (same element by id/class
+    // lookup is unreliable in clone), so instead we iterate the clone and look up
+    // the matching live element via its position in the tree.
+    function patchClone(liveRoot: HTMLElement, cloneRoot: HTMLElement) {
+      // Include the root itself and all descendants.
+      const liveEls = [liveRoot, ...Array.from(liveRoot.querySelectorAll<HTMLElement>('*'))];
+      const cloneEls = [cloneRoot, ...Array.from(cloneRoot.querySelectorAll<HTMLElement>('*'))];
+
+      const len = Math.min(liveEls.length, cloneEls.length);
+      for (let i = 0; i < len; i++) {
+        const liveEl = liveEls[i];
+        const cloneEl = cloneEls[i];
+        const computed = getComputedStyle(liveEl);
+
+        for (const prop of ALL_COLOR_PROPS) {
+          const val = (computed as any)[prop] as string;
+          if (!val || !val.includes('oklch')) continue;
+
+          if (prop === 'backgroundImage' || prop === 'boxShadow') {
+            // These preserve raw oklch() tokens — resolve each one explicitly.
+            (cloneEl.style as any)[prop] = resolveOklchTokens(val);
+          } else {
+            // Plain color props: getComputedStyle already returns rgb().
+            (cloneEl.style as any)[prop] = val;
+          }
+        }
+      }
+    }
+
     const downloadBtn = document.getElementById('download-btn') as HTMLButtonElement | null;
     if (downloadBtn) {
       downloadBtn.addEventListener('click', async () => {
         const { t_exporting, t_exportFailed } = (window as any).__exportStrings ?? {};
         const originalHTML = downloadBtn.innerHTML;
 
-        // Loading state
         downloadBtn.disabled = true;
         downloadBtn.innerHTML = `<span class="inline-block animate-spin mr-2">⏳</span>${t_exporting ?? 'Exporting…'}`;
 
@@ -348,11 +402,14 @@ const selectedCards = cardIds.map((cardId, index) => ({
             scale: 2,
             backgroundColor: '#faf8f5',
             logging: false,
-            // Ensure full width is captured
             windowWidth: target.scrollWidth,
+            onclone: (_cloneDoc, cloneEl) => {
+              // cloneEl is the cloned version of `target`.
+              // Patch all oklch colors in the clone so html2canvas only sees rgb.
+              patchClone(target, cloneEl);
+            },
           });
 
-          // Trigger download
           const link = document.createElement('a');
           link.download = `tarot-reading-${Date.now()}.png`;
           link.href = canvas.toDataURL('image/png');
