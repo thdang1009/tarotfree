@@ -132,6 +132,8 @@ const selectedCards = cardIds.map((cardId, index) => ({
   noindex={true}
 >
   <div class="container mx-auto px-4 py-12">
+    <!-- Export target: header + spread preview + full synthesis -->
+    <div id="reading-export-area">
     <!-- Header with Compact Spread Preview -->
     <div class="text-center mb-5">
       <h1 class="text-4xl font-bold mb-2 text-violet-deep">
@@ -160,6 +162,7 @@ const selectedCards = cardIds.map((cardId, index) => ({
         client:load
       />
     </div>
+    </div>{/* end #reading-export-area */}
 
     <!-- Individual Cards Section Heading -->
     <div class="max-w-4xl mx-auto mb-8">
@@ -186,10 +189,10 @@ const selectedCards = cardIds.map((cardId, index) => ({
           </div>
 
           <!-- Card Info -->
-          <div class="flex flex-col md:flex-row gap-6">
-            <!-- Card Image -->
-            <div class="md:w-48 flex-shrink-0">
-              <div class={`aspect-[2/3] rounded-lg overflow-hidden shadow-lg ${item.reversed ? 'rotate-180' : ''}`}>
+          <div class="flex flex-row gap-5 md:gap-6">
+            <!-- Card Image — fixed 96px wide on all viewports -->
+            <div class="w-24 md:w-44 flex-shrink-0">
+              <div class={`w-24 h-36 md:w-44 md:h-[264px] rounded-lg overflow-hidden shadow-lg ${item.reversed ? 'rotate-180' : ''}`}>
                 <img
                   src={item.card.image}
                   alt={item.card.name}
@@ -294,8 +297,8 @@ const selectedCards = cardIds.map((cardId, index) => ({
     </div>
   </div>
 
-  <!-- Client-side Scripts -->
-  <script define:vars={{ lang, t_linkCopied: t('labels.linkCopied'), t_imageExportSoon: t('messages.imageExportSoon') }}>
+  <!-- Client-side Scripts (define:vars — no module imports) -->
+  <script define:vars={{ lang, t_linkCopied: t('labels.linkCopied'), t_exporting: t('messages.exporting'), t_exportFailed: t('messages.exportFailed') }}>
     // Share functionality
     const shareBtn = document.getElementById('share-btn');
     if (shareBtn) {
@@ -304,19 +307,63 @@ const selectedCards = cardIds.map((cardId, index) => ({
         navigator.clipboard.writeText(url).then(() => {
           const originalText = shareBtn.textContent;
           shareBtn.textContent = `✅ ${t_linkCopied}`;
-          setTimeout(() => {
-            shareBtn.textContent = originalText;
-          }, 2000);
+          setTimeout(() => { shareBtn.textContent = originalText; }, 2000);
         });
       });
     }
 
-    // Download functionality (placeholder)
-    const downloadBtn = document.getElementById('download-btn');
+    // Expose i18n strings for the module script below
+    window.__exportStrings = { t_exporting, t_exportFailed };
+
+    // Save this reading URL to localStorage for "Continue last reading" on homepage
+    try {
+      localStorage.setItem('tarot_last_reading', JSON.stringify({
+        url: window.location.href,
+        ts: Date.now(),
+      }));
+    } catch (_) {}
+  </script>
+
+  <!-- Export as image (module script — can import html2canvas) -->
+  <script>
+    import html2canvas from 'html2canvas';
+
+    const downloadBtn = document.getElementById('download-btn') as HTMLButtonElement | null;
     if (downloadBtn) {
       downloadBtn.addEventListener('click', async () => {
-        alert(t_imageExportSoon);
-        // TODO: Implement html2canvas functionality
+        const { t_exporting, t_exportFailed } = (window as any).__exportStrings ?? {};
+        const originalHTML = downloadBtn.innerHTML;
+
+        // Loading state
+        downloadBtn.disabled = true;
+        downloadBtn.innerHTML = `<span class="inline-block animate-spin mr-2">⏳</span>${t_exporting ?? 'Exporting…'}`;
+
+        try {
+          const target = document.getElementById('reading-export-area');
+          if (!target) throw new Error('export area not found');
+
+          const canvas = await html2canvas(target, {
+            useCORS: true,
+            allowTaint: false,
+            scale: 2,
+            backgroundColor: '#faf8f5',
+            logging: false,
+            // Ensure full width is captured
+            windowWidth: target.scrollWidth,
+          });
+
+          // Trigger download
+          const link = document.createElement('a');
+          link.download = `tarot-reading-${Date.now()}.png`;
+          link.href = canvas.toDataURL('image/png');
+          link.click();
+        } catch (err) {
+          console.error('Export failed:', err);
+          alert(t_exportFailed ?? 'Export failed. Please try screenshotting the page instead.');
+        } finally {
+          downloadBtn.disabled = false;
+          downloadBtn.innerHTML = originalHTML;
+        }
       });
     }
   </script>

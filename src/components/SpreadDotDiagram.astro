@@ -1,0 +1,71 @@
+---
+/**
+ * SpreadDotDiagram — tiny CSS dot layout preview for spread cards on homepage.
+ * Purely server-rendered, zero JS.
+ */
+interface Props {
+  layoutType: string;
+  layoutGrid: number[];
+  cardCount: number;
+}
+
+const { layoutType, layoutGrid, cardCount } = Astro.props;
+
+// Build a list of [row, col] positions for each card slot.
+// Uses the same grid logic as SpreadLayout.tsx but simplified to dot positions.
+type Dot = { row: number; col: number };
+
+function buildDots(type: string, grid: number[]): Dot[] {
+  const dots: Dot[] = [];
+
+  switch (type) {
+    case 'CelticCross': {
+      // Fixed 10-card positions (simplified 4×4 grid)
+      const fixed = [
+        [1,1],[1,1],[0,1],[2,1],[1,0],[1,2],[3,0],[3,1],[3,2],[3,3]
+      ];
+      fixed.forEach(([r,c]) => dots.push({ row: r, col: c }));
+      break;
+    }
+    default: {
+      // Generic: lay cards row by row using layout_grid
+      grid.forEach((rowCount, rowIdx) => {
+        const offset = Math.floor((Math.max(...grid) - rowCount) / 2);
+        for (let c = 0; c < rowCount; c++) {
+          dots.push({ row: rowIdx, col: offset + c });
+        }
+      });
+    }
+  }
+  return dots;
+}
+
+const dots = buildDots(layoutType, layoutGrid);
+const maxRow = dots.reduce((m, d) => Math.max(m, d.row), 0);
+const maxCol = dots.reduce((m, d) => Math.max(m, d.col), 0);
+
+// SVG dimensions — each dot is 8px with 4px gap
+const DOT = 8;
+const GAP = 5;
+const W = (maxCol + 1) * (DOT + GAP) - GAP;
+const H = (maxRow + 1) * (DOT + GAP) - GAP;
+---
+
+<svg
+  width={W}
+  height={H}
+  viewBox={`0 0 ${W} ${H}`}
+  aria-hidden="true"
+  class="opacity-60"
+>
+  {dots.map(({ row, col }) => (
+    <rect
+      x={col * (DOT + GAP)}
+      y={row * (DOT + GAP)}
+      width={DOT}
+      height={DOT + 2}
+      rx="2"
+      fill="currentColor"
+    />
+  ))}
+</svg>

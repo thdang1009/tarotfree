@@ -16,7 +16,8 @@
     "backToHome": "Back to Home",
     "copyShareLink": "Copy Share Link",
     "shuffleAndBegin": "Shuffle the Deck & Begin",
-    "skipQuestion": "Skip — Draw without a question"
+    "skipQuestion": "Skip — Draw without a question",
+    "continueReading": "View Reading"
   },
   "labels": {
     "question": "Your Question",
@@ -49,14 +50,22 @@
     "browseAllCards": "Browse all tarot card meanings",
     "linkCopied": "Link Copied!",
     "whatGuidanceToday": "What do you wish to understand today?",
-    "chooseYourSpread": "Choose Your Spread"
+    "chooseYourSpread": "Choose Your Spread",
+    "cards": "cards"
   },
   "messages": {
     "reflectionQuote": "The cards reflect your inner wisdom. Trust your intuition as you interpret their messages.",
     "imageExportSoon": "Image export feature coming soon! For now, you can take a screenshot of your reading.",
     "tarotQuote": "Tarot reflects your inner world",
     "yourReadingTitle": "Your {spreadName} Reading",
-    "readingResultDesc": "Your tarot reading result"
+    "readingResultDesc": "Your tarot reading result",
+    "continueLastReading": "Continue your last reading",
+    "justNow": "Just now",
+    "minutesAgo": "{n} minutes ago",
+    "hoursAgo": "{n} hours ago",
+    "daysAgo": "{n} days ago",
+    "exporting": "Exporting…",
+    "exportFailed": "Export failed. Please screenshot the page instead."
   },
   "topics": {
     "love": "Love",
@@ -90,7 +99,9 @@
       "suitOfPentacles": "🪙 Suit of Pentacles"
     },
     "footerNote": "Based on the Rider-Waite Tarot Deck (Public Domain)",
-    "backToReadings": "← Back to readings"
+    "backToReadings": "← Back to readings",
+    "searchPlaceholder": "Search cards by name or keyword…",
+    "searchNoResults": "No cards found. Try a different keyword."
   },
   "cardDetail": {
     "breadcrumb": {

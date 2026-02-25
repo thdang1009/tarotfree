@@ -16,7 +16,8 @@
     "backToHome": "Về Trang Chủ",
     "copyShareLink": "Sao Chép Liên Kết",
     "shuffleAndBegin": "Xáo Bài & Bắt Đầu",
-    "skipQuestion": "Bỏ qua — Rút bài không đặt câu hỏi"
+    "skipQuestion": "Bỏ qua — Rút bài không đặt câu hỏi",
+    "continueReading": "Xem Bài"
   },
   "labels": {
     "question": "Câu Hỏi Của Bạn",
@@ -49,14 +50,22 @@
     "browseAllCards": "Xem tất cả ý nghĩa của các lá bài tarot",
     "linkCopied": "Đã Sao Chép Liên Kết!",
     "whatGuidanceToday": "Hôm nay bạn muốn tìm hiểu điều gì?",
-    "chooseYourSpread": "Chọn Cách Xếp Bài Của Bạn"
+    "chooseYourSpread": "Chọn Cách Xếp Bài Của Bạn",
+    "cards": "lá"
   },
   "messages": {
     "reflectionQuote": "Các lá bài phản ánh trí tuệ nội tại của bạn. Hãy tin vào trực giác của bạn khi giải nghĩa những thông điệp của chúng.",
     "imageExportSoon": "Tính năng xuất hình ảnh sắp ra mắt! Hiện tại bạn có thể chụp màn hình bài xem của mình.",
     "tarotQuote": "Tarot phản ánh thế giới nội tâm của bạn",
     "yourReadingTitle": "Bài Xem {spreadName} Của Bạn",
-    "readingResultDesc": "Kết quả bài xem tarot của bạn"
+    "readingResultDesc": "Kết quả bài xem tarot của bạn",
+    "continueLastReading": "Tiếp tục bài xem gần đây",
+    "justNow": "Vừa xong",
+    "minutesAgo": "{n} phút trước",
+    "hoursAgo": "{n} giờ trước",
+    "daysAgo": "{n} ngày trước",
+    "exporting": "Đang xuất ảnh…",
+    "exportFailed": "Xuất ảnh thất bại. Vui lòng chụp màn hình thay thế."
   },
   "topics": {
     "love": "Tình Yêu",
@@ -90,7 +99,9 @@
       "suitOfPentacles": "🪙 Bộ Xu"
     },
     "footerNote": "Dựa trên Bộ Bài Tarot Rider-Waite (Phạm Vi Công Cộng)",
-    "backToReadings": "← Quay lại xem bài"
+    "backToReadings": "← Quay lại xem bài",
+    "searchPlaceholder": "Tìm kiếm lá bài theo tên hoặc từ khóa…",
+    "searchNoResults": "Không tìm thấy lá bài. Thử từ khóa khác."
   },
   "cardDetail": {
     "breadcrumb": {

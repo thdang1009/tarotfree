@@ -33,9 +33,21 @@ const pentacles = cardsData.filter(c => c.suit === 'pentacles');
       </p>
     </div>
 
-    <!-- Search Bar (Client-side component placeholder) -->
+    <!-- Search Bar -->
     <div class="max-w-2xl mx-auto mb-8">
-      <div id="search-container"></div>
+      <div class="relative">
+        <input
+          id="card-search"
+          type="search"
+          placeholder={t('cardsPage.searchPlaceholder') as string}
+          class="w-full px-5 py-3 pl-12 rounded-full border-2 border-violet-200 focus:border-violet-medium focus:outline-none text-gray-800 shadow-sm"
+          autocomplete="off"
+        />
+        <span class="absolute left-4 top-1/2 -translate-y-1/2 text-violet-400 pointer-events-none">🔍</span>
+      </div>
+      <div id="search-no-results" class="hidden text-center text-gray-500 mt-4 text-sm">
+        {t('cardsPage.searchNoResults')}
+      </div>
     </div>
 
     <!-- Filter Tabs -->
@@ -71,6 +83,7 @@ const pentacles = cardsData.filter(c => c.suit === 'pentacles');
             href={withLang(`/cards/${card.slug}`, lang)}
             class="card-item bg-white rounded-lg shadow-md hover:shadow-xl transition-all card-hover p-4"
             data-type="major"
+            data-slug={card.slug}
           >
             <div class="aspect-[2/3] rounded-lg overflow-hidden mb-3">
               <img
@@ -101,6 +114,7 @@ const pentacles = cardsData.filter(c => c.suit === 'pentacles');
             href={withLang(`/cards/${card.slug}`, lang)}
             class="card-item bg-white rounded-lg shadow-md hover:shadow-xl transition-all card-hover p-4"
             data-type="wands"
+            data-slug={card.slug}
           >
             <div class="aspect-[2/3] rounded-lg overflow-hidden mb-3">
               <img
@@ -128,6 +142,7 @@ const pentacles = cardsData.filter(c => c.suit === 'pentacles');
             href={withLang(`/cards/${card.slug}`, lang)}
             class="card-item bg-white rounded-lg shadow-md hover:shadow-xl transition-all card-hover p-4"
             data-type="cups"
+            data-slug={card.slug}
           >
             <div class="aspect-[2/3] rounded-lg overflow-hidden mb-3">
               <img
@@ -155,6 +170,7 @@ const pentacles = cardsData.filter(c => c.suit === 'pentacles');
             href={withLang(`/cards/${card.slug}`, lang)}
             class="card-item bg-white rounded-lg shadow-md hover:shadow-xl transition-all card-hover p-4"
             data-type="swords"
+            data-slug={card.slug}
           >
             <div class="aspect-[2/3] rounded-lg overflow-hidden mb-3">
               <img
@@ -182,6 +198,7 @@ const pentacles = cardsData.filter(c => c.suit === 'pentacles');
             href={withLang(`/cards/${card.slug}`, lang)}
             class="card-item bg-white rounded-lg shadow-md hover:shadow-xl transition-all card-hover p-4"
             data-type="pentacles"
+            data-slug={card.slug}
           >
             <div class="aspect-[2/3] rounded-lg overflow-hidden mb-3">
               <img
@@ -207,38 +224,86 @@ const pentacles = cardsData.filter(c => c.suit === 'pentacles');
     </div>
   </div>
 
-  <!-- Client-side Filter Script -->
+  <!-- Inject card data for search (define:vars, no imports allowed here) -->
+  <script define:vars={{ cardsForSearch: cardsData.map(c => ({ slug: c.slug, name: c.name, suit: c.suit ?? 'major', keywords: c.keywords.join(' ') })) }}>
+    window.__tarotCards = cardsForSearch;
+  </script>
+
+  <!-- Filter + Fuse.js Search (module script — imports allowed) -->
   <script>
-    // Filter functionality
+    import Fuse from 'fuse.js';
+
+    // ── Filter ───────────────────────────────────────────────────────────────
     const filterBtns = document.querySelectorAll('.filter-btn');
     const cardSections = document.querySelectorAll('.card-section');
     const cardItems = document.querySelectorAll('.card-item');
+    let activeFilter = 'all';
 
-    filterBtns.forEach(btn => {
-      btn.addEventListener('click', () => {
-        const filter = btn.dataset.filter;
+    function applyFilter(filter) {
+      activeFilter = filter;
+      filterBtns.forEach(b => {
+        const isActive = b.dataset.filter === filter;
+        b.classList.toggle('bg-violet-deep', isActive);
+        b.classList.toggle('text-white', isActive);
+        b.classList.toggle('bg-white', !isActive);
+        b.classList.toggle('border-2', !isActive);
+        b.classList.toggle('border-violet-medium', !isActive);
+        b.classList.toggle('text-violet-medium', !isActive);
+      });
 
-        // Update active button
-        filterBtns.forEach(b => b.classList.remove('active', 'bg-violet-deep', 'text-white'));
-        filterBtns.forEach(b => b.classList.add('bg-white', 'border-2', 'border-violet-medium', 'text-violet-medium'));
-        btn.classList.add('active', 'bg-violet-deep', 'text-white');
-        btn.classList.remove('bg-white', 'border-2', 'border-violet-medium', 'text-violet-medium');
+      const searchActive = (document.getElementById('card-search') as HTMLInputElement).value.trim() !== '';
+      if (searchActive) return;
 
-        // Show/hide sections and cards
-        if (filter === 'all') {
-          cardSections.forEach(section => section.style.display = 'block');
-          cardItems.forEach(item => item.style.display = 'block');
-        } else {
-          cardSections.forEach(section => {
-            const sectionId = section.id.replace('section-', '');
-            section.style.display = sectionId === filter ? 'block' : 'none';
-          });
+      if (filter === 'all') {
+        cardSections.forEach(s => (s as HTMLElement).style.display = 'block');
+        cardItems.forEach(i => (i as HTMLElement).style.display = 'block');
+      } else {
+        cardSections.forEach(s => {
+          (s as HTMLElement).style.display = s.id.replace('section-', '') === filter ? 'block' : 'none';
+        });
+        cardItems.forEach(i => {
+          (i as HTMLElement).style.display = (i as HTMLElement).dataset.type === filter ? 'block' : 'none';
+        });
+      }
+    }
 
-          cardItems.forEach(item => {
-            item.style.display = item.dataset.type === filter ? 'block' : 'none';
-          });
+    filterBtns.forEach(btn => btn.addEventListener('click', () => applyFilter((btn as HTMLElement).dataset.filter!)));
+
+    // ── Fuse.js Search ────────────────────────────────────────────────────────
+    const cards = (window as any).__tarotCards as { slug: string; name: string; suit: string; keywords: string }[];
+    const fuse = new Fuse(cards, {
+      keys: ['name', 'keywords'],
+      threshold: 0.35,
+      minMatchCharLength: 2,
+    });
+
+    const searchInput = document.getElementById('card-search') as HTMLInputElement;
+    const noResults = document.getElementById('search-no-results')!;
+
+    searchInput.addEventListener('input', () => {
+      const query = searchInput.value.trim();
+
+      if (!query) {
+        noResults.classList.add('hidden');
+        applyFilter(activeFilter);
+        return;
+      }
+
+      cardSections.forEach(s => (s as HTMLElement).style.display = 'none');
+      cardItems.forEach(i => (i as HTMLElement).style.display = 'none');
+
+      const matched = new Set(fuse.search(query).map(r => r.item.slug));
+
+      cardItems.forEach(item => {
+        const el = item as HTMLElement;
+        if (matched.has(el.dataset.slug!)) {
+          el.style.display = 'block';
+          const section = document.getElementById(`section-${el.dataset.type === 'major' ? 'major' : el.dataset.type}`);
+          if (section) section.style.display = 'block';
         }
       });
+
+      noResults.classList.toggle('hidden', matched.size > 0);
     });
   </script>
 </Layout>

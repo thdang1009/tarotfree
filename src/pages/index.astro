@@ -3,6 +3,7 @@ import Layout from '../layouts/Layout.astro';
 import { detectLanguage, createTranslator } from '../utils/i18nServer';
 import { loadSpreads } from '../utils/loadData';
 import { withLang } from '../utils/linkHelper';
+import SpreadDotDiagram from '../components/SpreadDotDiagram.astro';
 
 // Detect language
 const lang = detectLanguage(Astro.request);
@@ -48,6 +49,23 @@ const t = createTranslator(lang, 'common');
       </div>
     </div>
 
+    <!-- Continue Last Reading (shown only if localStorage has a saved URL) -->
+    <div id="last-reading-cta" class="hidden max-w-xl mx-auto mb-10 -mt-6">
+      <div class="bg-violet-deep/5 border border-violet-200 rounded-xl px-6 py-4 flex items-center justify-between gap-4">
+        <div>
+          <p class="text-sm font-semibold text-violet-deep">{t('messages.continueLastReading')}</p>
+          <p class="text-xs text-gray-500 mt-0.5" id="last-reading-age"></p>
+        </div>
+        <a
+          id="last-reading-link"
+          href="#"
+          class="flex-shrink-0 px-4 py-2 bg-violet-deep text-white text-sm rounded-lg hover:bg-violet-medium transition-colors"
+        >
+          {t('buttons.continueReading')} →
+        </a>
+      </div>
+    </div>
+
     <!-- Spread Selection -->
     <div class="max-w-4xl mx-auto">
       <h2 class="text-3xl font-heading text-center mb-8 text-violet-deep">
@@ -60,17 +78,26 @@ const t = createTranslator(lang, 'common');
             href={withLang(`/reading/${spread.id}`, lang)}
             class="bg-white rounded-lg p-6 shadow-lg card-hover border-2 border-transparent hover:border-gold-soft block"
           >
-            <div class="text-center mb-4">
-              <div class="text-4xl font-bold text-gold-soft mb-2">
-                {spread.cardCount}
+            <!-- Dot diagram + card count -->
+            <div class="flex items-end justify-between mb-3">
+              <div class="text-violet-medium">
+                <SpreadDotDiagram
+                  layoutType={spread.layout_type}
+                  layoutGrid={spread.layout_grid}
+                  cardCount={spread.cardCount}
+                />
               </div>
-              <h3 class="text-xl font-heading text-violet-deep mb-2">
-                {spread.name}
-              </h3>
-              <p class="text-gray-600 text-sm">
-                {spread.description}
-              </p>
+              <span class="text-2xl font-bold text-gold-soft leading-none">
+                {spread.cardCount} {t('labels.cards')}
+              </span>
             </div>
+
+            <h3 class="text-xl font-heading text-violet-deep mb-1">
+              {spread.name}
+            </h3>
+            <p class="text-gray-600 text-sm mb-4">
+              {spread.description}
+            </p>
 
             <div class="border-t pt-4">
               <div class="w-full bg-violet-deep text-white py-2 rounded-lg hover:bg-violet-medium transition-colors text-center">
@@ -90,6 +117,25 @@ const t = createTranslator(lang, 'common');
     </div>
   </div>
 </Layout>
+
+<script define:vars={{ label_justNow: t('messages.justNow'), label_minutesAgo: t('messages.minutesAgo'), label_hoursAgo: t('messages.hoursAgo'), label_daysAgo: t('messages.daysAgo') }}>
+  try {
+    const saved = JSON.parse(localStorage.getItem('tarot_last_reading') || 'null');
+    // Only show if saved within the last 7 days
+    if (saved && saved.url && (Date.now() - saved.ts) < 7 * 24 * 60 * 60 * 1000) {
+      const cta = document.getElementById('last-reading-cta');
+      const link = document.getElementById('last-reading-link');
+      const age = document.getElementById('last-reading-age');
+      link.href = saved.url;
+      const mins = Math.floor((Date.now() - saved.ts) / 60000);
+      if (mins < 1) age.textContent = label_justNow;
+      else if (mins < 60) age.textContent = label_minutesAgo.replace('{n}', mins);
+      else if (mins < 1440) age.textContent = label_hoursAgo.replace('{n}', Math.floor(mins / 60));
+      else age.textContent = label_daysAgo.replace('{n}', Math.floor(mins / 1440));
+      cta.classList.remove('hidden');
+    }
+  } catch (_) {}
+</script>
 
 <style>
   @keyframes float {
