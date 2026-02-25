@@ -44,49 +44,51 @@ const reading = cardIds.map((cardId, index) => {
   };
 });
 
-// Detect the most relevant category from the question text
+// Detect the most relevant category — question has priority over spread context
 type MeaningCategory = 'work' | 'love' | 'health' | 'spirituality' | 'general';
 
-function detectRelevantCategory(q: string): MeaningCategory {
-  if (!q.trim()) return 'general';
-  const lower = q.toLowerCase();
+const CATEGORY_KEYWORDS: Record<Exclude<MeaningCategory, 'general'>, string[]> = {
+  work: [
+    'work', 'job', 'career', 'business', 'professional', 'office', 'boss', 'promotion',
+    'salary', 'money', 'finance', 'income', 'wealth', 'invest', 'project',
+    // Vietnamese
+    'công việc', 'nghề', 'kinh doanh', 'sự nghiệp', 'tiền', 'tài chính',
+  ],
+  love: [
+    'love', 'relationship', 'partner', 'marriage', 'dating', 'romance', 'heart',
+    'boyfriend', 'girlfriend', 'husband', 'wife', 'crush', 'breakup', 'divorce', 'moving on',
+    // Vietnamese
+    'tình yêu', 'yêu', 'người yêu', 'hôn nhân', 'bạn trai', 'bạn gái', 'chia tay',
+  ],
+  health: [
+    'health', 'sick', 'illness', 'body', 'medical', 'doctor', 'fitness', 'pain',
+    'anxiety', 'stress', 'mental', 'physical', 'wellbeing', 'heal', 'well-being',
+    // Vietnamese
+    'sức khỏe', 'bệnh', 'khỏe', 'thể chất', 'tinh thần',
+  ],
+  spirituality: [
+    'spirit', 'spiritual', 'soul', 'meditation', 'purpose', 'meaning', 'faith',
+    'universe', 'energy', 'intuition', 'growth', 'inner', 'higher self', 'shadow', 'inner child',
+    // Vietnamese
+    'tâm linh', 'linh hồn', 'thiền', 'vũ trụ', 'nội tâm', 'ý nghĩa',
+  ],
+};
 
-  const patterns: Record<Exclude<MeaningCategory, 'general'>, string[]> = {
-    work: [
-      'work', 'job', 'career', 'business', 'professional', 'office', 'boss', 'promotion',
-      'salary', 'money', 'finance', 'income', 'wealth', 'invest', 'project',
-      // Vietnamese
-      'công việc', 'nghề', 'kinh doanh', 'sự nghiệp', 'tiền', 'tài chính',
-    ],
-    love: [
-      'love', 'relationship', 'partner', 'marriage', 'dating', 'romance', 'heart',
-      'boyfriend', 'girlfriend', 'husband', 'wife', 'crush', 'breakup', 'divorce',
-      // Vietnamese
-      'tình yêu', 'yêu', 'người yêu', 'hôn nhân', 'bạn trai', 'bạn gái', 'chia tay',
-    ],
-    health: [
-      'health', 'sick', 'illness', 'body', 'medical', 'doctor', 'fitness', 'pain',
-      'anxiety', 'stress', 'mental', 'physical', 'wellbeing', 'heal',
-      // Vietnamese
-      'sức khỏe', 'bệnh', 'khỏe', 'thể chất', 'tinh thần',
-    ],
-    spirituality: [
-      'spirit', 'spiritual', 'soul', 'meditation', 'purpose', 'meaning', 'faith',
-      'universe', 'energy', 'intuition', 'growth', 'inner', 'higher self',
-      // Vietnamese
-      'tâm linh', 'linh hồn', 'thiền', 'vũ trụ', 'nội tâm', 'ý nghĩa',
-    ],
-  };
-
-  for (const [category, keywords] of Object.entries(patterns) as [Exclude<MeaningCategory, 'general'>, string[]][]) {
-    if (keywords.some(kw => lower.includes(kw))) {
-      return category;
-    }
+function matchCategory(text: string): MeaningCategory | null {
+  if (!text.trim()) return null;
+  const lower = text.toLowerCase();
+  for (const [cat, kws] of Object.entries(CATEGORY_KEYWORDS) as [Exclude<MeaningCategory, 'general'>, string[]][]) {
+    if (kws.some(kw => lower.includes(kw))) return cat;
   }
-  return 'general';
+  return null;
 }
 
-const relevantCategory = detectRelevantCategory(question);
+// 1. Try the question first (highest priority)
+// 2. Fall back to spread id + name + description (lower priority)
+const relevantCategory: MeaningCategory =
+  matchCategory(question) ??
+  matchCategory(`${spread.id} ${spread.name} ${spread.description}`) ??
+  'general';
 
 // Prepare drawn cards for Full Reading
 const drawnCards = reading.map((item, index) => ({
