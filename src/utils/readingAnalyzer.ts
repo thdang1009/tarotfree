@@ -372,37 +372,72 @@ export class ReadingAnalyzer {
   }
 
   /**
-   * Generate opening paragraph
+   * Pick a deterministic variant index based on card IDs so the same reading
+   * always produces the same narrative, but different readings feel fresh.
    */
-  private generateOpening(theme: ReadingTheme): string {
-    const templates = this.language === 'en'
-      ? {
-          positive: `The cards reveal a promising path ahead. Your reading is illuminated by ${theme.primaryTheme.toLowerCase()}, suggesting opportunities for growth and positive transformation.`,
-          negative: `The cards bring a message of caution and awareness. With ${theme.primaryTheme.toLowerCase()} at the forefront, this is a time to navigate challenges with wisdom.`,
-          mixed: `The cards present a nuanced picture, blending both opportunities and challenges. ${theme.primaryTheme} sets the stage for a journey of balance.`,
-          neutral: `The cards offer guidance on your path forward. ${theme.primaryTheme} provides the foundation for understanding your current situation.`
-        }
-      : {
-          positive: `Các lá bài tiết lộ một con đường đầy hứa hẹn phía trước. Bài xem của bạn được chiếu sáng bởi ${theme.primaryTheme.toLowerCase()}, gợi ý những cơ hội cho sự phát triển và chuyển đổi tích cực.`,
-          negative: `Các lá bài mang đến thông điệp thận trọng và nhận thức. Với ${theme.primaryTheme.toLowerCase()} ở tiền tuyến, đây là lúc để vượt qua thử thách bằng trí tuệ.`,
-          mixed: `Các lá bài trình bày một bức tranh tinh tế, pha trộn cả cơ hội và thử thách. ${theme.primaryTheme} đặt nền tảng cho một hành trình cân bằng.`,
-          neutral: `Các lá bài mang lại hướng dẫn trên con đường phía trước của bạn. ${theme.primaryTheme} cung cấp nền tảng để hiểu tình huống hiện tại của bạn.`
-        };
-
-    let opening = templates[theme.overallEnergy];
-
-    // Add question context
-    if (this.question && this.question.trim()) {
-      opening += this.language === 'en'
-        ? ` In response to your question: "${this.question}"`
-        : ` Để trả lời câu hỏi của bạn: "${this.question}"`;
-    }
-
-    return opening;
+  private variantIndex(count: number): number {
+    const seed = this.cards.reduce((acc, dc) => acc + dc.card.id, 0);
+    return seed % count;
   }
 
   /**
-   * Generate body paragraphs
+   * Generate opening paragraph — 3 variants per energy, card names woven in.
+   */
+  private generateOpening(theme: ReadingTheme): string {
+    const firstCard = this.cards[0]?.card.name ?? '';
+    const lastCard  = this.cards[this.cards.length - 1]?.card.name ?? '';
+    const en = {
+      positive: [
+        `${firstCard} opens your reading with an air of possibility, and the energy only grows from there. The cards are aligned around ${theme.primaryTheme.toLowerCase()}—a clear sign that momentum is building in your favour.`,
+        `The cards have gathered to tell a story of expansion and hope. With ${theme.primaryTheme.toLowerCase()} running through this reading like a golden thread, the universe is nudging you forward with confidence.`,
+        `Something is stirring. ${firstCard} sets the tone—optimistic, ready, alive with potential. This is a reading about ${theme.primaryTheme.toLowerCase()}, and the message is clear: now is your time.`,
+      ],
+      negative: [
+        `${firstCard} does not shy away from the truth, and neither do the rest of these cards. This reading, centred on ${theme.primaryTheme.toLowerCase()}, is asking you to slow down, pay attention, and move with intention.`,
+        `The cards are holding up a mirror. What they reflect is not punishment—it is invitation. ${theme.primaryTheme} is asking you to face something you may have been avoiding.`,
+        `There is weight in this reading. ${firstCard} arrives with a message that deserves your full attention. The theme of ${theme.primaryTheme.toLowerCase()} calls for honesty with yourself before you take your next step.`,
+      ],
+      mixed: [
+        `${firstCard} and ${lastCard} frame a reading that refuses to be simple. Light and shadow are both present here—${theme.primaryTheme} is neither a promise nor a warning, but an invitation to stay awake.`,
+        `The cards show a story still being written. ${theme.primaryTheme} sits at the heart of this reading, and what you do with the tensions here will shape where you end up.`,
+        `This is a reading of contrasts. ${firstCard} pulls in one direction, ${lastCard} in another. ${theme.primaryTheme} is the ground you stand on while you decide which way to move.`,
+      ],
+      neutral: [
+        `The cards have settled into a clear pattern. ${firstCard} begins a quiet story about ${theme.primaryTheme.toLowerCase()}—not dramatic, but honest and worth sitting with.`,
+        `${theme.primaryTheme} colours this reading in steady, dependable tones. The cards are not calling for urgency; they are asking you to look clearly at what is already in front of you.`,
+        `A thoughtful reading has emerged around you. ${firstCard} opens things gently, and the cards that follow speak to ${theme.primaryTheme.toLowerCase()} with a calm and grounded voice.`,
+      ],
+    };
+    const vi = {
+      positive: [
+        `${firstCard} mở đầu bài xem với một không khí đầy khả năng, và năng lượng chỉ tăng lên từ đó. Các lá bài đang xoay quanh ${theme.primaryTheme.toLowerCase()}—dấu hiệu rõ ràng rằng đà phát triển đang hướng về phía bạn.`,
+        `Các lá bài tập hợp để kể một câu chuyện về sự mở rộng và hy vọng. Với ${theme.primaryTheme.toLowerCase()} chạy xuyên suốt bài xem này như một sợi chỉ vàng, vũ trụ đang thúc đẩy bạn tiến lên với sự tự tin.`,
+        `Có điều gì đó đang chuyển động. ${firstCard} đặt ra giai điệu—lạc quan, sẵn sàng, tràn đầy tiềm năng. Đây là bài xem về ${theme.primaryTheme.toLowerCase()}, và thông điệp rõ ràng: đây là thời điểm của bạn.`,
+      ],
+      negative: [
+        `${firstCard} không né tránh sự thật, và những lá bài còn lại cũng vậy. Bài xem này, tập trung vào ${theme.primaryTheme.toLowerCase()}, đang yêu cầu bạn chậm lại, chú ý và hành động có chủ đích.`,
+        `Các lá bài đang giơ lên một tấm gương. Những gì chúng phản chiếu không phải là trừng phạt—đó là lời mời. ${theme.primaryTheme} đang yêu cầu bạn đối mặt với điều gì đó có thể bạn đã tránh né.`,
+        `Có sức nặng trong bài xem này. ${firstCard} đến với một thông điệp xứng đáng được chú ý đầy đủ. Chủ đề ${theme.primaryTheme.toLowerCase()} kêu gọi sự thành thật với bản thân trước khi bạn bước tiếp.`,
+      ],
+      mixed: [
+        `${firstCard} và ${lastCard} khung một bài xem từ chối đơn giản. Ánh sáng và bóng tối đều hiện diện ở đây—${theme.primaryTheme} không phải là lời hứa cũng không phải cảnh báo, mà là lời mời hãy tỉnh thức.`,
+        `Các lá bài cho thấy một câu chuyện vẫn đang được viết. ${theme.primaryTheme} nằm ở trung tâm của bài xem này, và những gì bạn làm với những căng thẳng ở đây sẽ định hình nơi bạn kết thúc.`,
+        `Đây là bài xem của những tương phản. ${firstCard} kéo về một hướng, ${lastCard} về hướng khác. ${theme.primaryTheme} là nền tảng bạn đứng trong khi quyết định đi hướng nào.`,
+      ],
+      neutral: [
+        `Các lá bài đã ổn định vào một mô hình rõ ràng. ${firstCard} bắt đầu một câu chuyện yên tĩnh về ${theme.primaryTheme.toLowerCase()}—không kịch tính, nhưng trung thực và đáng suy ngẫm.`,
+        `${theme.primaryTheme} tô màu bài xem này với những nốt nhạc ổn định, đáng tin cậy. Các lá bài không kêu gọi sự khẩn cấp; chúng đang yêu cầu bạn nhìn rõ ràng vào những gì đã ở trước mặt bạn.`,
+        `Một bài xem chu đáo đã nổi lên xung quanh bạn. ${firstCard} mở đầu nhẹ nhàng, và những lá bài tiếp theo nói về ${theme.primaryTheme.toLowerCase()} với giọng điệu bình tĩnh và vững chắc.`,
+      ],
+    };
+
+    const pool = this.language === 'en' ? en : vi;
+    const variants = pool[theme.overallEnergy];
+    return variants[this.variantIndex(variants.length)];
+  }
+
+  /**
+   * Generate body paragraphs — richer, card-name-aware
    */
   private generateBody(
     theme: ReadingTheme,
@@ -411,123 +446,191 @@ export class ReadingAnalyzer {
     challenging: DrawnCard[]
   ): string[] {
     const paragraphs: string[] = [];
+    const en = this.language === 'en';
 
-    // Paragraph 1: Suit dominance
+    // Paragraph 1: Suit dominance with card names
     if (theme.dominantSuit) {
-      const suitMeanings = this.language === 'en'
-        ? {
-            wands: 'The presence of Wands cards indicates that passion, creativity, and action are key themes. This is a time to pursue your ambitions with confidence.',
-            cups: 'The dominance of Cups suggests that emotional matters, relationships, and intuition play a central role. Listen to your heart.',
-            swords: 'The prevalence of Swords points to mental activity, communication, and decision-making. Clarity of thought will be your ally.',
-            pentacles: 'The abundance of Pentacles highlights material concerns, career, and practical matters. Focus on building solid foundations.'
-          }
-        : {
-            wands: 'Sự hiện diện của các lá Gậy cho thấy đam mê, sáng tạo và hành động là chủ đề chính. Đây là lúc để theo đuổi tham vọng với sự tự tin.',
-            cups: 'Sự thống trị của Cốc cho thấy các vấn đề cảm xúc, các mối quan hệ và trực giác đóng vai trò trung tâm. Hãy lắng nghe trái tim bạn.',
-            swords: 'Sự phổ biến của Kiếm chỉ ra hoạt động tinh thần, giao tiếp và ra quyết định. Sự rõ ràng trong suy nghĩ sẽ là đồng minh của bạn.',
-            pentacles: 'Sự dồi dào của Tiền xu làm nổi bật các mối quan tâm vật chất, sự nghiệp và các vấn đề thực tế. Tập trung vào việc xây dựng nền tảng vững chắc.'
-          };
+      const suitCards = this.cards
+        .filter(dc => dc.card.suit === theme.dominantSuit)
+        .map(dc => dc.card.name)
+        .slice(0, 2)
+        .join(' and ');
+      const suitCardsVi = this.cards
+        .filter(dc => dc.card.suit === theme.dominantSuit)
+        .map(dc => dc.card.name)
+        .slice(0, 2)
+        .join(' và ');
 
-      paragraphs.push(suitMeanings[theme.dominantSuit]);
+      const suitTexts: Record<string, [string, string]> = {
+        wands:     [
+          `${suitCards} lead the charge here—Wands bring fire, drive and creative ambition into the room. This is a reading about action, not waiting. What you've been building quietly is ready to move.`,
+          `Bộ Gậy—với ${suitCardsVi}—mang lửa, động lực và tham vọng sáng tạo vào bài xem. Đây là lúc hành động, không phải chờ đợi. Những gì bạn đang xây dựng thầm lặng đã sẵn sàng để tiến lên.`,
+        ],
+        cups:      [
+          `The presence of ${suitCards} tells you that the emotional layer of life is where the real work is happening right now. Cups invite you to feel fully, connect deeply, and trust what your intuition already knows.`,
+          `Sự hiện diện của ${suitCardsVi} cho bạn biết rằng tầng cảm xúc của cuộc sống là nơi công việc thực sự đang diễn ra ngay bây giờ. Chén mời bạn cảm nhận đầy đủ, kết nối sâu sắc và tin vào những gì trực giác của bạn đã biết.`,
+        ],
+        swords:    [
+          `${suitCards} sharpens the mind and cuts through confusion—but Swords can also cut too deep if unguided. The message here is to think clearly, speak honestly, and make decisions with both head and heart.`,
+          `${suitCardsVi} mài sắc tâm trí và cắt qua sự nhầm lẫn—nhưng Kiếm cũng có thể cắt quá sâu nếu không được hướng dẫn. Thông điệp ở đây là suy nghĩ rõ ràng, nói thật lòng và đưa ra quyết định bằng cả lý trí lẫn tâm hồn.`,
+        ],
+        pentacles: [
+          `${suitCards} grounds this reading in the practical world—what you can build, earn, and sustain. Pentacles are patient energy; they remind you that real, lasting growth is a craft, not a shortcut.`,
+          `${suitCardsVi} neo bài xem này vào thế giới thực tế—những gì bạn có thể xây dựng, kiếm được và duy trì. Tiền xu là năng lượng kiên nhẫn; chúng nhắc bạn rằng sự phát triển thực sự và bền vững là một nghề, không phải một lối tắt.`,
+        ],
+      };
+      const [enText, viText] = suitTexts[theme.dominantSuit] ?? ['', ''];
+      if (enText) paragraphs.push(en ? enText : viText);
     }
 
-    // Paragraph 2: Major Arcana significance
+    // Paragraph 2: Major Arcana weight — only if ≥50%
     if (theme.majorArcanaCount > 0) {
       const ratio = theme.majorArcanaCount / this.cards.length;
-
       if (ratio >= 0.5) {
+        const majorCards = this.cards
+          .filter(dc => dc.card.arcana === 'major')
+          .map(dc => dc.card.name)
+          .slice(0, 2)
+          .join(en ? ' and ' : ' và ');
         paragraphs.push(
-          this.language === 'en'
-            ? `With ${theme.majorArcanaCount} Major Arcana card(s), this reading carries significant weight. The universe is speaking through powerful archetypal energies, indicating that these are pivotal moments in your journey. Pay close attention to the lessons being offered.`
-            : `Với ${theme.majorArcanaCount} lá Bài Lớn, bài xem này mang ý nghĩa đáng kể. Vũ trụ đang nói thông qua các năng lượng nguyên mẫu mạnh mẽ, cho thấy đây là những thời điểm quan trọng trong hành trình của bạn. Hãy chú ý kỹ đến những bài học được cung cấp.`
+          en
+            ? `${majorCards} ${theme.majorArcanaCount > 1 ? 'are' : 'is'} carrying considerable weight here. When Major Arcana dominate a reading, it means the forces at play are larger than day-to-day circumstance—these are soul-level lessons asking for your full attention.`
+            : `${majorCards} mang trọng lượng đáng kể ở đây. Khi Bài Lớn chiếm ưu thế trong một bài xem, điều đó có nghĩa là các lực lượng đang hoạt động lớn hơn hoàn cảnh hàng ngày—đây là những bài học cấp độ tâm hồn đòi hỏi sự chú ý đầy đủ của bạn.`
         );
       }
     }
 
-    // Paragraph 3: Supporting vs Challenging dynamics
+    // Paragraph 3: Supporting vs Challenging dynamics — card-name-aware
     if (supporting.length > 0 || challenging.length > 0) {
-      let dynamicText = '';
+      const sup1 = supporting[0]?.card.name;
+      const cha1 = challenging[0]?.card.name;
 
-      if (supporting.length > challenging.length) {
-        const supportingNames = supporting.map(dc => dc.card.name).slice(0, 2).join(', ');
-        dynamicText = this.language === 'en'
-          ? `The cards show strong supportive energies working in your favor. ${supportingNames}${supporting.length > 2 ? ' and others' : ''} create a positive foundation, helping you move forward with confidence.`
-          : `Các lá bài cho thấy năng lượng hỗ trợ mạnh mẽ đang hoạt động có lợi cho bạn. ${supportingNames}${supporting.length > 2 ? ' và những lá khác' : ''} tạo ra một nền tảng tích cực, giúp bạn tiến lên với sự tự tin.`;
-      } else if (challenging.length > supporting.length) {
-        const challengingNames = challenging.map(dc => dc.card.name).slice(0, 2).join(', ');
-        dynamicText = this.language === 'en'
-          ? `The reading reveals some challenging dynamics. ${challengingNames}${challenging.length > 2 ? ' and others' : ''} highlight areas of resistance or lessons to be learned. These are not obstacles but teachers.`
-          : `Bài xem tiết lộ một số động lực thách thức. ${challengingNames}${challenging.length > 2 ? ' và những lá khác' : ''} làm nổi bật các khu vực kháng cự hoặc bài học cần được học. Đây không phải là chướng ngại vật mà là giáo viên.`;
-      } else {
-        dynamicText = this.language === 'en'
-          ? `The reading shows a balance between supportive and challenging energies, creating a dynamic tension that invites growth through both ease and effort.`
-          : `Bài xem cho thấy sự cân bằng giữa năng lượng hỗ trợ và thách thức, tạo ra một căng thẳng năng động mời gọi sự phát triển thông qua cả sự dễ dàng và nỗ lực.`;
+      if (supporting.length > challenging.length && sup1) {
+        paragraphs.push(
+          en
+            ? `${sup1}${supporting.length > 1 ? ` and ${supporting.slice(1).map(d => d.card.name).join(', ')}` : ''} are quietly working in your corner. These cards form the supportive backbone of this reading—lean into what they represent when you feel uncertain.`
+            : `${sup1}${supporting.length > 1 ? ` và ${supporting.slice(1).map(d => d.card.name).join(', ')}` : ''} đang âm thầm hỗ trợ bạn. Những lá bài này tạo thành xương sống hỗ trợ của bài xem—hãy dựa vào những gì chúng đại diện khi bạn cảm thấy không chắc chắn.`
+        );
+      } else if (challenging.length > supporting.length && cha1) {
+        paragraphs.push(
+          en
+            ? `${cha1}${challenging.length > 1 ? ` and ${challenging.slice(1).map(d => d.card.name).join(', ')}` : ''} introduce friction into the story. This isn't bad news—friction is how we're shaped. These cards are pointing to something that deserves honest examination rather than avoidance.`
+            : `${cha1}${challenging.length > 1 ? ` và ${challenging.slice(1).map(d => d.card.name).join(', ')}` : ''} đưa ma sát vào câu chuyện. Đây không phải là tin xấu—ma sát là cách chúng ta được định hình. Những lá bài này đang chỉ ra điều gì đó xứng đáng được kiểm tra trung thực hơn là né tránh.`
+        );
+      } else if (sup1 && cha1) {
+        paragraphs.push(
+          en
+            ? `${sup1} and ${cha1} create an interesting tension in this reading—support and challenge existing side by side. The invitation here is not to resolve this tension too quickly, but to let it teach you.`
+            : `${sup1} và ${cha1} tạo ra một căng thẳng thú vị trong bài xem này—hỗ trợ và thách thức tồn tại song song. Lời mời ở đây không phải là giải quyết căng thẳng này quá nhanh, mà là để nó dạy bạn.`
+        );
       }
-
-      paragraphs.push(dynamicText);
     }
 
-    // Paragraph 4: Key interaction
+    // Paragraph 4: Strongest card interaction — fully worded
     if (interactions.length > 0) {
-      const topInteraction = interactions[0];
-      const interactionText = this.language === 'en'
-        ? `A particularly notable connection appears between ${topInteraction.card1.name} and ${topInteraction.card2.name}. ${topInteraction.interpretation}`
-        : `Một kết nối đặc biệt đáng chú ý xuất hiện giữa ${topInteraction.card1.name} và ${topInteraction.card2.name}. ${topInteraction.interpretation}`;
-
-      paragraphs.push(interactionText);
+      const top = interactions[0];
+      paragraphs.push(
+        en
+          ? `The most striking relationship in this spread is between ${top.card1.name} and ${top.card2.name}. ${top.interpretation} This pairing is worth returning to when you reflect on this reading.`
+          : `Mối quan hệ nổi bật nhất trong bài xem này là giữa ${top.card1.name} và ${top.card2.name}. ${top.interpretation} Cặp đôi này đáng để bạn quay lại khi suy ngẫm về bài xem.`
+      );
     }
 
     return paragraphs;
   }
 
   /**
-   * Generate conclusion paragraph
+   * Generate conclusion — 3 variants per energy, card names woven in
    */
   private generateConclusion(theme: ReadingTheme): string {
-    const templates = this.language === 'en'
-      ? {
-          positive: 'This reading brings a message of hope and potential. Trust in the journey ahead and embrace the opportunities that come your way.',
-          negative: 'While challenges are present, they bring important lessons. Face them with courage and wisdom, knowing that growth often comes through difficulty.',
-          mixed: 'Your path holds both light and shadow. Navigate with awareness, accepting both the gifts and the challenges as part of your journey.',
-          neutral: 'The cards have spoken, offering their wisdom. Reflect on these messages and trust your intuition to guide you forward.'
-        }
-      : {
-          positive: 'Bài xem này mang thông điệp hy vọng và tiềm năng. Hãy tin tưởng vào hành trình phía trước và đón nhận những cơ hội đến với bạn.',
-          negative: 'Mặc dù có những thử thách, chúng mang lại những bài học quan trọng. Hãy đối mặt với chúng bằng lòng can đảm và trí tuệ, biết rằng sự phát triển thường đến qua khó khăn.',
-          mixed: 'Con đường của bạn chứa cả ánh sáng và bóng tối. Hãy điều hướng với nhận thức, chấp nhận cả những món quà và thử thách như một phần của hành trình.',
-          neutral: 'Các lá bài đã nói, cung cấp trí tuệ của họ. Hãy suy ngẫm về những thông điệp này và tin tưởng trực giác của bạn để dẫn dắt bạn tiến lên.'
-        };
+    const lastCard = this.cards[this.cards.length - 1]?.card.name ?? '';
+    const en = {
+      positive: [
+        `${lastCard} closes this reading on a note of forward motion. The message is not to wait for permission—the opening exists now. Step through it.`,
+        `This reading ends in possibility. The work is not finished, but the direction is clear. Trust what has been illuminated here and keep moving.`,
+        `The cards have been generous today. Take this energy with you—not as certainty, but as encouragement to act from your best self.`,
+      ],
+      negative: [
+        `${lastCard} closes this reading with a quiet but firm reminder: awareness is the first act of change. You have seen what needs to be seen.`,
+        `This reading asks more of you than comfort—it asks for honesty. The difficulty it names is real, but so is your capacity to meet it.`,
+        `The cards have been honest today. That honesty is a gift. Use it to move more clearly, not to burden yourself—the insight here is meant to free you, not trap you.`,
+      ],
+      mixed: [
+        `${lastCard} completes a reading that refuses to flatten your experience into simple answers. Life is complex, and the cards honour that. Hold both the light and shadow here—both are yours.`,
+        `This reading leaves you at a crossroads, which is exactly where growth lives. There are no wrong paths forward—only more or less aligned ones.`,
+        `The duality in this reading is a reflection of where you are right now. Neither fully open nor fully closed—in motion, in process, becoming.`,
+      ],
+      neutral: [
+        `${lastCard} closes quietly, as this reading began. There is steadiness here. The cards are not pushing you—they are reminding you of what you already know.`,
+        `This is a reading of grounded clarity. Nothing dramatic, nothing hidden—just an honest picture of where you stand. Use it.`,
+        `The cards have offered a clear reflection. What you do with it is yours entirely. Trust yourself to know which parts most deserve your attention.`,
+      ],
+    };
+    const vi = {
+      positive: [
+        `${lastCard} kết thúc bài xem này với một nốt nhạc của sự tiến về phía trước. Thông điệp là đừng chờ đợi sự cho phép—cơ hội đang mở ra ngay bây giờ. Hãy bước qua đó.`,
+        `Bài xem này kết thúc trong khả năng. Công việc chưa hoàn thành, nhưng hướng đi đã rõ ràng. Tin vào những gì đã được soi sáng ở đây và tiếp tục tiến lên.`,
+        `Các lá bài hôm nay rất hào phóng. Hãy mang năng lượng này theo—không phải như sự chắc chắn, mà như sự khuyến khích hành động từ bản thân tốt nhất của bạn.`,
+      ],
+      negative: [
+        `${lastCard} kết thúc bài xem này với một lời nhắc nhở yên lặng nhưng vững chắc: nhận thức là hành động đầu tiên của sự thay đổi. Bạn đã thấy những gì cần được thấy.`,
+        `Bài xem này đòi hỏi bạn nhiều hơn sự thoải mái—nó đòi hỏi sự trung thực. Khó khăn mà nó đặt tên là có thực, nhưng năng lực của bạn để đối mặt với nó cũng vậy.`,
+        `Các lá bài hôm nay trung thực. Sự trung thực đó là một món quà. Sử dụng nó để di chuyển rõ ràng hơn, không phải để gánh nặng bản thân.`,
+      ],
+      mixed: [
+        `${lastCard} hoàn thành một bài xem từ chối làm phẳng trải nghiệm của bạn thành những câu trả lời đơn giản. Cuộc sống phức tạp, và các lá bài tôn trọng điều đó.`,
+        `Bài xem này để bạn ở ngã tư đường, đó chính xác là nơi sự tăng trưởng sống. Không có con đường sai nào tiến về phía trước—chỉ là phù hợp hay ít phù hợp hơn.`,
+        `Tính song đối trong bài xem này là sự phản chiếu của nơi bạn đang ở ngay bây giờ. Không hoàn toàn mở cũng không hoàn toàn đóng—đang chuyển động, đang trong quá trình, đang trở thành.`,
+      ],
+      neutral: [
+        `${lastCard} kết thúc yên tĩnh, như bài xem này bắt đầu. Có sự vững chắc ở đây. Các lá bài không thúc đẩy bạn—chúng nhắc bạn về những gì bạn đã biết.`,
+        `Đây là bài xem của sự rõ ràng vững chắc. Không có gì kịch tính, không có gì ẩn giấu—chỉ là một bức tranh trung thực về nơi bạn đứng. Hãy sử dụng nó.`,
+        `Các lá bài đã cung cấp một sự phản chiếu rõ ràng. Bạn làm gì với nó hoàn toàn là của bạn. Hãy tin vào bản thân để biết phần nào xứng đáng nhất với sự chú ý của bạn.`,
+      ],
+    };
 
-    return templates[theme.overallEnergy];
+    const pool = this.language === 'en' ? en : vi;
+    const variants = pool[theme.overallEnergy];
+    return variants[this.variantIndex(variants.length)];
   }
 
   /**
-   * Generate advice paragraph
+   * Generate advice — card-name-aware, varied by energy
    */
   private generateAdvice(
     theme: ReadingTheme,
     supporting: DrawnCard[],
     challenging: DrawnCard[]
   ): string {
-    let advice = '';
+    const en = this.language === 'en';
+    const sup = supporting[0]?.card.name;
+    const cha = challenging[0]?.card.name;
 
-    if (supporting.length > 0) {
-      advice += this.language === 'en'
-        ? `Draw strength from the supportive energies of ${supporting[0].card.name}. `
-        : `Hãy rút sức mạnh từ năng lượng hỗ trợ của ${supporting[0].card.name}. `;
+    const parts: string[] = [];
+
+    if (sup) {
+      parts.push(
+        en
+          ? `Let ${sup} be your anchor—return to its energy when you need steadiness.`
+          : `Hãy để ${sup} là neo đậu của bạn—trở lại với năng lượng của nó khi bạn cần sự vững chắc.`
+      );
     }
 
-    if (challenging.length > 0) {
-      advice += this.language === 'en'
-        ? `Be mindful of the lessons ${challenging[0].card.name} brings, and approach them with patience. `
-        : `Hãy chú ý đến những bài học mà ${challenging[0].card.name} mang lại, và tiếp cận chúng với sự kiên nhẫn. `;
+    if (cha) {
+      parts.push(
+        en
+          ? `When ${cha} surfaces in your life, meet it with curiosity rather than resistance—there's something in that friction worth understanding.`
+          : `Khi ${cha} xuất hiện trong cuộc sống của bạn, hãy đón nhận nó với sự tò mò hơn là kháng cự—có điều gì đó trong sự ma sát đó đáng để hiểu.`
+      );
     }
 
-    advice += this.language === 'en'
-      ? 'Remember, the cards are a mirror—they reflect possibilities, not certainties. You hold the power to shape your path.'
-      : 'Hãy nhớ, các lá bài là một tấm gương—chúng phản ánh khả năng, không phải sự chắc chắn. Bạn nắm giữ quyền lực để định hình con đường của mình.';
+    parts.push(
+      en
+        ? 'The cards are a mirror, not a map. They show you what is present, not what is fixed. You hold the power to shape what comes next.'
+        : 'Các lá bài là một tấm gương, không phải bản đồ. Chúng cho bạn thấy những gì hiện diện, không phải những gì đã cố định. Bạn nắm giữ quyền lực để định hình những gì xảy ra tiếp theo.'
+    );
 
-    return advice;
+    return parts.join(' ');
   }
 }
 

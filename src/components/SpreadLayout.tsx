@@ -6,6 +6,8 @@ interface SpreadLayoutProps {
   spread: TarotSpread;
   selectedCards: SelectedCard[];
   cardsData: any[];
+  /** 1-based index of the slot currently being drawn (highlights that slot) */
+  activePosition?: number;
 }
 
 /**
@@ -15,12 +17,14 @@ function CardSlot({
   card,
   cardData,
   positionInfo,
-  index
+  index,
+  isActive
 }: {
   card?: SelectedCard;
   cardData?: any;
   positionInfo: any;
   index: number;
+  isActive?: boolean;
 }) {
   const hasCard = !!card;
 
@@ -50,13 +54,25 @@ function CardSlot({
           </div>
         </div>
       ) : (
-        <div className="opacity-60">
-          <div className="w-[70px] h-[105px] sm:w-[90px] sm:h-[135px] md:w-[110px] md:h-[165px] rounded-lg bg-gradient-to-br from-violet-100 to-violet-200 border-2 border-dashed border-violet-300 flex flex-col items-center justify-center text-violet-400">
-            <span className="text-xl sm:text-2xl mb-1">?</span>
-            <span className="text-[9px] sm:text-[10px] text-center px-1">{index + 1}</span>
+        <div className={`transition-all duration-300 ${isActive ? 'opacity-100 scale-110' : 'opacity-60'}`}>
+          <div
+            className={`w-[70px] h-[105px] sm:w-[90px] sm:h-[135px] md:w-[110px] md:h-[165px] rounded-lg flex flex-col items-center justify-center transition-all duration-300 ${
+              isActive
+                ? 'bg-gradient-to-br from-gold-soft/30 to-violet-200 border-2 border-gold-soft shadow-[0_0_18px_4px_rgba(212,175,55,0.45)] animate-pulse'
+                : 'bg-gradient-to-br from-violet-100 to-violet-200 border-2 border-dashed border-violet-300 text-violet-400'
+            }`}
+          >
+            <span className={`text-xl sm:text-2xl mb-1 ${isActive ? 'text-gold-soft' : ''}`}>
+              {isActive ? '✨' : '?'}
+            </span>
+            <span className={`text-[9px] sm:text-[10px] text-center px-1 font-semibold ${isActive ? 'text-violet-deep' : ''}`}>
+              {index + 1}
+            </span>
           </div>
           <div className="text-center mt-1 max-w-[70px] sm:max-w-[90px] md:max-w-[110px] mx-auto">
-            <p className="text-[9px] sm:text-[10px] font-semibold text-gray-500 truncate">{positionInfo.name}</p>
+            <p className={`text-[9px] sm:text-[10px] font-semibold truncate ${isActive ? 'text-gold-soft' : 'text-gray-500'}`}>
+              {positionInfo.name}
+            </p>
           </div>
         </div>
       )}
@@ -67,8 +83,12 @@ function CardSlot({
 /**
  * Renders spread layout using flexbox/grid instead of absolute positioning
  */
-export default function SpreadLayout({ spread, selectedCards, cardsData }: SpreadLayoutProps) {
+export default function SpreadLayout({ spread, selectedCards, cardsData, activePosition }: SpreadLayoutProps) {
   const { layout_type, layout_grid, positions } = spread;
+
+  // helper: is slot at `idx` (0-based) the currently active one?
+  const isActive = (idx: number) =>
+    activePosition !== undefined && activePosition === idx + 1;
 
   // Render different layouts based on layout_type
   const renderLayout = () => {
@@ -81,7 +101,7 @@ export default function SpreadLayout({ spread, selectedCards, cardsData }: Sprea
             {positions.map((pos, idx) => {
               const card = selectedCards[idx];
               const cardData = card ? cardsData[card.cardId] : null;
-              return <CardSlot key={idx} card={card} cardData={cardData} positionInfo={pos} index={idx} />;
+              return <CardSlot key={idx} card={card} cardData={cardData} positionInfo={pos} index={idx} isActive={isActive(idx)} />;
             })}
           </div>
         );
@@ -94,7 +114,7 @@ export default function SpreadLayout({ spread, selectedCards, cardsData }: Sprea
       case 'Bridge':
       case 'Arch':
       case 'Stairs':
-      case 'Arrow':
+      case 'Arrow': {
         // Grid-based layouts with rows
         let cardIdx = 0;
         return (
@@ -106,16 +126,16 @@ export default function SpreadLayout({ spread, selectedCards, cardsData }: Sprea
                   const card = selectedCards[currentIdx];
                   const cardData = card ? cardsData[card.cardId] : null;
                   const pos = positions[currentIdx];
-                  return <CardSlot key={currentIdx} card={card} cardData={cardData} positionInfo={pos} index={currentIdx} />;
+                  return <CardSlot key={currentIdx} card={card} cardData={cardData} positionInfo={pos} index={currentIdx} isActive={isActive(currentIdx)} />;
                 })}
               </div>
             ))}
           </div>
         );
+      }
 
-      case 'VerticalSplit':
-        // Two columns layout
-        cardIdx = 0;
+      case 'VerticalSplit': {
+        let cardIdx = 0;
         return (
           <div className="flex flex-col items-center justify-center gap-3 md:gap-4">
             {layout_grid.map((rowCount, rowIdx) => (
@@ -125,17 +145,17 @@ export default function SpreadLayout({ spread, selectedCards, cardsData }: Sprea
                   const card = selectedCards[currentIdx];
                   const cardData = card ? cardsData[card.cardId] : null;
                   const pos = positions[currentIdx];
-                  return <CardSlot key={currentIdx} card={card} cardData={cardData} positionInfo={pos} index={currentIdx} />;
+                  return <CardSlot key={currentIdx} card={card} cardData={cardData} positionInfo={pos} index={currentIdx} isActive={isActive(currentIdx)} />;
                 })}
               </div>
             ))}
           </div>
         );
+      }
 
-      case 'T-Shape':
-        // T-shape: top row, then vertical stem
+      case 'T-Shape': {
         const topRowCount = layout_grid[0];
-        cardIdx = 0;
+        let cardIdx = 0;
         return (
           <div className="flex flex-col items-center justify-center gap-3 md:gap-4">
             {/* Top row */}
@@ -145,7 +165,7 @@ export default function SpreadLayout({ spread, selectedCards, cardsData }: Sprea
                 const card = selectedCards[currentIdx];
                 const cardData = card ? cardsData[card.cardId] : null;
                 const pos = positions[currentIdx];
-                return <CardSlot key={currentIdx} card={card} cardData={cardData} positionInfo={pos} index={currentIdx} />;
+                return <CardSlot key={currentIdx} card={card} cardData={cardData} positionInfo={pos} index={currentIdx} isActive={isActive(currentIdx)} />;
               })}
             </div>
             {/* Stem */}
@@ -154,10 +174,11 @@ export default function SpreadLayout({ spread, selectedCards, cardsData }: Sprea
               const card = selectedCards[currentIdx];
               const cardData = card ? cardsData[card.cardId] : null;
               const pos = positions[currentIdx];
-              return <CardSlot key={currentIdx} card={card} cardData={cardData} positionInfo={pos} index={currentIdx} />;
+              return <CardSlot key={currentIdx} card={card} cardData={cardData} positionInfo={pos} index={currentIdx} isActive={isActive(currentIdx)} />;
             })}
           </div>
         );
+      }
 
       case 'CelticCross':
         // Special Celtic Cross layout
@@ -169,31 +190,36 @@ export default function SpreadLayout({ spread, selectedCards, cardsData }: Sprea
                 {/* Row 1 */}
                 <div></div>
                 <div className="row-start-1 col-start-2">
-                  <CardSlot card={selectedCards[2]} cardData={selectedCards[2] ? cardsData[selectedCards[2].cardId] : null} positionInfo={positions[2]} index={2} />
+                  <CardSlot card={selectedCards[2]} cardData={selectedCards[2] ? cardsData[selectedCards[2].cardId] : null} positionInfo={positions[2]} index={2} isActive={isActive(2)} />
                 </div>
                 <div></div>
                 {/* Row 2 */}
                 <div className="row-start-2 col-start-1">
-                  <CardSlot card={selectedCards[3]} cardData={selectedCards[3] ? cardsData[selectedCards[3].cardId] : null} positionInfo={positions[3]} index={3} />
+                  <CardSlot card={selectedCards[3]} cardData={selectedCards[3] ? cardsData[selectedCards[3].cardId] : null} positionInfo={positions[3]} index={3} isActive={isActive(3)} />
                 </div>
                 <div className="row-start-2 col-start-2 relative">
                   {/* Center: Card 1 and Card 2 (crossing) */}
                   <div className="relative">
-                    <CardSlot card={selectedCards[0]} cardData={selectedCards[0] ? cardsData[selectedCards[0].cardId] : null} positionInfo={positions[0]} index={0} />
+                    <CardSlot card={selectedCards[0]} cardData={selectedCards[0] ? cardsData[selectedCards[0].cardId] : null} positionInfo={positions[0]} index={0} isActive={isActive(0)} />
                     {selectedCards[1] && (
                       <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 rotate-90 opacity-90">
-                        <CardSlot card={selectedCards[1]} cardData={cardsData[selectedCards[1].cardId]} positionInfo={positions[1]} index={1} />
+                        <CardSlot card={selectedCards[1]} cardData={cardsData[selectedCards[1].cardId]} positionInfo={positions[1]} index={1} isActive={isActive(1)} />
+                      </div>
+                    )}
+                    {!selectedCards[1] && isActive(1) && (
+                      <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 rotate-90 opacity-90">
+                        <CardSlot card={undefined} cardData={null} positionInfo={positions[1]} index={1} isActive={true} />
                       </div>
                     )}
                   </div>
                 </div>
                 <div className="row-start-2 col-start-3">
-                  <CardSlot card={selectedCards[5]} cardData={selectedCards[5] ? cardsData[selectedCards[5].cardId] : null} positionInfo={positions[5]} index={5} />
+                  <CardSlot card={selectedCards[5]} cardData={selectedCards[5] ? cardsData[selectedCards[5].cardId] : null} positionInfo={positions[5]} index={5} isActive={isActive(5)} />
                 </div>
                 {/* Row 3 */}
                 <div></div>
                 <div className="row-start-3 col-start-2">
-                  <CardSlot card={selectedCards[4]} cardData={selectedCards[4] ? cardsData[selectedCards[4].cardId] : null} positionInfo={positions[4]} index={4} />
+                  <CardSlot card={selectedCards[4]} cardData={selectedCards[4] ? cardsData[selectedCards[4].cardId] : null} positionInfo={positions[4]} index={4} isActive={isActive(4)} />
                 </div>
                 <div></div>
               </div>
@@ -207,6 +233,7 @@ export default function SpreadLayout({ spread, selectedCards, cardsData }: Sprea
                   cardData={selectedCards[idx] ? cardsData[selectedCards[idx].cardId] : null}
                   positionInfo={positions[idx]}
                   index={idx}
+                  isActive={isActive(idx)}
                 />
               ))}
             </div>
@@ -222,7 +249,7 @@ export default function SpreadLayout({ spread, selectedCards, cardsData }: Sprea
               const cardData = card ? cardsData[card.cardId] : null;
               return (
                 <div key={idx} style={{ marginLeft: `${idx * 10}px` }}>
-                  <CardSlot card={card} cardData={cardData} positionInfo={pos} index={idx} />
+                  <CardSlot card={card} cardData={cardData} positionInfo={pos} index={idx} isActive={isActive(idx)} />
                 </div>
               );
             })}
@@ -236,7 +263,7 @@ export default function SpreadLayout({ spread, selectedCards, cardsData }: Sprea
             {positions.map((pos, idx) => {
               const card = selectedCards[idx];
               const cardData = card ? cardsData[card.cardId] : null;
-              return <CardSlot key={idx} card={card} cardData={cardData} positionInfo={pos} index={idx} />;
+              return <CardSlot key={idx} card={card} cardData={cardData} positionInfo={pos} index={idx} isActive={isActive(idx)} />;
             })}
           </div>
         );

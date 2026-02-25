@@ -14,7 +14,9 @@
     "export": "Export as Image",
     "startReading": "Start Reading",
     "backToHome": "Back to Home",
-    "copyShareLink": "Copy Share Link"
+    "copyShareLink": "Copy Share Link",
+    "shuffleAndBegin": "Shuffle the Deck & Begin",
+    "skipQuestion": "Skip — Draw without a question"
   },
   "labels": {
     "question": "Your Question",
@@ -37,6 +39,13 @@
     "spirituality": "Spirituality",
     "reflection": "Reflection",
     "aboutThisSpread": "About This Spread",
+    "setYourIntention": "Set Your Intention",
+    "spreadPositions": "Spread Positions",
+    "optionalQuestion": "Your Question (optional)",
+    "optionalQuestionHint": "Focus your mind. What are you seeking guidance on?",
+    "drawingCardFor": "Drawing card {current} of {total}",
+    "currentPosition": "Position: {name}",
+    "positionMeaning": "{name} — {description}",
     "browseAllCards": "Browse all tarot card meanings",
     "linkCopied": "Link Copied!",
     "whatGuidanceToday": "What do you wish to understand today?",

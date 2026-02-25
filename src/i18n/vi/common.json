@@ -14,7 +14,9 @@
     "export": "Xuất Hình Ảnh",
     "startReading": "Bắt Đầu Xem Bài",
     "backToHome": "Về Trang Chủ",
-    "copyShareLink": "Sao Chép Liên Kết"
+    "copyShareLink": "Sao Chép Liên Kết",
+    "shuffleAndBegin": "Xáo Bài & Bắt Đầu",
+    "skipQuestion": "Bỏ qua — Rút bài không đặt câu hỏi"
   },
   "labels": {
     "question": "Câu Hỏi Của Bạn",
@@ -37,6 +39,13 @@
     "spirituality": "Tâm Linh",
     "reflection": "Suy Ngẫm",
     "aboutThisSpread": "Về Cách Xếp Bài Này",
+    "setYourIntention": "Đặt Ý Định Của Bạn",
+    "spreadPositions": "Vị Trí Trong Bài",
+    "optionalQuestion": "Câu Hỏi Của Bạn (tuỳ chọn)",
+    "optionalQuestionHint": "Tập trung tâm trí. Bạn đang tìm kiếm hướng dẫn về điều gì?",
+    "drawingCardFor": "Đang rút lá {current} trong {total}",
+    "currentPosition": "Vị trí: {name}",
+    "positionMeaning": "{name} — {description}",
     "browseAllCards": "Xem tất cả ý nghĩa của các lá bài tarot",
     "linkCopied": "Đã Sao Chép Liên Kết!",
     "whatGuidanceToday": "Hôm nay bạn muốn tìm hiểu điều gì?",

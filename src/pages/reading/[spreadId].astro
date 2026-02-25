@@ -1,16 +1,13 @@
 ---
 import Layout from '../../layouts/Layout.astro';
-import CardDeckWrapper from '../../components/CardDeckWrapper';
+import ReadingWizard from '../../components/ReadingWizard';
 import { detectLanguage, createTranslator } from '../../utils/i18nServer';
 import { loadSpreads } from '../../utils/loadData';
 
-export const prerender = false; // Changed to server rendering to support dynamic language
+export const prerender = false;
 
-// Detect language
 const lang = detectLanguage(Astro.request);
 const t = createTranslator(lang, 'common');
-
-// Load language-specific spreads
 const spreads = loadSpreads(lang);
 
 const { spreadId } = Astro.params;
@@ -28,62 +25,18 @@ if (!spread) {
 >
   <div class="container mx-auto px-4 py-12">
     <!-- Header -->
-    <div class="text-center mb-8">
+    <div class="text-center mb-10">
       <h1 class="text-4xl font-bold mb-2 text-violet-deep">
         {spread.name}
       </h1>
-      <p class="text-lg text-gray-600">
-        {spread.description}
-      </p>
     </div>
 
-    <!-- Card Selection Component -->
-    <div class="max-w-5xl mx-auto">
-      <CardDeckWrapper client:load cardCount={spread.cardCount} spreadId={spreadId} spread={spread} />
-    </div>
-
-    <!-- Spread Information -->
-    <div class="max-w-3xl mx-auto mt-12">
-      <h2 class="text-2xl font-heading text-violet-medium mb-4 text-center">
-        {t('labels.aboutThisSpread')}
-      </h2>
-      <div class="grid gap-4">
-        {spread.positions.map((pos) => (
-          <div class="bg-white rounded-lg p-4 shadow">
-            <h3 class="font-bold text-violet-deep mb-1">
-              {t('labels.position')} {pos.position}: {pos.name}
-            </h3>
-            <p class="text-gray-600 text-sm">
-              {pos.description}
-            </p>
-          </div>
-        ))}
-      </div>
-    </div>
-
-    <!-- Back Link -->
-    <div class="text-center mt-8">
-      <a href="/" class="text-violet-medium hover:text-gold-soft transition-colors">
-        ← Choose a different spread
-      </a>
-    </div>
+    <!-- 3-step Reading Wizard -->
+    <ReadingWizard
+      client:load
+      cardCount={spread.cardCount}
+      spreadId={spreadId}
+      spread={spread}
+    />
   </div>
 </Layout>
-
-<style>
-  /* Add any additional styles here */
-  @keyframes fadeIn {
-    from {
-      opacity: 0;
-      transform: translateY(20px);
-    }
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  }
-
-  .animate-fade-in {
-    animation: fadeIn 0.5s ease-out;
-  }
-</style>

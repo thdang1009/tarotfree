@@ -44,12 +44,77 @@ const reading = cardIds.map((cardId, index) => {
   };
 });
 
+// Detect the most relevant category from the question text
+type MeaningCategory = 'work' | 'love' | 'health' | 'spirituality' | 'general';
+
+function detectRelevantCategory(q: string): MeaningCategory {
+  if (!q.trim()) return 'general';
+  const lower = q.toLowerCase();
+
+  const patterns: Record<Exclude<MeaningCategory, 'general'>, string[]> = {
+    work: [
+      'work', 'job', 'career', 'business', 'professional', 'office', 'boss', 'promotion',
+      'salary', 'money', 'finance', 'income', 'wealth', 'invest', 'project',
+      // Vietnamese
+      'công việc', 'nghề', 'kinh doanh', 'sự nghiệp', 'tiền', 'tài chính',
+    ],
+    love: [
+      'love', 'relationship', 'partner', 'marriage', 'dating', 'romance', 'heart',
+      'boyfriend', 'girlfriend', 'husband', 'wife', 'crush', 'breakup', 'divorce',
+      // Vietnamese
+      'tình yêu', 'yêu', 'người yêu', 'hôn nhân', 'bạn trai', 'bạn gái', 'chia tay',
+    ],
+    health: [
+      'health', 'sick', 'illness', 'body', 'medical', 'doctor', 'fitness', 'pain',
+      'anxiety', 'stress', 'mental', 'physical', 'wellbeing', 'heal',
+      // Vietnamese
+      'sức khỏe', 'bệnh', 'khỏe', 'thể chất', 'tinh thần',
+    ],
+    spirituality: [
+      'spirit', 'spiritual', 'soul', 'meditation', 'purpose', 'meaning', 'faith',
+      'universe', 'energy', 'intuition', 'growth', 'inner', 'higher self',
+      // Vietnamese
+      'tâm linh', 'linh hồn', 'thiền', 'vũ trụ', 'nội tâm', 'ý nghĩa',
+    ],
+  };
+
+  for (const [category, keywords] of Object.entries(patterns) as [Exclude<MeaningCategory, 'general'>, string[]][]) {
+    if (keywords.some(kw => lower.includes(kw))) {
+      return category;
+    }
+  }
+  return 'general';
+}
+
+const relevantCategory = detectRelevantCategory(question);
+
 // Prepare drawn cards for Full Reading
 const drawnCards = reading.map((item, index) => ({
   card: item.card,
   position: index + 1,
   reversed: item.reversed
 }));
+
+// Pre-compute per-card meaning rows with highlight flag
+type MeaningRow = { key: string; label: string; text: string; highlighted: boolean };
+
+const cardMeaningRows: MeaningRow[][] = reading.map(item => {
+  const meanings = item.reversed ? item.card.reversed : item.card.upright;
+  // Determine which category is relevant
+  const hasContent = (key: string) => !!(meanings as unknown as Record<string, string>)[key];
+  const highlighted = (relevantCategory !== 'general' && hasContent(relevantCategory))
+    ? relevantCategory
+    : 'general';
+
+  const rows: MeaningRow[] = [
+    { key: 'general', label: t('labels.general'), text: meanings.general, highlighted: highlighted === 'general' },
+  ];
+  if (meanings.work) rows.push({ key: 'work', label: `💼 ${t('labels.workCareer')}`, text: meanings.work, highlighted: highlighted === 'work' });
+  if (meanings.love) rows.push({ key: 'love', label: `❤️ ${t('labels.loveRelationships')}`, text: meanings.love, highlighted: highlighted === 'love' });
+  if (meanings.health) rows.push({ key: 'health', label: `🏥 ${t('labels.health')}`, text: meanings.health, highlighted: highlighted === 'health' });
+  if (meanings.spirituality) rows.push({ key: 'spirituality', label: `✨ ${t('labels.spirituality')}`, text: meanings.spirituality, highlighted: highlighted === 'spirituality' });
+  return rows;
+});
 
 // Prepare selected cards for SpreadLayout (must match SelectedCard interface)
 const selectedCards = cardIds.map((cardId, index) => ({
@@ -70,11 +135,6 @@ const selectedCards = cardIds.map((cardId, index) => ({
       <h1 class="text-4xl font-bold mb-2 text-violet-deep">
         {t('labels.yourReading')}: {spread.name}
       </h1>
-      {question && (
-        <p class="text-lg text-gray-700 italic mb-4">
-          "{question}"
-        </p>
-      )}
 
       <!-- Compact Spread Preview -->
       <div class="max-w-3xl mx-auto mt-8 mb-0">
@@ -135,8 +195,8 @@ const selectedCards = cardIds.map((cardId, index) => ({
                 />
               </div>
               {item.reversed && (
-                <p class="text-center text-sm text-red-600 mt-2 font-bold">
-                  ⚠️ {t('labels.reversed')}
+                <p class="text-center text-sm text-orange-600 mt-2 font-medium flex items-center justify-center gap-1">
+                  <span class="inline-block rotate-180">↑</span> {t('labels.reversed')}
                 </p>
               )}
             </div>
@@ -145,7 +205,7 @@ const selectedCards = cardIds.map((cardId, index) => ({
             <div class="flex-1">
               <h3 class="text-2xl font-heading text-violet-medium mb-2">
                 {item.card.name}
-                {item.reversed && <span class="text-red-600 text-lg ml-2">({t('labels.reversed')})</span>}
+                {item.reversed && <span class="text-orange-600 text-base ml-2 font-normal">(<span class="inline-block rotate-180">↑</span> {t('labels.reversed')})</span>}
               </h3>
 
               <div class="mb-3">
@@ -162,42 +222,30 @@ const selectedCards = cardIds.map((cardId, index) => ({
                 </p>
               </div>
 
-              <!-- Detailed Meanings -->
-              <details class="mb-2">
-                <summary class="cursor-pointer font-semibold text-violet-deep hover:text-gold-soft transition-colors mb-2">
-                  📖 {t('labels.detailedInterpretation')}
-                </summary>
-                <div class="pl-4 space-y-3 text-sm text-gray-700">
-                  <div>
-                    <strong class="text-violet-medium">{t('labels.general')}:</strong>
-                    <p>{item.reversed ? item.card.reversed.general : item.card.upright.general}</p>
-                  </div>
-                  {(item.reversed ? item.card.reversed.work : item.card.upright.work) && (
-                    <div>
-                      <strong class="text-violet-medium">💼 {t('labels.workCareer')}:</strong>
-                      <p>{item.reversed ? item.card.reversed.work : item.card.upright.work}</p>
+              <!-- Detailed Meanings — always open -->
+              <div class="mb-2">
+                <p class="font-semibold text-violet-deep mb-3">📖 {t('labels.detailedInterpretation')}</p>
+                <div class="space-y-3 text-sm text-gray-700">
+                  {cardMeaningRows[index].map(row => (
+                    <div class={row.highlighted
+                      ? 'rounded-lg border-l-4 border-gold-soft bg-amber-50 px-4 py-3 ring-1 ring-amber-200'
+                      : 'pl-1'
+                    }>
+                      <div class="flex items-center gap-2 mb-1">
+                        <strong class={row.highlighted ? 'text-amber-700' : 'text-violet-medium'}>
+                          {row.label}:
+                        </strong>
+                        {row.highlighted && question.trim() && (
+                          <span class="text-xs bg-gold-soft text-white px-2 py-0.5 rounded-full font-medium">
+                            {lang === 'vi' ? 'Liên quan câu hỏi của bạn' : 'Relevant to your question'}
+                          </span>
+                        )}
+                      </div>
+                      <p>{row.text}</p>
                     </div>
-                  )}
-                  {(item.reversed ? item.card.reversed.love : item.card.upright.love) && (
-                    <div>
-                      <strong class="text-violet-medium">❤️ {t('labels.loveRelationships')}:</strong>
-                      <p>{item.reversed ? item.card.reversed.love : item.card.upright.love}</p>
-                    </div>
-                  )}
-                  {(item.reversed ? item.card.reversed.health : item.card.upright.health) && (
-                    <div>
-                      <strong class="text-violet-medium">🏥 {t('labels.health')}:</strong>
-                      <p>{item.reversed ? item.card.reversed.health : item.card.upright.health}</p>
-                    </div>
-                  )}
-                  {(item.reversed ? item.card.reversed.spirituality : item.card.upright.spirituality) && (
-                    <div>
-                      <strong class="text-violet-medium">✨ {t('labels.spirituality')}:</strong>
-                      <p>{item.reversed ? item.card.reversed.spirituality : item.card.upright.spirituality}</p>
-                    </div>
-                  )}
+                  ))}
                 </div>
-              </details>
+              </div>
             </div>
           </div>
         </div>
@@ -289,19 +337,4 @@ const selectedCards = cardIds.map((cardId, index) => ({
     opacity: 0;
   }
 
-  details summary::-webkit-details-marker {
-    display: none;
-  }
-
-  details summary::marker {
-    display: none;
-  }
-
-  details summary {
-    list-style: none;
-  }
-
-  details[open] summary {
-    margin-bottom: 0.5rem;
-  }
 </style>
