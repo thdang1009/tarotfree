@@ -77,6 +77,77 @@ function InlineBold({ text }: { text: string }) {
   );
 }
 
+// ── Copy for AI button ────────────────────────────────────────────────────────
+function CopyForAIButton({
+  cards,
+  spread,
+  question,
+  isVi,
+}: {
+  cards: DrawnCard[];
+  spread: TarotSpread;
+  question: string;
+  isVi: boolean;
+}) {
+  const [copied, setCopied] = useState(false);
+
+  function buildText() {
+    const lines: string[] = [];
+
+    if (question.trim()) {
+      lines.push(isVi ? `Câu hỏi: ${question.trim()}` : `Question: ${question.trim()}`);
+    }
+
+    lines.push('');
+    lines.push(isVi ? `Kiểu trải bài: ${spread.name}` : `Spread: ${spread.name}`);
+    lines.push('');
+
+    cards.forEach((dc, idx) => {
+      const posName = spread.positions[idx]?.name ?? `#${idx + 1}`;
+      const orientation = dc.reversed
+        ? (isVi ? 'Ngược' : 'Reversed')
+        : (isVi ? 'Ngửa' : 'Upright');
+      lines.push(`${posName}: ${dc.card.name} (${orientation})`);
+    });
+
+    lines.push('');
+    lines.push(
+      isVi
+        ? 'Hãy đọc sâu hơn ý nghĩa của từng lá bài trong ngữ cảnh câu hỏi và vị trí trải bài trên.'
+        : 'Please provide a deeper interpretation of each card in the context of the question and spread positions above.'
+    );
+
+    return lines.join('\n');
+  }
+
+  function handleCopy() {
+    navigator.clipboard.writeText(buildText()).then(() => {
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2000);
+    });
+  }
+
+  return (
+    <button
+      type="button"
+      onClick={handleCopy}
+      className="w-full flex items-center justify-center gap-2 px-4 py-3 rounded-xl border border-violet-deep/30 bg-violet-deep/5 hover:bg-violet-deep/10 transition-colors text-violet-deep font-semibold text-sm"
+    >
+      {copied ? (
+        <>
+          <span>✅</span>
+          <span>{isVi ? 'Đã sao chép!' : 'Copied!'}</span>
+        </>
+      ) : (
+        <>
+          <span>🤖</span>
+          <span>{isVi ? 'Sao chép để hỏi AI (ChatGPT / Gemini...)' : 'Copy to ask AI (ChatGPT / Gemini...)'}</span>
+        </>
+      )}
+    </button>
+  );
+}
+
 // ── Main component ────────────────────────────────────────────────────────────
 export default function FullReadingDisplay({
   cards,
@@ -255,6 +326,9 @@ export default function FullReadingDisplay({
               </div>
             </section>
           )}
+
+          {/* ── Copy for AI button ── */}
+          <CopyForAIButton cards={cards} spread={spread} question={question} isVi={isVi} />
 
           {/* ── Reading Notes (meta-analysis, collapsible) ── */}
           {analysis.synthesis.body.length > 0 && (

@@ -31,6 +31,20 @@ const t = createTranslator(lang, 'common');
           {t('labels.whatGuidanceToday')}
         </h2>
 
+        <!-- Already have cards CTA -->
+        <div class="mb-8">
+          <a
+            href="#spreads"
+            id="have-cards-btn"
+            class="inline-flex items-center gap-2 px-6 py-3 bg-violet-deep text-white font-semibold rounded-full shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-200 text-base"
+          >
+            🃏 {lang === 'vi' ? 'Tôi Đã Có Bài — Tra Nghĩa Ngay' : 'I Already Have My Cards — Interpret Now'}
+          </a>
+          <p class="text-xs text-gray-400 mt-2">
+            {lang === 'vi' ? 'Đã bốc bài thực tế hoặc ở nơi khác? Nhập lá bài của bạn vào đây.' : 'Already drew physical cards or drew elsewhere? Enter your cards here.'}
+          </p>
+        </div>
+
         <!-- Suggested Topics -->
         <div class="flex flex-wrap justify-center gap-4 mb-12">
           <a href={withLang('/reading/5-card-relationship', lang)} class="px-6 py-3 bg-white border-2 border-violet-light rounded-full hover:bg-violet-light hover:text-white transition-all card-hover">
@@ -67,7 +81,7 @@ const t = createTranslator(lang, 'common');
     </div>
 
     <!-- Spread Selection -->
-    <div class="max-w-4xl mx-auto">
+    <div class="max-w-4xl mx-auto" id="spreads">
       <h2 class="text-3xl font-heading text-center mb-8 text-violet-deep">
         {t('labels.chooseYourSpread')}
       </h2>
@@ -135,6 +149,25 @@ const t = createTranslator(lang, 'common');
       cta.classList.remove('hidden');
     }
   } catch (_) {}
+
+  // "I already have cards" button — scroll to spreads and tag all spread links with mode=manual
+  const haveCardsBtn = document.getElementById('have-cards-btn');
+  if (haveCardsBtn) {
+    haveCardsBtn.addEventListener('click', (e) => {
+      e.preventDefault();
+      const spreadsEl = document.getElementById('spreads');
+      if (spreadsEl) spreadsEl.scrollIntoView({ behavior: 'smooth' });
+      // Add mode=manual to all spread links inside #spreads
+      spreadsEl?.querySelectorAll('a[href*="/reading/"]').forEach(link => {
+        const url = new URL(link.href, window.location.origin);
+        url.searchParams.set('mode', 'manual');
+        link.href = url.toString();
+      });
+      // Also highlight the spreads section briefly
+      spreadsEl?.classList.add('ring-2', 'ring-violet-deep', 'ring-offset-4', 'rounded-2xl', 'transition-all');
+      setTimeout(() => spreadsEl?.classList.remove('ring-2', 'ring-violet-deep', 'ring-offset-4', 'rounded-2xl'), 2000);
+    });
+  }
 </script>
 
 <style>
